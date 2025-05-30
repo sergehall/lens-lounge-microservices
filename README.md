@@ -1,12 +1,12 @@
 # Lens Lounge Microservices
 
-A modular, event-driven microservices project built with **NestJS**, **PostgreSQL**, **Kafka**, and **React**, using a modern monorepo setup with **Yarn Workspaces** and **Plug'n'Play**.
+A modular, event-driven microservices architecture built with **NestJS**, **PostgreSQL**, **Kafka**, and **React**, organized as a modern monorepo using **Yarn Workspaces** and **Plug'n'Play**.
 
 This project is a hands-on implementation of microservices architecture, event-based communication, and clean code principles like **SOLID** and **Hexagonal Architecture**.
 
 ---
 
-## 📦 Tech Stack
+## Tech Stack
 
 ### Backend
 - **Node.js / NestJS** — Main application framework
@@ -23,10 +23,10 @@ This project is a hands-on implementation of microservices architecture, event-b
 
 ---
 
-## 🚀 Features
+## Features
 
 - Microservices-based structure: `api-gateway`, `payment-service`, `frontend`
-- Kafka-based communication (`payment-created` topic)
+- Asynchronous communication between services via Kafka
 - PostgreSQL integration and message persistence
 - Monorepo setup with Yarn Berry and Plug'n'Play
 - Basic CORS configuration and reverse proxy for frontend
@@ -34,7 +34,7 @@ This project is a hands-on implementation of microservices architecture, event-b
 
 ---
 
-## 🧠 Architectural Principles
+## Architectural Principles
 
 - **SOLID**
 - **Hexagonal Architecture**
@@ -44,11 +44,11 @@ This project is a hands-on implementation of microservices architecture, event-b
 
 ---
 
-## 📁 Monorepo Structure
+## Monorepo Structure
 
 ---
 
-## 📝 License
+## License
 
 This project is licensed under the [MIT License](LICENSE).
 

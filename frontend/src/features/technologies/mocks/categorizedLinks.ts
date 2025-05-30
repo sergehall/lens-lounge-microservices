@@ -1,0 +1,21 @@
+export const categorizedLinks = {
+  Frontend: [
+    'React.js',
+    'TypeScript',
+    'JavaScript',
+    'HTML',
+    'CSS',
+    'React Router',
+    'Vite',
+    'Styled Components',
+    'Tailwind CSS',
+    'CSS Modules',
+    'Webpack',
+  ],
+  Backend: ['Node.js', 'Express', 'NestJS', 'Microservices', 'PostgreSQL', 'RabbitMQ', 'WebSocket'],
+  'DevOps / CI-CD': ['Docker', 'Kubernetes', 'Jenkins'],
+  'Architecture & Principles': ['SOLID', 'Hexagonal Architecture'],
+  'State Management': ['Redux', 'Zustand', 'Recoil', 'SAGA', 'React Query'],
+  'Testing & Tools': ['Jest', 'React Testing Library', 'ESLint', 'Prettier', 'Storybook'],
+  'Package Managers & Fetch': ['npm', 'Yarn Berry', 'Axios', 'Fetch'],
+};

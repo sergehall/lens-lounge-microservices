@@ -1,0 +1,19 @@
+{
+  "name": "lens-lounge-microservices",
+  "private": true,
+  "packageManager": "yarn@4.9.1",
+  "workspaces": [
+    "api-gateway",
+    "payment-service",
+    "frontend"
+  ],
+  "scripts": {
+    "dev:api": "yarn workspace api-gateway start:dev",
+    "dev:frontend": "yarn workspace frontend start",
+    "dev:payment": "yarn workspace payment-service start:dev",
+    "dev:all": "concurrently \"yarn dev:api\" \"yarn dev:payment\" \"yarn dev:frontend\""
+  },
+  "dependencies": {
+    "cors": "^2.8.5"
+  }
+}

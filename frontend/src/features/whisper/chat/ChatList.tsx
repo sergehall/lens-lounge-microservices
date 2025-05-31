@@ -47,12 +47,12 @@ const ChatList: React.FC = () => {
           >
             <S.Avatar
               src={user.avatarUrl || '/default-avatar.png'}
-              alt={`${user.username}'s avatar`}
+              alt={`${user.login}'s avatar`}
               $isActive={selectedChatId === chat.id}
               $size={AvatarSize.Small}
             />
             <S.UserDetails>
-              <S.UserName>{user.username}</S.UserName>
+              <S.UserName>{user.login}</S.UserName>
               <S.UserStatus $isOnline={user.isOnline}>
                 {user.isOnline ? 'Online' : 'Offline'}
               </S.UserStatus>

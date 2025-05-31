@@ -20,12 +20,8 @@ const StatusBanner: React.FC = () => {
   }
 
   if (error === 'Network error') {
-    return (
-      <div style={{ color: 'red' }}>
-        ❌ Could not connect to the server. <br />
-        Please make sure the server at <code>http://localhost:4000</code> is running.
-      </div>
-    );
+    console.error('❌ Could not connect to the server. Make sure the server at http://localhost:4000 is running.');
+    return null; // do not display anything on the UI
   }
 
   if (error) {
@@ -33,8 +29,8 @@ const StatusBanner: React.FC = () => {
   }
 
   if (isAuthenticated && isProfileValid(profile)) {
-    console.log(`Logged in as: ${profile.username}`);
-    return <div style={{ display: 'none' }}> Logged in as {profile.username}</div>;
+    console.log(`Logged in as: ${profile.login}`);
+    return <div style={{ display: 'none' }}> Logged in as {profile.login}</div>;
   }
 
   return <div>🚫 Not logged in</div>;

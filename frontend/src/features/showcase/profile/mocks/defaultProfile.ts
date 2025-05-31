@@ -5,7 +5,7 @@ export interface ProfileType {
   photoUrl: string;
   firstName: string;
   lastName: string;
-  username: string;
+  login: string;
   email: string;
   birthday: string;
   education: string;
@@ -25,7 +25,7 @@ export const DEFAULT_PROFILE: ProfileType = {
   photoUrl: defaultUser.photoUrl,
   firstName: defaultUser.firstName,
   lastName: defaultUser.lastName,
-  username: defaultUser.username,
+  login: defaultUser.login,
   email: defaultUser.email,
   birthday: defaultUser.birthday,
   education: defaultUser.education,

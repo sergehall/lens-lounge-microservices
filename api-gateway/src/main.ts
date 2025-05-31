@@ -16,13 +16,18 @@ async function bootstrap() {
   // Apply configurations using the createApp function (assuming it configures the app)
   createApp(app);
 
+  // Enable CORS for frontend
+  app.enableCors({
+    origin: 'http://localhost:3000', // Allow requests from React dev server
+    credentials: true,               // Allow cookies, Authorization headers, etc.
+  });
+
   // Retrieve the configuration service to access environment variables
   const configService = app.get(ConfigService<ConfigType, true>);
 
-  // Retrieve the port from environment variables, default to 5000 if not provided
-  // const port = configService.get<number>('PORT');
+  // Retrieve the port from environment variables, default to 5005 if not provided
+  const port = configService.get<number>('PORT');
 
-  const port: number = 5005;
 
   console.log('port', port);
   // Start the application and listen on the specified port

@@ -47,5 +47,13 @@ export const envSchema = z
           .map((v) => v.trim())
           .filter(Boolean)
       ),
+    // 👇 New: Mock login credentials for dev
+    REACT_APP_DEV_EMAIL: z
+      .string()
+      .email({message: 'Must be a valid email address'}),
+
+    REACT_APP_DEV_PASSWORD: z
+      .string()
+      .min(6, {message: 'Password must be at least 6 characters'}),
   })
   .strict();

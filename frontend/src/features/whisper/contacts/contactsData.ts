@@ -10,7 +10,7 @@ export interface ContactsData {
   id: string;
   userId: string;
   avatar: string;
-  username: string;
+  login: string;
   firstName: string;
   lastName: string;
   phoneNumber: CellPhoneData;
@@ -40,7 +40,7 @@ export const combineContactData = (): ContactsData[] => {
       id: user.userId,
       userId: user.userId,
       avatar: user.avatarUrl,
-      username: user.username,
+      login: user.login,
       firstName: user.firstName,
       lastName: user.lastName,
       phoneNumber: phoneNumber,

@@ -31,8 +31,8 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         if (isDev) {
           await dispatch(
             loginUser({
-              email: 'sergehall@example.com', // Must match mock data
-              password: 'hashedPasswordsergehall', // Should match passwordHash in usersMock
+              email: env.REACT_APP_DEV_EMAIL,
+              password: env.REACT_APP_DEV_PASSWORD,
             })
           );
         } else {

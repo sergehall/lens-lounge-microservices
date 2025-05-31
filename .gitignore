@@ -1,8 +1,8 @@
 # 📁 See: https://help.github.com/articles/ignoring-files/
 
 # Build output
-/dist
-/build
+dist
+build
 
 # Environment variables
 .env
@@ -14,7 +14,7 @@
 .env.production
 .env.production.local
 
-/config/development.env
+config/development.env
 
 # Dependencies
 **/node_modules
@@ -27,8 +27,8 @@
 !.yarn/versions
 
 # Test coverage and reports
-/coverage
-/.nyc_output
+coverage
+.nyc_output
 
 # Logs
 logs
@@ -40,7 +40,7 @@ yarn-error.log*
 lerna-debug.log*
 
 # IDE and editor configs
-/.idea
+.idea
 .vscode/
 .project
 .classpath

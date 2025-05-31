@@ -21,7 +21,7 @@ const ContactDetails: React.FC<ContactDetailsProps> = ({ contact }) => {
     <S.InfoSection>
       <S.Header>
         <S.UserInfoHeader>
-          <S.UserName>{contact.username}</S.UserName>
+          <S.UserName>{contact.login}</S.UserName>
           <S.UserStatus $isOnline={contact.isOnline}>
             {contact.isOnline ? 'Online' : 'Offline'}
           </S.UserStatus>

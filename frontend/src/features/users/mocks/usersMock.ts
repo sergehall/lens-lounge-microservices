@@ -43,7 +43,6 @@ export interface AddressData {
 export const usersMock: User[] = [
   {
     userId: '0',
-    username: 'sergehall',
     avatarUrl:
       'https://avatars.githubusercontent.com/u/60080971?s=400&u=142534052d9a95da0103bb0094b44d5202f90a21&v=4',
     email: 'sergehall@example.com',
@@ -51,7 +50,7 @@ export const usersMock: User[] = [
     lastActive: new Date().toISOString(),
     firstName: 'Serge',
     lastName: 'Hall',
-    login: 'sergehall@example.com'.toLowerCase(),
+    login: 'sergehall'.toLowerCase(),
     passwordHash: 'hashedPasswordsergehall',
     createdAt: new Date().toISOString(),
     orgId: OrgIdEnums.IT_INCUBATOR,
@@ -70,7 +69,6 @@ export const usersMock: User[] = [
   },
   {
     userId: '1',
-    username: 'EmmyMax',
     avatarUrl:
       'https://masterpiecer-images.s3.yandex.net/e29101853b7111ee934e1282c0ba7723:upscaled',
     email: 'emmymax@example.com',
@@ -78,7 +76,7 @@ export const usersMock: User[] = [
     lastActive: new Date().toISOString(),
     firstName: 'Emmy',
     lastName: 'Noether',
-    login: 'emmymax@example.com'.toLowerCase(),
+    login: 'EmmyMax'.toLowerCase(),
     passwordHash: 'hashedPassword1',
     createdAt: new Date().toISOString(),
     orgId: OrgIdEnums.IT_INCUBATOR,
@@ -96,14 +94,13 @@ export const usersMock: User[] = [
   },
   {
     userId: '2',
-    username: 'Dimych#1751',
     avatarUrl: 'https://i.ytimg.com/vi/ujvaADXPO8E/maxresdefault.jpg',
     email: 'dimychkuzyuberdin@example.com',
     isOnline: false,
     lastActive: new Date('2023-12-01T14:30:00').toISOString(),
     firstName: 'Dimych',
     lastName: 'Kuzyuberdin',
-    login: 'dimychkuzyuberdin@example.com'.toLowerCase(),
+    login: 'Dimych#1751@example.com'.toLowerCase(),
     passwordHash: 'hashedPassword2',
     createdAt: new Date().toISOString(),
     orgId: OrgIdEnums.IT_INCUBATOR,
@@ -121,7 +118,6 @@ export const usersMock: User[] = [
   },
   {
     userId: '3',
-    username: 'PierreDeFermat',
     avatarUrl:
       'https://thumbs.dreamstime.com/b/belarus-city-gomil-september-holiday-slavic-man-national-dress-young-ukrainian-belarusian-guy-embroidered-shirt-187379288.jpg',
     email: 'pierrdefermat@example.com',
@@ -129,7 +125,7 @@ export const usersMock: User[] = [
     lastActive: new Date('2023-11-01T10:15:00').toISOString(),
     firstName: 'Pierre',
     lastName: 'DeFermat',
-    login: 'pierrdefermat@example.com'.toLowerCase(),
+    login: 'PierreDeFermat'.toLowerCase(),
     passwordHash: 'hashedPassword3',
     createdAt: new Date().toISOString(),
     orgId: OrgIdEnums.IT_INCUBATOR,
@@ -147,7 +143,6 @@ export const usersMock: User[] = [
   },
   {
     userId: '4',
-    username: 'Lovelace',
     avatarUrl:
       'https://camo.githubusercontent.com/d05e80bf07249ed858dcd65c362524dbcbe72093973c35421de936560ef7a7af/68747470733a2f2f626c6f672e6765656b68756e7465722e636f6d2e62722f77702d636f6e74656e742f75706c6f6164732f323032322f30312f6164612d6c6f76656c6163652d322e6a7067',
     email: 'lovelace@example.com',
@@ -155,7 +150,7 @@ export const usersMock: User[] = [
     lastActive: new Date('2023-01-20T14:00:00').toISOString(),
     firstName: 'Ada',
     lastName: 'Lovelace',
-    login: 'lovelace@example.com'.toLowerCase(),
+    login: 'Lovelace'.toLowerCase(),
     passwordHash: 'hashedPassword4',
     createdAt: new Date().toISOString(),
     orgId: OrgIdEnums.IT_INCUBATOR,
@@ -173,7 +168,6 @@ export const usersMock: User[] = [
   },
   {
     userId: '5',
-    username: 'Riemann',
     avatarUrl:
       'https://production-it-incubator.s3.eu-central-1.amazonaws.com/it-kamasutra/Image/c959a045-0eb3-4b46-af08-851e1052e40a_blob',
     email: 'riemann@example.com',
@@ -181,7 +175,7 @@ export const usersMock: User[] = [
     lastActive: new Date('2023-01-24T12:15:00').toISOString(),
     firstName: 'Bernhard',
     lastName: 'Riemann',
-    login: 'riemann@example.com'.toLowerCase(),
+    login: 'Riemann'.toLowerCase(),
     passwordHash: 'hashedPassword5',
     createdAt: new Date().toISOString(),
     orgId: OrgIdEnums.IT_INCUBATOR,
@@ -199,7 +193,6 @@ export const usersMock: User[] = [
   },
   {
     userId: '6',
-    username: 'SofiaPrixBordin',
     avatarUrl:
       'https://production-it-incubator.s3.eu-central-1.amazonaws.com/it-kamasutra/Image/5d35280f-5521-489a-a372-45efacaf084e_4d2ee26774cf11eeaead5696910b1137_upscaled.jpg',
     email: 'kovalevskaya@example.com',
@@ -207,7 +200,7 @@ export const usersMock: User[] = [
     lastActive: new Date('2023-11-01T10:12:00').toISOString(),
     firstName: 'Sofia',
     lastName: 'Kovalevskaya',
-    login: 'kovalevskaya@example.com'.toLowerCase(),
+    login: 'SofiaPrixBordin'.toLowerCase(),
     passwordHash: 'hashedPassword6',
     createdAt: new Date().toISOString(),
     orgId: OrgIdEnums.IT_INCUBATOR,
@@ -225,7 +218,6 @@ export const usersMock: User[] = [
   },
   {
     userId: '7',
-    username: 'Ramanujan1729',
     avatarUrl:
       'https://production-it-incubator.s3.eu-central-1.amazonaws.com/it-kamasutra/Image/18da458e-2abf-433f-9517-2403c0072655_blob',
     email: 'george@example.com',
@@ -233,7 +225,7 @@ export const usersMock: User[] = [
     lastActive: new Date().toISOString(),
     firstName: 'Ramanujan',
     lastName: 'Srinivasa',
-    login: 'george@example.com'.toLowerCase(),
+    login: 'Ramanujan1729'.toLowerCase(),
     passwordHash: 'hashedPassword7',
     createdAt: new Date().toISOString(),
     orgId: OrgIdEnums.IT_INCUBATOR,
@@ -251,7 +243,6 @@ export const usersMock: User[] = [
   },
   {
     userId: '8',
-    username: 'Gauss',
     avatarUrl:
       'https://preview.redd.it/regular-day-of-a-belarusian-man-v0-izkc3fdjc5cc1.jpg?width=1024&format=pjpg&auto=webp&s=0ada9fdbd8628217b9ca6885c9f25e5190aa1f0d',
     email: 'gauss@example.com',
@@ -259,7 +250,7 @@ export const usersMock: User[] = [
     lastActive: new Date('2023-12-01T10:15:00').toISOString(),
     firstName: 'Carl',
     lastName: 'Friedrich Gauss',
-    login: 'gauss@example.com'.toLowerCase(),
+    login: 'Gauss'.toLowerCase(),
     passwordHash: 'hashedPassword8',
     createdAt: new Date().toISOString(),
     orgId: OrgIdEnums.IT_INCUBATOR,

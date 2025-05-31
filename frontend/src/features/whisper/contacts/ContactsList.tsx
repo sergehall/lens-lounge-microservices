@@ -34,7 +34,7 @@ const ContactsList: React.FC<ContactsListProps> = ({
             $size={AvatarSize.Small}
           />
           <S.UserDetails>
-            <S.UserName>{contact.username}</S.UserName>
+            <S.UserName>{contact.login}</S.UserName>
             <S.UserStatus $isOnline={contact.isOnline}>
               {contact.isOnline ? 'Online' : 'Offline'}
             </S.UserStatus>

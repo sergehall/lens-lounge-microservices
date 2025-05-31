@@ -29,14 +29,15 @@ const initialState: AuthState = {
 export const loginUser = createAsyncThunk<ProfileType, LoginArgs, { rejectValue: string }>(
   'auth/loginUser',
   async ({ email, password }, { rejectWithValue }) => {
+    const loginOrEmail = email
     try {
-      const response = await fetch('http://localhost:4000/api/login', {
+      const response = await fetch('http://localhost:5005/auth/login', {
         method: 'POST',
         credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ loginOrEmail, password }),
       });
 
       if (!response.ok) {
@@ -58,7 +59,7 @@ export const loadProfile = createAsyncThunk<ProfileType, void, { rejectValue: st
   'auth/loadProfile',
   async (_, { rejectWithValue }) => {
     try {
-      const response = await fetch('http://localhost:4000/api/profile', {
+      const response = await fetch('http://localhost:5005/auth/profile', {
         method: 'GET',
         credentials: 'include',
       });
@@ -67,6 +68,7 @@ export const loadProfile = createAsyncThunk<ProfileType, void, { rejectValue: st
         return rejectWithValue('Not authenticated');
       }
 
+      console.log('Profile response:', response);
       const profile = await response.json();
       return profile as ProfileType;
     } catch {

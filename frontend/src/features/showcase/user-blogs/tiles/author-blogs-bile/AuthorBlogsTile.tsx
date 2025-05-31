@@ -11,7 +11,7 @@ import { makeSelectUserBlogsForCategory } from '../../selectors';
 const AuthorBlogsTile: React.FC = () => {
   const { name = '' } = useParams<{ name: string }>();
   const decodedName = decodeURIComponent(name);
-  const username = useAppSelector(selectProfile)?.username || '';
+  const username = useAppSelector(selectProfile)?.login || '';
   const blogs = useAppSelector(makeSelectUserBlogsForCategory(decodedName, username));
 
   return <BlogListRenderer blogs={blogs} />;

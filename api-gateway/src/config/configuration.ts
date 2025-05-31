@@ -16,7 +16,9 @@ class Configuration {
   }
 
   private static getPort(): number {
-    return Number(this.readEnvVariableWithDefault('PORT', 5000));
+    const port   = Number(this.readEnvVariableWithDefault('PORT', 5005));
+    console.log(port, 'port!!!')
+    return Number(this.readEnvVariableWithDefault('PORT', 5005));
   }
 
   private static getDatabaseURL(): string {

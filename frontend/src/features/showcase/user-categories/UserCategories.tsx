@@ -16,7 +16,7 @@ const UserCategories: React.FC = () => {
   const dispatch = useAppDispatch();
 
   const profile = useAppSelector(selectProfile);
-  const username = profile?.username || '';
+  const username = profile?.login || '';
 
   // Load all the user's blogs
   useEffect(() => {

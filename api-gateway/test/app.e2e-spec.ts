@@ -1,19 +1,22 @@
-import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
-import { App } from 'supertest/types';
-import { AppModule } from './../src/app.module';
+import { getTestAppOptions } from './utilities/get-test-app.options';
 
-describe('AppController (e2e)', () => {
-  let app: INestApplication<App>;
+describe('App Controller (e2e)', () => {
+  let app: INestApplication;
 
-  beforeEach(async () => {
-    const moduleFixture: TestingModule = await Test.createTestingModule({
-      imports: [AppModule],
-    }).compile();
+  // beforeAll(async () => {
+  //   const testAppOptions = await getTestAppOptions();
+  //   app = testAppOptions.app;
+  // });
 
-    app = moduleFixture.createNestApplication();
-    await app.init();
+  beforeAll(async () => {
+    const testAppOptions = await getTestAppOptions();
+    app = testAppOptions.app;
+  }, 10000); // Increase the timeout to 10000 milliseconds (10 seconds)
+
+  afterAll(async () => {
+    await app.close();
   });
 
   it('/ (GET)', () => {

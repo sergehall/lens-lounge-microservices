@@ -1,0 +1,37 @@
+# Ignore node modules (handled inside container)
+**/node_modules
+.yarn/cache
+.pnp.*
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+
+# Ignore logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Ignore environment files (handled via Docker secrets or env vars)
+.env
+.env.*
+
+# Ignore test & coverage output
+coverage
+/.nyc_output
+
+# Ignore build output (rebuild inside container)
+build
+dist
+
+# IDE/editor folders
+.vscode
+.idea
+*.sublime-workspace
+
+# OS files
+.DS_Store
+
+# Docker-specific
+Dockerfile*
+docker-compose*.yml

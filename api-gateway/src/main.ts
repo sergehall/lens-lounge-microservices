@@ -1,27 +1,43 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import * as dotenv from 'dotenv';
+import { NestExpressApplication } from '@nestjs/platform-express';
+import { createApp } from './create-app';
+import { TelegramAdapter } from './adapters/telegram/telegram.adapter';
+import { ConfigService } from '@nestjs/config';
+import { ConfigType } from './config/configuration';
 
 async function bootstrap() {
-  // Load environment variables
-  dotenv.config();
+  const app = await NestFactory.create<NestExpressApplication>(AppModule, {
+    rawBody: true,
+  });
+  // // Set global prefix
+  // app.setGlobalPrefix('api');
 
-  // Option 1: Enable CORS with full configuration
-  const app = await NestFactory.create(AppModule);
+  // Apply configurations using the createApp function (assuming it configures the app)
+  createApp(app);
 
-  // CORS (Cross-Origin Resource Sharing) allows frontend (e.g., React) from a different origin to call this backend.
-  // NestJS uses the Express `cors` middleware under the hood.
-  app.enableCors({
-    origin: 'http://localhost:3000', // Frontend origin
-    credentials: true,               // Allow cookies, authorization headers, etc.
+  // Retrieve the configuration service to access environment variables
+  const configService = app.get(ConfigService<ConfigType, true>);
+
+  // Retrieve the port from environment variables, default to 5000 if not provided
+  // const port = configService.get<number>('PORT');
+
+  const port: number = 5005;
+
+  console.log('port', port);
+  // Start the application and listen on the specified port
+  await app.listen(port, () => {
+    console.log(`Example app listening on port: ${port}`);
   });
 
-  // Option 2 (alternative): enable default CORS at creation
-  // const app = await NestFactory.create(AppModule, { cors: true });
+  // Get the base URL at which the application is running
+  const baseUrl = await app.getUrl();
+  console.log(`Application is running on url: ${baseUrl}`);
 
-  const port = process.env.PORT ?? 3001;
-  await app.listen(port);
+  const telegramAdapter = await app.resolve(TelegramAdapter);
 
-  console.log(`🚀 API Gateway is running on http://localhost:${port}`);
+  await telegramAdapter.setWebhook();
 }
+
+// Call the bootstrap function to start the application
 bootstrap();

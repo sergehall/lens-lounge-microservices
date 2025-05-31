@@ -1,28 +1,73 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# 📁 See: https://help.github.com/articles/ignoring-files/
 
-.idea
-.env
-.env.development
-.env.production
-
-# dependencies
-/node_modules
-/.pnp
-.pnp.js
-
-# testing
-/coverage
-
-# production
+# Build output
+/dist
 /build
 
-# misc
-.DS_Store
+# Environment variables
+.env
+.env.dev
 .env.local
+.env.development
 .env.development.local
 .env.test.local
+.env.production
 .env.production.local
 
+/config/development.env
+
+# Dependencies
+**/node_modules
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
+# Test coverage and reports
+/coverage
+/.nyc_output
+
+# Logs
+logs
+*.log
 npm-debug.log*
+pnpm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+lerna-debug.log*
+
+# IDE and editor configs
+/.idea
+.vscode/
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# Optional: keep shared VSCode settings
+# Uncomment below if needed
+# !.vscode/settings.json
+# !.vscode/tasks.json
+# !.vscode/launch.json
+# !.vscode/extensions.json
+
+# Temp files
+.temp
+.tmp
+
+# Runtime and PID files
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Node.js diagnostic reports
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+
+# OS-specific
+.DS_Store

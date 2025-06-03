@@ -1,14 +1,25 @@
-import { Controller, Get } from '@nestjs/common';
-import { AppService } from './app.service';
+// payment-service/src/app.controller.ts
+
+import { Controller, Post, Body } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
+import { KafkaService } from "./kafka/kafka.service";
 
-@ApiTags('App')
-@Controller()
-export class AppController {
-  constructor(private readonly appService: AppService) {}
+@ApiTags('Payment')
+@Controller('payment')
+export class PaymentController {
+  constructor(private readonly kafkaService: KafkaService) {}
 
-  @Get()
-  async getHello(): Promise<string> {
-    return this.appService.getHello();
+  @Post()
+  handlePayment(@Body() data: any) {
+    // Simulate payment
+    console.log('💸 Оплата прошла успешно:', data);
+
+    // Emitim Event
+    this.kafkaService.emitPaymentCreated({
+      ...data,
+      status: 'completed',
+    });
+
+    return { message: 'Payment processed' };
   }
 }

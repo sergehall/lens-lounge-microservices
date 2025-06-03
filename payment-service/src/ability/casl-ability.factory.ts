@@ -1,3 +1,4 @@
+import { CurrentUserDto, UserRolesEnum } from "@lens-lounge/shared";
 import { Injectable } from '@nestjs/common';
 import {
   AbilityBuilder,
@@ -7,8 +8,6 @@ import {
 } from '@casl/ability';
 import { Action } from './roles/action.enum';
 import { IdDto } from './dto/id.dto';
-import { CurrentUserDto } from '../features/users/dto/current-user.dto';
-import { UserRolesEnums } from './enums/user-roles.enums';
 
 type AppAbility = PureAbility<AbilityTuple, MatchConditions>;
 const lambdaMatcher = (matchConditions: MatchConditions) => matchConditions;
@@ -17,7 +16,7 @@ const lambdaMatcher = (matchConditions: MatchConditions) => matchConditions;
 export class CaslAbilityFactory {
   createSaUser(currentUser: CurrentUserDto) {
     const { can, cannot, build } = new AbilityBuilder<AppAbility>(PureAbility);
-    if (currentUser.roles.includes(UserRolesEnums.SA)) {
+    if (currentUser.roles.includes(UserRolesEnum.SA)) {
       can(Action.MANAGE, 'all');
       cannot(
         Action.CREATE,

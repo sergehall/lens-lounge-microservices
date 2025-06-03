@@ -1,6 +1,6 @@
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { EnvNamesEnums } from '../enums/env-names.enums';
-import { PayPalUrlsEnum } from '../../payment/payment-systems/pay-pal/enums/pay-pal-urls.enum';
+import { PayPalUrlsEnum } from "./enums/payPalUrls.enum";
 
 @Injectable()
 export class PayPalFactory {

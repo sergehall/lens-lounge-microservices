@@ -12,7 +12,6 @@ import { PgKeysType } from '../db/postgres/types/pg-keys.type';
 import { JwtKeysType } from '../jwt/types/jwt-keys.types';
 import { PgPortKeyType } from '../db/postgres/types/pg-port-key.type';
 import { MongoDbKeysType } from '../db/mongo/types/mongo-db-keys.type';
-import { AwsKeysTypes } from '../aws/types/aws-keys.types';
 import { MailsKeysTypes, MailsPortKeyType } from '../mails/types/mails.types';
 import { ReCaptchaKeyType } from '../recaptcha/types/re-captcha-key.type';
 
@@ -27,17 +26,6 @@ export class BaseConfig {
     return this.configService.get('ENV', {
       infer: true,
     });
-  }
-
-  /**
-   * Retrieves a specific AWS value by key from the configuration.
-   * @param {AwsKeysTypes} key - The key to retrieve the value for.
-   * @returns {Promise<string>} The value associated with the provided key.
-   */
-  protected async getValueAwsByKey(key: AwsKeysTypes): Promise<string> {
-    return this.configService.get('db.aws', {
-      infer: true,
-    })[key];
   }
 
   protected async getValuePayPal(key: PayPalKeysType): Promise<string> {

@@ -2,7 +2,6 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { createApp } from './create-app';
-import { TelegramAdapter } from './adapters/telegram/telegram.adapter';
 import { ConfigService } from '@nestjs/config';
 import { ConfigType } from './config/configuration';
 
@@ -22,9 +21,9 @@ async function bootstrap() {
     credentials: true,               // Allow cookies, Authorization headers, etc.
   });
 
+
   // Retrieve the configuration service to access environment variables
   const configService = app.get(ConfigService<ConfigType, true>);
-  console.log('ConfigService:', configService);
 
   // Retrieve the port from environment variables, default to 5006 if not provided
   const port = configService.get<number>('PORT');
@@ -39,9 +38,6 @@ async function bootstrap() {
   const baseUrl = await app.getUrl();
   console.log(`Application is running on url: ${baseUrl}`);
 
-  const telegramAdapter = await app.resolve(TelegramAdapter);
-
-  await telegramAdapter.setWebhook();
 }
 
 // Call the bootstrap function to start the application

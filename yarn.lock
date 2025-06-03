@@ -17963,6 +17963,7 @@ __metadata:
     handlebars: "npm:^4.7.8"
     jest: "npm:^29.7.0"
     joi: "npm:^17.12.2"
+    kafkajs: "npm:^2.2.4"
     md5: "npm:^2.3.0"
     mongodb-memory-server: "npm:^9.1.6"
     mongoose: "npm:^8.2.1"

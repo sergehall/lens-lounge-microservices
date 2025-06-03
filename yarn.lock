@@ -3433,6 +3433,14 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@lens-lounge/shared@workspace:shared":
+  version: 0.0.0-use.local
+  resolution: "@lens-lounge/shared@workspace:shared"
+  dependencies:
+    class-validator: "npm:^0.14.1"
+  languageName: unknown
+  linkType: soft
+
 "@ljharb/through@npm:^2.3.12":
   version: 2.3.14
   resolution: "@ljharb/through@npm:2.3.14"

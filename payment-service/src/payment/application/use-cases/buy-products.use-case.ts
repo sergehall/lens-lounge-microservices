@@ -1,3 +1,5 @@
+import { CurrentUserDto } from "@lens-lounge/shared/src/users/dtos/currentUser.dto";
+import { GuestUsersDto } from "@lens-lounge/shared/src/users/dtos/guestUsers.dto";
 import { PaymentSystem } from '../../enums/payment-system.enums';
 import { CommandBus, CommandHandler, ICommandHandler } from '@nestjs/cqrs';
 import { PaymentLinkDto } from '../../dto/payment-link.dto';
@@ -9,8 +11,6 @@ import {
   ProductRequest,
   ProductsRequestDto,
 } from '../../../features/products/dto/products-request.dto';
-import { CurrentUserDto } from '../../../features/users/dto/current-user.dto';
-import { GuestUsersDto } from '../../../features/users/dto/guest-users.dto';
 import { ProductsRepo } from '../../../features/products/infrastructure/products.repo';
 import { ProductsDataEntity } from '../../../features/products/entities/products-data.entity';
 import { CreateOrderAndPaymentTransactionsCommand } from '../../../features/products/application/create-order-and-payment-transactions.use-case';

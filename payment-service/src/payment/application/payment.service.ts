@@ -8,10 +8,8 @@ import {
 } from '../payment-systems/types/reference-id.type';
 import { ProductRequest } from '../../features/products/dto/products-request.dto';
 import { ProductsDataEntity } from '../../features/products/entities/products-data.entity';
-import { CurrentUserDto } from '../../features/users/dto/current-user.dto';
-import { GuestUsersDto } from '../../features/users/dto/guest-users.dto';
-import { UsersEntity } from '../../features/users/entities/users.entity';
 import { GuestUsersEntity } from '../../features/products/entities/unregistered-users.entity';
+import { CurrentUserDto, GuestUsersDto } from '@lens-lounge/shared';
 
 @Injectable()
 export class PaymentService {

@@ -1,25 +1,70 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
-    "declaration": true,
-    "removeComments": true,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "allowSyntheticDefaultImports": true,
-    "target": "es2022",
-    "sourceMap": true,
+    // Target modern JavaScript features (e.g., async/await)
+    "target": "ES2022",
+
+    // CommonJS is used for compatibility with Node.js
+    "module": "CommonJS",
+
+    // Includes both ECMAScript and DOM types (useful if you share models across frontend/backend)
+    "lib": ["ES2022", "DOM"],
+
+    // Output directory for compiled files
     "outDir": "./dist",
-    "baseUrl": "src",
-    "incremental": true,
-    "skipLibCheck": true,
+
+    // Root directory for TypeScript source files
+    "rootDir": "./src",
+
+    // Base path for module resolution (used with "paths")
+    "baseUrl": "./src",
+
+    // Aliases for importing shared code (e.g., from another workspace package)
+    "paths": {
+      "@lens-lounge/shared": ["../../shared"]
+    },
+
+    // Enable experimental support for decorators (needed for NestJS)
+    "experimentalDecorators": true,
+
+    // Emit design-time type metadata for decorators (also for NestJS)
+    "emitDecoratorMetadata": true,
+
+    // Allow default imports from modules with no default export
+    "allowSyntheticDefaultImports": true,
+
+    // Enable interoperability between CommonJS and ES modules
+    "esModuleInterop": true,
+
+    // Enable all strict type-checking options
+    "strict": true,
+
+    // Ensures values are not null or undefined unless explicitly allowed
     "strictNullChecks": true,
+
+    // Prevent usage of variables without declared types
     "noImplicitAny": true,
+
+    // Check for correct usage of `bind`, `call`, and `apply` methods
     "strictBindCallApply": true,
+
+    // Ensure consistent casing in imports across the project
     "forceConsistentCasingInFileNames": true,
+
+    // Prevent fallthrough cases in switch statements
     "noFallthroughCasesInSwitch": true,
-    "lib": [
-      "es2022",
-      "dom"
-    ]
-  }
+
+    // Skip checking type declarations of external libraries
+    "skipLibCheck": true,
+
+    // Generate `.d.ts` declaration files for the compiled code
+    "declaration": true,
+
+    // Remove comments in the compiled JavaScript
+    "removeComments": true,
+
+    // Enable faster incremental compilation
+    "incremental": true
+  },
+  // Include only files from the source directory
+  "include": ["src"]
 }

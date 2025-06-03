@@ -9,7 +9,8 @@
   "workspaces": [
     "api-gateway",
     "payment-service",
-    "frontend"
+    "frontend",
+    "shared"
   ],
   "scripts": {
     "dev:api": "yarn workspace api-gateway start:dev",

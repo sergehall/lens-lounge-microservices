@@ -14,15 +14,11 @@ import { PaymentManager } from '../../payment-manager/payment-manager';
 import { PaymentTransactionsRepo } from '../../infrastructure/payment-transactions.repo';
 import { KeyResolver } from '../../../common/helpers/key-resolver';
 import { UuidErrorResolver } from '../../../common/helpers/uuid-error-resolver';
-import { UsersEntity } from '../../../features/users/entities/users.entity';
 import { OrdersEntity } from '../../../features/products/entities/orders.entity';
 import { GuestUsersEntity } from '../../../features/products/entities/unregistered-users.entity';
 import { ProductsDataEntity } from '../../../features/products/entities/products-data.entity';
 import { InvalidJwtEntity } from '../../../features/auth/entities/invalid-jwt.entity';
-import { PairsGameEntity } from '../../../features/pair-game-quiz/entities/pairs-game.entity';
-import { QuestionsQuizEntity } from '../../../features/sa-quiz-questions/entities/questions-quiz.entity';
 import { PaymentTransactionsEntity } from '../../../features/products/entities/payment-transaction.entity';
-import { ChallengeQuestionsEntity } from '../../../features/pair-game-quiz/entities/challenge-questions.entity';
 import { StripeFactory } from './factory/stripe-factory';
 import { PayPalFactory } from '../../../config/pay-pal/pay-pal-factory';
 import { PayPalConfig } from '../../../config/pay-pal/pay-pal.config';
@@ -31,13 +27,8 @@ import { PostgresConfig } from '../../../config/db/postgres/postgres.config';
 import { StripeConfig } from '../../../config/stripe/stripe.config';
 import { ParseQueriesService } from '../../../common/query/parse-queries.service';
 import { OrdersRepo } from '../../../features/products/infrastructure/orders.repo';
-import { UsersRepo } from '../../../features/users/infrastructure/users-repo';
-import { GuestUsersRepo } from '../../../features/users/infrastructure/guest-users.repo';
 import { InvalidJwtRepo } from '../../../features/auth/infrastructure/invalid-jwt-repo';
 import { ProductsRepo } from '../../../features/products/infrastructure/products.repo';
-import { GamePairsRepo } from '../../../features/pair-game-quiz/infrastructure/game-pairs.repo';
-import { GameQuestionsRepo } from '../../../features/pair-game-quiz/infrastructure/game-questions.repo';
-import { ChallengesQuestionsRepo } from '../../../features/pair-game-quiz/infrastructure/challenges-questions.repo';
 
 const stripeUseCases = [
   ConstructStripeEventUseCase,
@@ -51,15 +42,11 @@ const helpers = [KeyResolver, UuidErrorResolver];
 @Module({
   imports: [
     TypeOrmModule.forFeature([
-      UsersEntity,
       OrdersEntity,
       GuestUsersEntity,
       ProductsDataEntity,
       InvalidJwtEntity,
-      PairsGameEntity,
-      QuestionsQuizEntity,
       PaymentTransactionsEntity,
-      ChallengeQuestionsEntity,
     ]),
     CqrsModule,
   ],
@@ -77,14 +64,9 @@ const helpers = [KeyResolver, UuidErrorResolver];
     PaymentService,
     ParseQueriesService,
     OrdersRepo,
-    UsersRepo,
-    GuestUsersRepo,
     InvalidJwtRepo,
     ProductsRepo,
-    GamePairsRepo,
-    GameQuestionsRepo,
     PaymentTransactionsRepo,
-    ChallengesQuestionsRepo,
     ...stripeUseCases,
     ...helpers,
   ],

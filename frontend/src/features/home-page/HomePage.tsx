@@ -1,4 +1,4 @@
-// src/components/HomePage/HomePage.tsx
+// src/components/HomePage/HomePage.tsx  /
 import React from 'react';
 
 import { RootState } from '../../app/store';

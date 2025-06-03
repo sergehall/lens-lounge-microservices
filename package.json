@@ -19,7 +19,9 @@
     "dev:all": "concurrently \"yarn dev:api\" \"yarn dev:payment\" \"yarn dev:frontend\""
   },
   "dependencies": {
-    "cors": "^2.8.5"
+    "@nestjs/microservices": "^11.1.2",
+    "cors": "^2.8.5",
+    "kafkajs": "^2.2.4"
   },
   "devDependencies": {
     "concurrently": "^9.1.2"

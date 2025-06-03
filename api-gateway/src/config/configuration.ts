@@ -16,8 +16,6 @@ class Configuration {
   }
 
   private static getPort(): number {
-    const port   = Number(this.readEnvVariableWithDefault('PORT', 5005));
-    console.log(port, 'port!!!')
     return Number(this.readEnvVariableWithDefault('PORT', 5005));
   }
 

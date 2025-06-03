@@ -29,7 +29,6 @@ async function bootstrap() {
   const port = configService.get<number>('PORT');
 
 
-  console.log('port', port);
   // Start the application and listen on the specified port
   await app.listen(port, () => {
     console.log(`Example app listening on port: ${port}`);

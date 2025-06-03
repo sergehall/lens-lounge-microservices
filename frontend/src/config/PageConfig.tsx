@@ -17,6 +17,8 @@ import { createPageConfig } from './PageConfigFactory';
 export const pageConfig = {
   [ROUTES.home.root]: createPageConfig({ component: HomePage }),
 
+  [ROUTES.home.categoriesRoot]: createPageConfig({ component: HomePage }),
+
   [ROUTES.home.categoryBySlug]: createPageConfig({
     component: CategoryBlogsPage,
   }),

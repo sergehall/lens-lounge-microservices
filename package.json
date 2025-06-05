@@ -5,7 +5,8 @@
   "private": true,
   "description": "A modular, event-driven microservices architecture built with NestJS, PostgreSQL, Kafka, and React, organized as a modern monorepo using Yarn Workspaces and Plug'n'Play.",
   "license": "MIT",
-  "packageManager": "yarn@4.9.1",
+  "packageManager": "yarn@4.9.2",
+  "constraintsPath": "./constraints.pro",
   "workspaces": [
     "api-gateway",
     "payment-service",
@@ -13,18 +14,28 @@
     "shared"
   ],
   "scripts": {
+    "start:dev": "cross-env NODE_OPTIONS=--require .pnp.cjs nest start --watch",
+    "check:deps": "yarn constraints",
     "dev:api": "yarn workspace api-gateway start:dev",
-    "dev:frontend": "yarn workspace frontend start",
+    "dev:frontend": "yarn workspace frontend dev",
     "dev:payment": "yarn workspace payment-service start:dev",
     "dev:web": "concurrently \"yarn dev:api\" \"yarn dev:frontend\"",
-    "dev:all": "concurrently \"yarn dev:api\" \"yarn dev:payment\" \"yarn dev:frontend\""
+    "dev:all": "concurrently \"yarn dev:api\" \"yarn dev:payment\" \"yarn dev:frontend\"",
+    "clean:all": "rimraf .yarn/cache .yarn/install-state.* \".pnp.*\" yarn.lock && yarn cache clean && yarn install && yarn dlx @yarnpkg/sdks vscode",
+    "clean": "rm -rf .yarn/cache .yarn/install-state.* .pnp.* yarn.lock && yarn cache clean && yarn install"
   },
   "dependencies": {
+    "@nestjs/common": "^11",
+    "@nestjs/core": "^11",
     "@nestjs/microservices": "^11.1.2",
     "cors": "^2.8.5",
-    "kafkajs": "^2.2.4"
+    "kafkajs": "^2.2.4",
+    "reflect-metadata": "^0.2.2",
+    "rxjs": "^7.8.2"
   },
   "devDependencies": {
-    "concurrently": "^9.1.2"
+    "concurrently": "^9.1.2",
+    "cross-env": "^7.0.3",
+    "rimraf": "^6.0.1"
   }
 }

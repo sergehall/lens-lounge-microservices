@@ -1,14 +1,20 @@
-// src/index.tsx
+// frontend/src/index.tsx
 
 import React from 'react';
-import ReactDOM, { Root } from 'react-dom/client';
+import { createRoot } from 'react-dom/client';
 
+import App from './App';
 import AppProviders from './AppProviders';
 import './index.css';
-import App from './App';
 import { getRootElement } from './utils/dom';
 
-const root: Root = ReactDOM.createRoot(getRootElement());
+const container = getRootElement(); // должен вернуть HTMLElement
+
+if (!container) {
+  throw new Error('Root element not found');
+}
+
+const root = createRoot(container);
 
 root.render(
   <React.StrictMode>

@@ -1,6 +1,8 @@
 import { z } from 'zod';
 
-const baseSchema = z.object({
+export const envSchema = z.object({
+  VITE_API_URL: z.string().url(),
+
   REACT_APP_ROOT_ID: z.string().min(1),
   REACT_APP_API_URL: z.string().url(),
   REACT_APP_ENVIRONMENT: z.enum(['development', 'production', 'test']).default('development'),
@@ -50,7 +52,4 @@ const baseSchema = z.object({
 
   REACT_APP_DEV_EMAIL: z.string().email({ message: 'Must be a valid email address' }),
   REACT_APP_DEV_PASSWORD: z.string().min(6, { message: 'Password must be at least 6 characters' }),
-});
-
-// Allow unknowns (e.g. REACT_APP_VERCEL_GIT_COMMIT_SHA)
-export const envSchema = baseSchema.passthrough();
+}).passthrough();

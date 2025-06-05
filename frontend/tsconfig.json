@@ -1,13 +1,13 @@
 {
   "compilerOptions": {
-    "module": "CommonJS",
+    "module": "ESNext",
     "target": "ES2020",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "strict": true,
-    "allowSyntheticDefaultImports": true,
     "noFallthroughCasesInSwitch": true,
-    "esModuleInterop": true,
     "allowJs": true,
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
@@ -15,8 +15,7 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "typeRoots": ["./node_modules/@types"],
-    "types": ["styled-components"]
+    "types": ["vite/client", "styled-components"]
   },
   "include": ["src", "src/types/reactAppEnv.d.ts"]
 }

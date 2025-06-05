@@ -26,6 +26,8 @@ config/development.env
 !.yarn/sdks
 !.yarn/versions
 
+
+
 # Test coverage and reports
 coverage
 .nyc_output
@@ -74,3 +76,5 @@ report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
 # TypeScript build cache
 *.tsbuildinfo
+/payment-service/.env.docker
+/payment-service/.env.docker

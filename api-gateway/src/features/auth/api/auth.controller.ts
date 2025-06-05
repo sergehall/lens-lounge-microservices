@@ -12,7 +12,6 @@ import {
   Query,
 } from '@nestjs/common';
 import { SkipThrottle } from '@nestjs/throttler';
-import { User } from "frontend/src/features/users/types/user.type";
 import { JwtAuthGuard } from '../guards/jwt-auth.guard';
 import { LocalAuthGuard } from '../guards/local-auth.guard';
 import { LoginDto } from '../dto/login.dto';
@@ -171,7 +170,7 @@ export class AuthController {
   @ApiDocService.apply(EndpointKeys.Auth, AuthMethods.Me)
   @UseGuards(JwtAuthGuard)
   @Get('profile')
-  async getProfileForFrontend(@Request() req: any): Promise<User> {
+  async getProfileForFrontend(@Request() req: any): Promise<any> {
     return req.user
   }
 }

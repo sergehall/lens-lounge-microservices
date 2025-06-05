@@ -7,9 +7,9 @@ import { validationSchemaConfiguration } from './validation-schema.configuration
 @Module({
   imports: [
     ConfigModule.forRoot({
-      cache: true,
-      isGlobal: true,
       envFilePath,
+      isGlobal: true,
+      cache: true,
       validationSchema: validationSchemaConfiguration,
       load: [Configuration.getConfiguration],
     }),

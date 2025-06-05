@@ -17,7 +17,7 @@ This project is a hands-on implementation of microservices architecture, event-b
 - **Yarn Workspaces** — Monorepo package management
 
 ### Frontend
-- **React (CRA)** — Frontend app
+- **React + Vite** — Fast and modern frontend setup
 - **Fetch API** — Communication with API Gateway
 - **CORS & Proxy** — Smooth development setup
 
@@ -48,11 +48,24 @@ This project is a hands-on implementation of microservices architecture, event-b
 
 ---
 
-## License
+## Dependency Constraints (`constraints.pro`)
 
-This project is licensed under the [MIT License](LICENSE).
+This project uses [Yarn Constraints](https://yarnpkg.com/features/constraints) to enforce consistent dependency boundaries across workspaces.
 
-You are free to use, modify, and distribute this code for learning or personal use.  
-Attribution appreciated but not required.
+### Enforced Rules:
 
+```prolog
+% Enforce exact frontend library versions to avoid version drift
+gen_enforced_dependency("frontend", "react", "^19.1.0").
+gen_enforced_dependency("frontend", "react-dom", "^19.1.0").
+gen_enforced_dependency("frontend", "vite", "^6.3.5").
+
+% Prevent UI libraries from leaking into the shared workspace
+% The shared workspace should contain only pure business logic or types
+gen_invalid_dependency("shared", "react").
+gen_invalid_dependency("shared", "react-dom").
+gen_invalid_dependency("shared", "styled-components").
+gen_invalid_dependency("shared", "vite").
+
+% Block UI/frontend-specific dependencie
 

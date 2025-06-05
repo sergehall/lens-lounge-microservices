@@ -5,9 +5,11 @@ import { AppService } from './app.service';
 import { ScheduleModule } from '@nestjs/schedule';
 import { ThrottlerModule } from '@nestjs/throttler';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { MyKafkaConfig } from "./config/kafka/kafka.config";
 import { ThrottlerOptions } from './config/throttle/throttler-options';
+import { KafkaModule } from "./kafka/kafka.module";
 import { KafkaService } from "./kafka/kafka.service";
-import { kafkaClientConfig } from "./kafka/kafkaClient.config";
+import { kafkaClientAsyncConfig } from "./kafka/kafkaClient.config";
 import { HttpLoggingMiddleware } from './middlewares/http-logging.middleware';
 import { CustomConfigModule } from './config/custom.config-module';
 import { TypeOrmPostgresOptions } from './db/type-orm/options/type-orm-postgres.options';
@@ -15,18 +17,15 @@ import { PostgresConfig } from './config/db/postgres/postgres.config';
 import { CqrsModule } from '@nestjs/cqrs';
 import { appProviders } from './app.providers';
 
+
 @Module({
   imports: [
     CustomConfigModule,
-    TypeOrmModule.forRootAsync({
-      useClass: TypeOrmPostgresOptions, // Use the OrmOptions class as the stripe
-    }),
-    ThrottlerModule.forRootAsync({
-      useClass: ThrottlerOptions, // Use the ThrottlerModuleOptions class as the stripe
-    }),
+    TypeOrmModule.forRootAsync({ useClass: TypeOrmPostgresOptions }),
+    ThrottlerModule.forRootAsync({ useClass: ThrottlerOptions }),
     ScheduleModule.forRoot(),
     CqrsModule,
-    ClientsModule.register([kafkaClientConfig]),
+    KafkaModule,
   ],
   controllers: [PaymentController],
   providers: [
@@ -35,10 +34,10 @@ import { appProviders } from './app.providers';
     PostgresConfig,
     ...appProviders,
   ],
-  exports: [KafkaService],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer.apply(HttpLoggingMiddleware).forRoutes('*'); // Apply logger middleware to all routes
+    consumer.apply(HttpLoggingMiddleware).forRoutes('*');
   }
 }
+

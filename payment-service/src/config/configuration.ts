@@ -182,12 +182,14 @@ class Configuration {
       'PAYPAL_WEBHOOK_ID',
     );
   }
+
   private static getPayPalClientSecret(): string {
     return this.readEnvVariableWithDefault(
       'PAYPAL_CLIENT_SECRET',
       'PAYPAL_CLIENT_SECRET',
     );
   }
+
   private static getPayPalClientId(): string {
     return this.readEnvVariableWithDefault(
       'PAYPAL_CLIENT_ID',
@@ -222,6 +224,7 @@ class Configuration {
       'STRIPE_API_VERSION',
     );
   }
+
   private static getStripeWebhookSecret(): string {
     return this.readEnvVariableWithDefault(
       'STRIPE_WEBHOOK_SECRET',
@@ -280,11 +283,28 @@ class Configuration {
     );
   }
 
+  static getKafkaBroker(): string {
+    return this.readEnvVariableWithDefault('KAFKA_BROKER', 'localhost:9092');
+  }
+
+  private static getKafkaClientId(): string {
+    return this.readEnvVariableWithDefault('KAFKA_CLIENT_ID', 'payment-service-client');
+  }
+
+  private static getKafkaConsumerGroupId(): string {
+    return this.readEnvVariableWithDefault('KAFKA_CONSUMER_GROUP_ID', 'payment-consumer-group-client');
+  }
+
   static getConfiguration() {
     const ENV = Configuration.getEnvName();
     return {
       ENV: ENV,
       PORT: Configuration.getPort(),
+      kafka: {
+        KAFKA_BROKER: Configuration.getKafkaBroker(),
+        KAFKA_CLIENT_ID: Configuration.getKafkaClientId(),
+        KAFKA_CONSUMER_GROUP_ID: Configuration.getKafkaConsumerGroupId(),
+      },
       db: {
         postgres: {
           PG_PORT: Configuration.getPgPort(),

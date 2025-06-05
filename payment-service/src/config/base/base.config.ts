@@ -1,6 +1,7 @@
 import { ConfigType } from '../configuration';
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
+import { KafkaKeysType } from "../kafka/types/kafka-keys.type";
 import { ThrottleTypes } from '../throttle/types/throttle.types';
 import * as bcrypt from 'bcrypt';
 import { EnvNamesEnums } from '../enums/env-names.enums';
@@ -66,6 +67,12 @@ export class BaseConfig {
 
   protected async getValuePostgresByKey(key: PgKeysType): Promise<string> {
     return this.configService.get(`db.postgres`, {
+      infer: true,
+    })[key];
+  }
+
+  protected async getValueKafkaByKey(key: KafkaKeysType): Promise<string> {
+    return this.configService.get(`kafka`, {
       infer: true,
     })[key];
   }

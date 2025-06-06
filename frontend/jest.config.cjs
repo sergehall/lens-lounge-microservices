@@ -1,8 +1,7 @@
-// frontend/jest.config.ts
+// frontend/jest.config.js
 
-import type { Config } from 'jest';
-
-const config: Config = {
+/** @type {import('jest').Config} */
+module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'jsdom',
 
@@ -25,5 +24,3 @@ const config: Config = {
   testPathIgnorePatterns: ['/node_modules/', '/dist/'],
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
 };
-
-export default config;

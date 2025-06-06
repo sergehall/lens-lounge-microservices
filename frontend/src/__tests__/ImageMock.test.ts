@@ -11,7 +11,7 @@ test('posts-slider-images mocks returns the stub value', () => {
 
 // Explanation:
 // Whenever Jest encounters an import for file types like .svg, .png, .jpg, etc.,
-// specified in the moduleNameMapper in jest.config.ts,
+// specified in the moduleNameMapper in jest.config.js,
 // it will redirect the import to __mocks__/fileMock.js.
 // This file will return the string 'test-file-stub'
 // in place of the actual posts-slider-images or file content.

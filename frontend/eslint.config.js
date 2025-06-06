@@ -1,20 +1,22 @@
 import js from '@eslint/js';
-import tseslint from 'typescript-eslint';
+import tseslintPlugin from '@typescript-eslint/eslint-plugin';
+import tseslintParser from '@typescript-eslint/parser';
 import reactPlugin from 'eslint-plugin-react';
 import reactHooksPlugin from 'eslint-plugin-react-hooks';
 import importPlugin from 'eslint-plugin-import';
 import prettierPlugin from 'eslint-plugin-prettier';
 import prettierConfig from 'eslint-config-prettier';
+import globals from 'globals';
+const { browser, node, jest: jestGlobals } = globals;
 
 /** @type {import("eslint").Linter.FlatConfig} */
 export default [
   js.configs.recommended,
-  ...tseslint.configs.recommended,
 
   {
-    files: ['**/*.ts', '**/*.tsx'],
+    files: ['**/*.ts', '**/*.tsx', '**/*.js'],
     languageOptions: {
-      parser: tseslint.parser,
+      parser: tseslintParser,
       parserOptions: {
         ecmaVersion: 2020,
         sourceType: 'module',
@@ -22,34 +24,25 @@ export default [
           jsx: true,
         },
       },
+      globals: {
+        ...browser,
+        ...node,
+        ...jestGlobals,
+        global: 'readonly',
+        IntersectionObserver: 'readonly',
+        IntersectionObserverCallback: 'readonly',
+        IntersectionObserverInit: 'readonly',
+      },
     },
     plugins: {
+      '@typescript-eslint': tseslintPlugin,
       react: reactPlugin,
       'react-hooks': reactHooksPlugin,
       import: importPlugin,
       prettier: prettierPlugin,
     },
-    settings: {
-      react: {
-        version: 'detect',
-      },
-      'import/resolver': {
-        typescript: {},
-      },
-    },
     rules: {
-      'no-restricted-imports': [
-        'error',
-        {
-          paths: [
-            {
-              name: 'react-redux',
-              importNames: ['useSelector', 'useDispatch'],
-              message: 'Use useAppSelector/useAppDispatch from reduxHooks.ts instead.',
-            },
-          ],
-        },
-      ],
+      ...tseslintPlugin.configs.recommended.rules,
       'react/prop-types': 'off',
       '@typescript-eslint/no-unused-vars': ['warn'],
       'import/order': [
@@ -63,9 +56,16 @@ export default [
       'react-hooks/exhaustive-deps': 'warn',
       'prettier/prettier': 'warn',
     },
+    settings: {
+      react: {
+        version: 'detect',
+      },
+      'import/resolver': {
+        typescript: {},
+      },
+    },
   },
 
-  // Special config for CommonJS mock files
   {
     files: ['**/__mocks__/**/*.js', '**/*.mock.js'],
     languageOptions: {

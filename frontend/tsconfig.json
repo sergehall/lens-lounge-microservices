@@ -5,7 +5,11 @@
     "moduleResolution": "bundler",
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ESNext"
+    ],
     "strict": true,
     "noFallthroughCasesInSwitch": true,
     "forceConsistentCasingInFileNames": true,
@@ -17,17 +21,20 @@
     "types": [
       "vite/client",
       "styled-components",
-      "jest",
-      "@testing-library/jest-dom"
+      "node",
+      "jest"
     ],
     "baseUrl": "./src",
     "paths": {
-      "@/*": ["*"]
+      "@/*": [
+        "*"
+      ]
     }
   },
   "include": [
     "src",
     "vite.config.ts",
-    "jest.config.ts"
+    "jest.config.js",
+    "src/setupTests.ts"
   ]
 }

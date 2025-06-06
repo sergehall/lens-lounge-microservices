@@ -1,10 +1,9 @@
-import React from 'react';
-import { act } from 'react-dom/test-utils';
+import React, { act } from 'react';
 import { screen, within } from '@testing-library/react';
 
-import App from '../App';
 import { sidebarLinks } from '@/components/sidebar/sidebar.links';
 import { renderWithProviders } from '@/utils/test-utils/renderWithProviders';
+import App from '../App';
 
 describe('<App />', () => {
   beforeEach(async () => {

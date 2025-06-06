@@ -29,7 +29,7 @@ const initialState: AuthState = {
 export const loginUser = createAsyncThunk<ProfileType, LoginArgs, { rejectValue: string }>(
   'auth/loginUser',
   async ({ email, password }, { rejectWithValue }) => {
-    const loginOrEmail = email
+    const loginOrEmail = email;
     try {
       const response = await fetch('http://localhost:5005/auth/login', {
         method: 'POST',

@@ -1,4 +1,5 @@
 import React from 'react';
+
 import BannerImage from '../features/banner-image/bannerImage';
 import PageContentSummarize from '../features/page-insight/PageInsight';
 
@@ -10,7 +11,6 @@ type CreatePageConfigOptions = Omit<Partial<PageConfig>, 'bannerImage'> & {
   component: PageConfig['component'];
   bannerImageUrl?: string;
 };
-
 
 export function createPageConfig({
   component,

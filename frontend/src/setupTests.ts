@@ -32,7 +32,7 @@ class IntersectionObserverMock implements IntersectionObserver {
   disconnect = jest.fn();
   takeRecords = jest.fn(() => []);
 
-  constructor(_: IntersectionObserverCallback, __?: IntersectionObserverInit) {}
+  constructor() {}
 }
 
 window.IntersectionObserver = IntersectionObserverMock;

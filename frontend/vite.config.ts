@@ -1,6 +1,9 @@
+import { fileURLToPath } from 'url';
+import * as path from 'path';
+
 import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react';
-import * as path from 'path';
+
 import { envSchema } from './src/config/env/env.schema';
 
 // Note: Path aliases like "@" are configured below in the `resolve.alias` section,
@@ -8,7 +11,10 @@ import { envSchema } from './src/config/env/env.schema';
 // Since `vite.config.ts` itself runs in Node.js before Vite is initialized,
 // you cannot use aliases like "@/..." here — use relative imports instead.
 
-export default defineConfig(({mode}) => {
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+export default defineConfig(({ mode }) => {
   const envVars = loadEnv(mode, process.cwd(), '');
   const parsed = envSchema.safeParse(envVars);
 

@@ -3,10 +3,10 @@ name: Frontend CI
 on:
   push:
     paths:
-      - 'frontend/**'
+      - '../../frontend'
   pull_request:
     paths:
-      - 'frontend/**'
+      - '../../frontend'
 
 jobs:
   build:
@@ -28,7 +28,15 @@ jobs:
       - name: Enable Corepack & Check Yarn
         run: corepack enable && yarn --version
 
-      - name: nstall dependencies (immutable)
+      - name: Cache Yarn dependencies
+        uses: actions/cache@v3
+        with:
+          path: .yarn/cache
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: Install dependencies (immutable)
         run: yarn install --immutable
 
       - name: Type check

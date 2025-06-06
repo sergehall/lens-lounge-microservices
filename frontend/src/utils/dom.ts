@@ -1,6 +1,6 @@
 // frontend/src/utils/dom.ts
 
-import { env } from '../config/env/env.service';
+import { env } from '@/config/env/env.service';
 
 export const getRootElement = (): HTMLElement => {
   const id = env.VITE_ROOT_ID;

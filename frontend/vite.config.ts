@@ -3,6 +3,11 @@ import react from '@vitejs/plugin-react';
 import * as path from 'path';
 import { envSchema } from './src/config/env/env.schema';
 
+// Note: Path aliases like "@" are configured below in the `resolve.alias` section,
+// but they only apply to code processed by Vite (i.e., files inside `src/`).
+// Since `vite.config.ts` itself runs in Node.js before Vite is initialized,
+// you cannot use aliases like "@/..." here — use relative imports instead.
+
 export default defineConfig(({ mode }) => {
   const envVars = loadEnv(mode, process.cwd(), '');
   const parsed = envSchema.safeParse(envVars);

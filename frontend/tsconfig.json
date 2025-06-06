@@ -8,14 +8,17 @@
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "strict": true,
     "noFallthroughCasesInSwitch": true,
-    "allowJs": true,
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "types": ["vite/client", "styled-components"]
+    "types": ["vite/client", "styled-components"],
+    "baseUrl": "./src",
+    "paths": {
+      "@/*": ["*"]
+    }
   },
   "include": [
     "src",

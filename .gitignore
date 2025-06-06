@@ -42,14 +42,25 @@ yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
 
-# IDE and editor configs
-.idea
+# JetBrains IDEs (WebStorm, IntelliJ, etc.)
+.idea/
+!.idea/modules.xml
+!.idea/vcs.xml
+!.idea/*.iml
+
+# VS Code
 .vscode/
-.project
-.classpath
+
+# Cloud IDEs
 .c9/
 *.launch
+
+# Eclipse
+.project
+.classpath
 .settings/
+
+# Sublime
 *.sublime-workspace
 
 # Optional: keep shared VSCode settings

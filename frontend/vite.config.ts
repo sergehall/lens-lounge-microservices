@@ -8,7 +8,7 @@ import { envSchema } from './src/config/env/env.schema';
 // Since `vite.config.ts` itself runs in Node.js before Vite is initialized,
 // you cannot use aliases like "@/..." here — use relative imports instead.
 
-export default defineConfig(({ mode }) => {
+export default defineConfig(({mode}) => {
   const envVars = loadEnv(mode, process.cwd(), '');
   const parsed = envSchema.safeParse(envVars);
 
@@ -49,6 +49,11 @@ export default defineConfig(({ mode }) => {
     build: {
       rollupOptions: {
         external: ['fsevents'],
+        output: {
+          manualChunks: {
+            vendor: ['react', 'react-dom'],
+          },
+        },
       },
     },
   };

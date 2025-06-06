@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 
-import { env } from '../../config/env/env.service';
-import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
+import { env } from '@/config/env/env.service';
+import { useAppDispatch, useAppSelector } from '@/hooks/reduxHooks';
 
 import {
   loadProfile,
@@ -31,8 +31,8 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         if (isDev) {
           await dispatch(
             loginUser({
-              email: env.REACT_APP_DEV_EMAIL,
-              password: env.REACT_APP_DEV_PASSWORD,
+              email: env.VITE_DEV_EMAIL,
+              password: env.VITE_DEV_PASSWORD,
             })
           );
         } else {

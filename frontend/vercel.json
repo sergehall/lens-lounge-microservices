@@ -1,12 +1,15 @@
 {
   "version": 2,
-  "name": "lens-lounge-frontend",
+  "name": "lens-lounge-microservices-frontend",
   "builds": [
     {
       "src": "package.json",
       "use": "@vercel/static-build"
     }
   ],
+  "outputDirectory": "dist",
+  "buildCommand": "yarn build",
+  "installCommand": "yarn install --immutable",
   "routes": [
     {
       "src": "/assets/(.*)",
@@ -19,8 +22,5 @@
       "src": "/(.*)",
       "dest": "/index.html"
     }
-  ],
-  "installCommand": "yarn install --immutable",
-  "buildCommand": "yarn build",
-  "outputDirectory": "dist"
+  ]
 }

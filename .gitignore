@@ -27,7 +27,7 @@ config/development.env
 !.yarn/sdks
 !.yarn/versions
 
-
+.vercel
 
 # Test coverage and reports
 coverage

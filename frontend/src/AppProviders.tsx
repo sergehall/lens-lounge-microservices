@@ -12,14 +12,21 @@ interface AppProvidersProps {
   children: React.ReactNode;
 }
 
-const AppProviders: React.FC<AppProvidersProps> = ({ children }) => (
-  <Provider store={store}>
-    <AuthProvider>
-      <ThemeProvider theme={theme}>
-        <BrowserRouter>{children}</BrowserRouter>
-      </ThemeProvider>
-    </AuthProvider>
-  </Provider>
-);
+const AppProviders: React.FC<AppProvidersProps> = ({ children }) => {
+  if (!React.isValidElement(children)) {
+    console.error('AppProviders received invalid children:', children);
+    return null;
+  }
+
+  return (
+    <Provider store={store}>
+      <AuthProvider>
+        <ThemeProvider theme={theme}>
+          <BrowserRouter>{children}</BrowserRouter>
+        </ThemeProvider>
+      </AuthProvider>
+    </Provider>
+  );
+};
 
 export default AppProviders;

@@ -1,6 +1,5 @@
 {
   "version": 2,
-  "name": "lens-lounge-microservices-frontend",
   "builds": [
     {
       "src": "package.json",

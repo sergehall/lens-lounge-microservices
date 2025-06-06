@@ -7,12 +7,14 @@ import AppRoutes from './routes/AppRoutes';
 
 const App: FC = () => {
   return (
-    <>
+    <div>
       <GlobalStyles />
       <StatusBanner />
       <AppRoutes />
-    </>
+    </div>
   );
 };
+
+
 
 export default App;

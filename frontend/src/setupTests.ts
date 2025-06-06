@@ -1,4 +1,3 @@
-// src/setupTests.ts
 import '@testing-library/jest-dom';
 import 'whatwg-fetch';
 
@@ -39,15 +38,13 @@ class IntersectionObserverMock implements IntersectionObserver {
 window.IntersectionObserver = IntersectionObserverMock;
 
 // Polyfill: global.fetch (RTK Query compatible)
-global.fetch = jest.fn(() =>
-  Promise.resolve({
+global.fetch = jest.fn().mockResolvedValue({
+  ok: true,
+  status: 200,
+  json: async () => ({}),
+  clone: () => ({
     ok: true,
     status: 200,
-    json: () => Promise.resolve({}),
-    clone: () => ({
-      ok: true,
-      status: 200,
-      json: () => Promise.resolve({}),
-    }),
-  })
-) as jest.Mock;
+    json: async () => ({}),
+  }),
+});

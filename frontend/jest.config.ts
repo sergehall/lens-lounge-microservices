@@ -1,4 +1,4 @@
-// jest.config.ts
+// frontend/jest.config.ts
 
 import type { Config } from 'jest';
 

@@ -25,14 +25,16 @@ jobs:
           node-version: 20
           cache: yarn
 
-      - name: Install dependencies
-        run: yarn install --frozen-lockfile
+      - name: Enable Corepack & Install dependencies (immutable)
+        run: |
+          corepack enable
+          yarn install --immutable
 
       - name: Run tests (optional)
         run: yarn test --passWithNoTests
 
       - name: Build frontend
-        run: yarn vite build --mode production
+        run: yarn build --mode production
 
       - name: Upload build artifacts (optional)
         uses: actions/upload-artifact@v4

@@ -1,6 +1,6 @@
 // src/utils/guards/isProfileValid.ts
 
-import { ProfileType } from '../../features/showcase/profile/mocks/defaultProfile';
+import { ProfileType } from '@/features/showcase/profile/mocks/defaultProfile';
 
 /**
  * Type guard to validate whether the given value is a valid ProfileType.

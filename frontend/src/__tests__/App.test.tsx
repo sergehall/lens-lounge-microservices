@@ -3,6 +3,7 @@ import { screen, within } from '@testing-library/react';
 
 import { sidebarLinks } from '@/components/sidebar/sidebar.links';
 import { renderWithProviders } from '@/utils/test-utils/renderWithProviders';
+
 import App from '../App';
 
 describe('<App />', () => {

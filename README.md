@@ -17,9 +17,10 @@ This project is a hands-on implementation of microservices architecture, event-b
 - **Yarn Workspaces** — Monorepo package management
 
 ### Frontend
-- **React + Vite** — Fast and modern frontend setup
+- **React + Vite** — Fast and modern frontend build setup
 - **Fetch API** — Communication with API Gateway
-- **CORS & Proxy** — Smooth development setup
+- **CORS & Proxy** — Smooth local development experience
+- **Zod** — Schema-based environment variable validation
 
 ---
 
@@ -28,23 +29,34 @@ This project is a hands-on implementation of microservices architecture, event-b
 - Microservices-based structure: `api-gateway`, `payment-service`, `frontend`
 - Asynchronous communication between services via Kafka
 - PostgreSQL integration and message persistence
-- Monorepo setup with Yarn Berry and Plug'n'Play
-- Basic CORS configuration and reverse proxy for frontend
-- Ready for CI/CD: Docker, Git, Kubernetes, Jenkins (future-ready)
+- Monorepo setup using Yarn Berry (v4+) with Plug'n'Play (PnP)
+- Type-safe `.env` validation for frontend using Zod
+- Seamless proxying of API requests from Vite to Gateway
+- CI/CD pipeline for both frontend and backend
+- Production-ready deployment via **Vercel** (frontend) and **Heroku** (backend, planned)
 
 ---
 
-## Architectural Principles
+## Architecture Principles
 
-- **SOLID**
-- **Hexagonal Architecture**
-- **Event-driven architecture**
-- **SAGA (planned)**
+- **SOLID** – Object-oriented design principles
+- **Hexagonal Architecture** – Ports & adapters pattern
+- **Event-Driven Architecture**
+- **SAGA Pattern** *(planned)*
 - **Domain-based modular design**
 
 ---
 
 ## Monorepo Structure
+
+```text
+├── api-gateway/          # NestJS-based gateway service
+├── payment-service/      # Example microservice (NestJS)
+├── frontend/             # Vite + React frontend
+├── shared/               # Shared DTOs, types, utils
+├── .github/workflows/    # GitHub Actions workflows
+└── yarn.lock             # Single lockfile for the whole monorepo
+```
 
 ---
 
@@ -67,5 +79,8 @@ gen_invalid_dependency("shared", "react-dom").
 gen_invalid_dependency("shared", "styled-components").
 gen_invalid_dependency("shared", "vite").
 
-% Block UI/frontend-specific dependencie
+% Block UI/frontend-specific dependencies globally in backend workspaces
+gen_invalid_dependency("api-gateway", "styled-components").
+gen_invalid_dependency("payment-service", "react").
+```
 

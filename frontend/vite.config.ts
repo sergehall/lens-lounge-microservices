@@ -50,8 +50,10 @@ export default defineConfig(({mode}) => {
       rollupOptions: {
         external: ['fsevents'],
         output: {
-          manualChunks: {
-            vendor: ['react', 'react-dom'],
+          manualChunks(id) {
+            if (id.includes('node_modules')) {
+              return 'vendor';
+            }
           },
         },
       },

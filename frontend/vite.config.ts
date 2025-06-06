@@ -14,6 +14,11 @@ export default defineConfig(({ mode }) => {
 
   const env = parsed.data;
 
+  if (mode === 'development') {
+    console.log('✅ mode:', mode);
+    console.log('✅ Loaded env:', env);
+  }
+
   return {
     plugins: [react()],
     server: {
@@ -26,7 +31,7 @@ export default defineConfig(({ mode }) => {
       },
     },
     define: {
-      __APP_ENV__: JSON.stringify(env.REACT_APP_ENVIRONMENT),
+      __APP_ENV__: JSON.stringify(env.VITE_ENVIRONMENT),
     },
     resolve: {
       alias: {

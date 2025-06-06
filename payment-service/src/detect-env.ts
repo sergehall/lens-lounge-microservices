@@ -1,15 +1,19 @@
-let envFilePath = '.env.local';
+import { existsSync } from 'fs';
 
-switch (process.env.NODE_ENV) {
-  case 'production':
-    envFilePath = '.env.docker';
-    break;
-  case 'development':
-    envFilePath = '.env.local';
-    break;
-  case 'testing':
-    envFilePath = '.env.test';
-    break;
+const envMap: Record<string, string> = {
+  production: '.env.docker',
+  development: '.env.local',
+  testing: '.env.test',
+};
+
+const NODE_ENV = process.env.NODE_ENV || 'development';
+const envFilePath = envMap[NODE_ENV] || '.env';
+
+if (!existsSync(envFilePath)) {
+  console.warn(
+    `\x1b[33m⚠️  Warning:\x1b[0m Environment file "${envFilePath}" not found.\n` +
+    `   You might want to create it, or copy from ".env.example".\n`
+  );
 }
 
 export { envFilePath };

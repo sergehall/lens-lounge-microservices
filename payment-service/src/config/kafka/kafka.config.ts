@@ -1,5 +1,5 @@
 // payment-service/src/config/kafka/kafka.config.ts
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { BaseConfig } from "../base/base.config";
 import { KafkaKeysType } from './types/kafka-keys.type';
 
@@ -11,7 +11,17 @@ export class MyKafkaConfig extends BaseConfig {
     KAFKA_CONSUMER_GROUP_ID: 'KAFKA_CONSUMER_GROUP_ID',
   };
 
+  private async getKafkaValue(key: KafkaKeysType): Promise<string> {
+    if (this.config.hasOwnProperty(key)) {
+      return this.getValueKafkaByKey(key);
+    } else {
+      throw new BadRequestException(
+        `Key ${key} not found in MyKafka configuration`,
+      );
+    }
+  }
+
   async getKafkaConfig(key: KafkaKeysType): Promise<string> {
-    return this.getValueKafkaByKey(key);
+   return this.getKafkaValue(key);
   }
 }

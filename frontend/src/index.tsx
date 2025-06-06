@@ -1,5 +1,4 @@
 // frontend/src/index.tsx
-
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 
@@ -8,7 +7,7 @@ import AppProviders from './AppProviders';
 import './index.css';
 import { getRootElement } from './utils/dom';
 
-const container = getRootElement(); // должен вернуть HTMLElement
+const container = getRootElement();
 
 if (!container) {
   throw new Error('Root element not found');

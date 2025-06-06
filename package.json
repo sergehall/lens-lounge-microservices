@@ -14,7 +14,6 @@
     "shared"
   ],
   "scripts": {
-    "start:dev": "cross-env NODE_OPTIONS=--require .pnp.cjs nest start --watch",
     "check:deps": "yarn constraints",
     "dev:api": "yarn workspace api-gateway start:dev",
     "dev:frontend": "yarn workspace frontend dev",

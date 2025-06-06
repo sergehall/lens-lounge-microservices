@@ -1,17 +1,21 @@
-import { loadEnv } from 'vite';
-import { envSchema } from './env.schema';
+// frontend/src/config/env/env.service.ts
+
 import { z } from 'zod';
+import { envSchema } from './env.schema';
 
-type EnvSchema = z.infer<typeof envSchema>;
+// Access raw Vite environment variables
+const viteEnv = import.meta.env;
 
-const mode = process.env.NODE_ENV || 'development';
-
-const raw = loadEnv(mode, process.cwd(), '');
-const parsed = envSchema.safeParse(raw);
+// Validate environment variables using the defined schema
+const parsed = envSchema.safeParse(viteEnv);
 
 if (!parsed.success) {
-  console.error('❌ Invalid environment variables:', parsed.error.format());
-  throw new Error('❌ Environment validation failed. Check your .env file.');
+  console.error('❌ Invalid environment variables:\n', parsed.error.format());
+  throw new Error('❌ Environment validation failed. Please check your .env.* files.');
 }
 
-export const env: EnvSchema = parsed.data;
+// Export validated and typed environment variables
+export const env = parsed.data;
+
+// Optional: export type for IDE auto-completion and static typing
+export type Env = typeof env;

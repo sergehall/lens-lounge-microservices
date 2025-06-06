@@ -18,12 +18,20 @@ module.exports = {
         const deps = ws.manifest.dependencies || {};
         const devDeps = ws.manifest.devDependencies || {};
 
+        const allDeps = Yarn.dependencies({ workspace: ws });
+
         for (const [depName, requiredVersion] of Object.entries(requiredDeps)) {
           const actualVersion = deps[depName] || devDeps[depName];
           if (!actualVersion) {
             console.warn(`⚠️ Missing dependency '${depName}' in '${name}'`);
           } else if (actualVersion !== requiredVersion) {
-            console.error(`❌ '${depName}' must be '${requiredVersion}' in '${name}', found '${actualVersion}'`);
+            // Report version mismatch using Yarn's reporting API if possible
+            const dep = allDeps.find(d => d.ident.name === depName);
+            if (dep) {
+              dep.report({ message: `❌ '${depName}' must be '${requiredVersion}' in '${name}', found '${actualVersion}'` });
+            } else {
+              console.error(`❌ '${depName}' must be '${requiredVersion}' in '${name}', found '${actualVersion}'`);
+            }
           }
         }
       }

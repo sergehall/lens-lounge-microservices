@@ -1,13 +1,13 @@
 import React from 'react';
 
-import { useAppSelector } from '../../hooks/reduxHooks';
+import { useAppSelector } from '@/hooks/reduxHooks';
 import {
   selectIsAuthenticated,
   selectAuthError,
   selectAuthLoading,
   selectProfile,
-} from '../../features/auth/authSlice';
-import { isProfileValid } from '../../utils/guards/isProfileValid';
+} from '@/features/auth/authSlice';
+import { isProfileValid } from '@/utils/guards/isProfileValid';
 
 const StatusBanner: React.FC = () => {
   const isAuthenticated = useAppSelector(selectIsAuthenticated);

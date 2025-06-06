@@ -46,13 +46,19 @@ jobs:
           echo "VITE_DEV_EMAIL=${{ secrets.VITE_DEV_EMAIL }}" >> .env
           echo "VITE_DEV_PASSWORD=${{ secrets.VITE_DEV_PASSWORD }}" >> .env
 
-      - name: Run tests (optional)
+      - name: Type check
+        run: yarn check:types
+
+      - name: Lint
+        run: yarn lint
+
+      - name: Run tests
         run: yarn test --passWithNoTests
 
       - name: Build frontend
         run: yarn build --mode production
 
-      - name: Upload build artifacts (optional)
+      - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:
           name: frontend-dist

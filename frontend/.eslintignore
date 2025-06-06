@@ -1,1 +1,20 @@
-/__mocks__/
+# Libraries and dependencies
+node_modules/
+.yarn/
+
+# Build outputs
+dist/
+build/
+coverage/
+
+# Test mocks
+__mocks__/
+
+# Config files (optional: ignore if not linting them)
+*.config.js
+*.config.cjs
+*.config.mjs
+
+# Logs and cache
+*.log
+.cache/

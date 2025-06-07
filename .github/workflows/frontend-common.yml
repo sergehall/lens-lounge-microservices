@@ -72,3 +72,10 @@ jobs:
       - name: Build frontend
         if: ${{ inputs.run_build }}
         run: yarn build --mode production
+
+      - name: Upload build artifacts
+        if: ${{ inputs.run_build && env.ACT != 'true' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: frontend-dist
+          path: frontend/dist

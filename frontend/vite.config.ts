@@ -1,3 +1,5 @@
+//frontend/vite.config.ts
+
 import { fileURLToPath } from 'url';
 import * as path from 'path';
 

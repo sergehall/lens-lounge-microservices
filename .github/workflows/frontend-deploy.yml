@@ -10,7 +10,7 @@ jobs:
   build:
     uses: ./.github/workflows/frontend-common.yml
     with:
-      environment: Production
+      environment: production
       run_lint: false
       run_tests: false
       run_build: true

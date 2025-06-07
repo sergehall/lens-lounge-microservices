@@ -1,15 +1,15 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { useAppDispatch, useAppSelector } from '../../../hooks/reduxHooks';
-import { SHOWCASE_ROUTES } from '../../../routes/route-definitions/showcase.routes';
+import { makeSelectUserCategoriesFromBlogs } from '@/features/showcase/selectors';
+import { useAppDispatch, useAppSelector } from '@/hooks/reduxHooks';
+import { SHOWCASE_ROUTES } from '@/routes/route-definitions/showcase.routes';
+
 import { selectProfile } from '../../auth/authSlice';
 import { Category } from '../../categories/types/category.types';
 import CreateNewBlogTile from '../create-blog-tile/CreateNewBlogTile';
 import { loadUserBlogs } from '../user-blogs/userBlogsSlice';
 import * as S from '../showcasePage.styles';
-
-import { makeSelectUserCategoriesFromBlogs } from './selectors';
 
 const UserCategories: React.FC = () => {
   const navigate = useNavigate();

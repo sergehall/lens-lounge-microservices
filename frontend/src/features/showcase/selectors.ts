@@ -1,12 +1,14 @@
 import { createSelector } from '@reduxjs/toolkit';
 
-import placeholderImageDefault from '../../assets/images/placeholderImageDefault.png';
-import { RootState } from '../../app/store';
-import { isCategoryName } from '../../utils/guards/isCategoryName';
+import { RootState } from '@/app/store';
+import { isCategoryName } from '@/utils/guards/isCategoryName';
+
 import { categoriesMock } from '../categories/mock/categoriesMock';
 import { Category } from '../categories/types/category.types';
 
 import { UserBlogsState } from './user-blogs/userBlogsSlice';
+
+const PLACEHOLDER_IMAGE_DEFAULT = '/images/placeholderImageDefault.png';
 
 const selectUserBlogsState = (state: RootState): UserBlogsState => state.showcasePage.userBlogs;
 
@@ -24,7 +26,7 @@ export const makeSelectUserCategoriesFromBlogs = (username: string) =>
 
         categories.push({
           name: categoryName,
-          imageUrl: matchedCategory?.imageUrl || placeholderImageDefault,
+          imageUrl: matchedCategory?.imageUrl || PLACEHOLDER_IMAGE_DEFAULT,
           featured: false,
         });
       } else if (hasUserBlogs) {

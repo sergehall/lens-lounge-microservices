@@ -3,12 +3,13 @@
 import React from 'react';
 
 import { NoContacts } from '../ContactsList.styles';
-import imageDefault from '../../../assets/images/placeholderImageDefault.png';
 
 import * as S from './contacts.styles';
 import { ContactsData } from './contactsData';
 import { AvatarSize } from './enums/avatarSize.enum';
 import { formatAddress } from './formatAddress';
+
+const PLACEHOLDER_IMAGE_DEFAULT = '/images/placeholderImageDefault.png';
 
 interface ContactDetailsProps {
   contact: ContactsData | null;
@@ -27,7 +28,7 @@ const ContactDetails: React.FC<ContactDetailsProps> = ({ contact }) => {
           </S.UserStatus>
         </S.UserInfoHeader>
         <S.Avatar
-          src={contact.avatar || imageDefault}
+          src={contact.avatar || PLACEHOLDER_IMAGE_DEFAULT}
           alt="avatar"
           $isActive={contact.isOnline}
           $size={AvatarSize.XL}

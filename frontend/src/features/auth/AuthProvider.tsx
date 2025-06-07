@@ -26,7 +26,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
       // If loadProfile failed, and we're in development mode — do dev auto-login
       if (loadProfile.rejected.match(resultAction)) {
-        const isDev = env.VITE_ENVIRONMENT === 'development';
+        const isDev = env.VITE_ENVIRONMENT;
 
         if (isDev) {
           await dispatch(

@@ -37,9 +37,10 @@ export default defineConfig(({ mode }) => {
     plugins: [react()],
     server: {
       port: 5173,
+      open: true,
       proxy: {
         '/api': {
-          target: env.VITE_API_URL,
+          target: 'https://lens-lounge.com',
           changeOrigin: true,
         },
       },

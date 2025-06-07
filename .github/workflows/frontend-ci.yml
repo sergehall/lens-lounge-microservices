@@ -1,3 +1,4 @@
+# frontend-ci.yml
 name: Frontend CI
 
 on:
@@ -7,69 +8,12 @@ on:
   pull_request:
     paths:
       - 'frontend/**'
+  workflow_dispatch:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    uses: ./.github/workflows/frontend-common.yml
+    with:
+      environment: development
+      run_build: false
 
-    defaults:
-      run:
-        working-directory: frontend
-
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
-
-      - name: Setup Node.js & Yarn
-        uses: actions/setup-node@v3
-        with:
-          node-version: 20
-
-      - name: Enable Corepack & Check Yarn
-        run: corepack enable && yarn --version
-
-      - name: Cache Yarn dependencies
-        uses: actions/cache@v3
-        with:
-          path: .yarn/cache
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
-
-      - name: Install dependencies
-        run: yarn install --immutable
-
-      - name: Create .env file from secrets
-        shell: bash
-        run: |
-          echo "VITE_ROOT_ID=${{ secrets.VITE_ROOT_ID }}" >> .env
-          echo "VITE_ENVIRONMENT=${{ secrets.VITE_ENVIRONMENT }}" >> .env
-          echo "VITE_API_URL=${{ secrets.VITE_API_URL }}" >> .env
-          echo "VITE_FEATURE_X_ENABLED=${{ secrets.VITE_FEATURE_X_ENABLED }}" >> .env
-          echo "VITE_MAX_RETRIES=${{ secrets.VITE_MAX_RETRIES }}" >> .env
-          echo "VITE_ANALYTICS_ID=${{ secrets.VITE_ANALYTICS_ID }}" >> .env
-          echo "VITE_TIMEOUT_MS=${{ secrets.VITE_TIMEOUT_MS }}" >> .env
-          echo "VITE_VERSION=${{ secrets.VITE_VERSION }}" >> .env
-          echo "VITE_DATE_FORMAT=${{ secrets.VITE_DATE_FORMAT }}" >> .env
-          echo "VITE_ALLOWED_ORIGINS=${{ secrets.VITE_ALLOWED_ORIGINS }}" >> .env
-          echo "VITE_DEV_EMAIL=${{ secrets.VITE_DEV_EMAIL }}" >> .env
-          echo "VITE_DEV_PASSWORD=${{ secrets.VITE_DEV_PASSWORD }}" >> .env
-      
-
-      - name: Type check
-        run: yarn check:types
-
-      - name: Lint
-        run: yarn lint
-
-      - name: Run tests
-        run: yarn test
-
-      - name: Build
-        run: yarn build
-
-      - name: Upload build artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: frontend-dist
-          path: frontend/dist

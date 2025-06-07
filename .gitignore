@@ -89,3 +89,9 @@ report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 # TypeScript build cache
 *.tsbuildinfo
 /payment-service/.env.docker
+
+# Local secrets for act
+.secrets
+# Ignore local workflow overrides
+.github/workflows/*.local.yml
+

@@ -4,7 +4,7 @@ import { env } from '@/config/env/env.service';
 
 export const getRootElement = (): HTMLElement => {
   const id = env.VITE_ROOT_ID;
-  console.log(`🧩 Looking for element with ID: ${id}`); // Log the ID being searched for
+  console.log(`Looking for element with ID: ${id}`); // Log the ID being searched for
 
   const el = document.getElementById(id);
 
@@ -13,6 +13,6 @@ export const getRootElement = (): HTMLElement => {
     throw new Error(`❌ No valid HTMLElement found with ID "${id}"`);
   }
 
-  console.log(`✅ Found root element with ID "${id}"`);
+  console.log(`Found root element with ID "${id}"`);
   return el;
 };

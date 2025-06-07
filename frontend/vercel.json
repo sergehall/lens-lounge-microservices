@@ -3,7 +3,7 @@
   "name": "lens-lounge-frontend",
   "builds": [
     {
-      "src": "package.json",
+      "src": "frontend/package.json",
       "use": "@vercel/static-build"
     }
   ],
@@ -22,5 +22,5 @@
   ],
   "installCommand": "yarn install --immutable",
   "buildCommand": "yarn build",
-  "outputDirectory": "dist"
+  "outputDirectory": "frontend/dist"
 }

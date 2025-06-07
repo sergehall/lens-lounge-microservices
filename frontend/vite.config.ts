@@ -31,6 +31,7 @@ export default defineConfig(({ mode }) => {
   }
 
   return {
+    base: '/',
     plugins: [react()],
     server: {
       port: 5173,
@@ -53,6 +54,7 @@ export default defineConfig(({ mode }) => {
       exclude: ['fsevents'],
     },
     build: {
+      outDir: 'dist',
       rollupOptions: {
         external: ['fsevents'],
         output: {

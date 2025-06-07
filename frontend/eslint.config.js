@@ -43,6 +43,8 @@ export default [
     },
     rules: {
       ...tseslintPlugin.configs.recommended.rules,
+      'no-redeclare': 'off',
+      '@typescript-eslint/no-redeclare': ['error'],
       'react/prop-types': 'off',
       '@typescript-eslint/no-unused-vars': ['warn'],
       'import/order': [

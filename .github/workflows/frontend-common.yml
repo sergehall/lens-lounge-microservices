@@ -103,3 +103,15 @@ jobs:
           echo ""
           echo "🔍 Preview of index.html:"
           head -n 20 ./dist/index.html
+
+      - name: Check if dist exists
+        if: inputs.run_build
+        run: |
+          echo "📂 Contents of ./frontend:"
+          ls -lah .
+          echo ""
+          echo "📂 Contents of ./frontend/dist:"
+          ls -lah ./dist || echo "⚠️ dist not found"
+
+      
+      

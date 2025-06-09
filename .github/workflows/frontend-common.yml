@@ -43,7 +43,9 @@ jobs:
       - name: Cache Yarn
         uses: actions/cache@v3
         with:
-          path: .yarn/cache
+          path: |
+            ~/.cache/yarn
+            .yarn/cache
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
@@ -70,3 +72,12 @@ jobs:
       - name: Build Frontend
         if: inputs.run_build
         run: yarn build
+
+      - name: Show build output (optional)
+        if: inputs.run_build
+        run: |
+          echo "📦 Contents of dist/:"
+          ls -lh ./dist
+          echo ""
+          echo "🔍 Preview of index.html:"
+          head -n 20 ./dist/index.html

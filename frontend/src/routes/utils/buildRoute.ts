@@ -18,8 +18,11 @@
  * @returns The final path with params replaced
  */
 export function buildRoute(template: string, params: Record<string, string>): string {
-  return Object.entries(params).reduce(
-    (path, [key, value]) => path.replace(`:${key}`, encodeURIComponent(value)),
-    template
-  );
+  return Object.entries(params).reduce((path, [key, value]) => {
+    const param = `:${key}`;
+    if (!path.includes(param)) {
+      console.warn(`Param :${key} not found in route: ${template}`);
+    }
+    return path.replace(param, encodeURIComponent(value));
+  }, template);
 }

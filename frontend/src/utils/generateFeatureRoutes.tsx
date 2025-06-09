@@ -2,7 +2,8 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 
-import { PageConfig } from '../config/types/pageConfig.types';
+import { PageConfig } from '@/config/types/pageConfig.types';
+
 import PageLayout from '../layouts/PageLayout';
 
 /**

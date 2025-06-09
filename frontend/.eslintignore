@@ -1,6 +1,10 @@
-# Libraries and dependencies
+# Node.js
 node_modules/
+
+# Yarn Plug'n'Play файлы
+.pnp.*
 .yarn/
+
 
 # Build outputs
 dist/
@@ -10,6 +14,10 @@ coverage/
 # Test mocks
 __mocks__/
 
+
+.vite/
+.storybook-out/
+
 # Config files (optional: ignore if not linting them)
 *.config.js
 *.config.cjs
@@ -18,3 +26,6 @@ __mocks__/
 # Logs and cache
 *.log
 .cache/
+
+temp/
+tmp/

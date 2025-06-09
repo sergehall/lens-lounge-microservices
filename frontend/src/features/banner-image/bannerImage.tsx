@@ -1,38 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-import {
-  ImageBannerContentContainer,
-  ImageBannerContentImage,
-  ImageBannerTextWrapper,
-  ImageBannerContentTitle,
-  ImageBannerContentDescription,
-} from './bannerImage.style';
+import * as S from './bannerImage.style';
 
-const DEFAULT_BANNER_IMAGE_URL = '/images/defaultImageBanner.png';
+const FALLBACK_IMAGE = '/images/defaultImageBanner.png';
 
-interface ImageBannerContentProps {
+type Props = {
   imageUrl: string;
   altText?: string;
-}
+};
 
-const BannerImage: React.FC<ImageBannerContentProps> = ({
-  imageUrl,
-  altText = 'Default banner posts-slider-images',
-}) => {
+const BannerImage: React.FC<Props> = ({ imageUrl, altText = 'Default banner image' }) => {
+  const [hasError, setHasError] = useState(false);
+
   return (
-    <ImageBannerContentContainer>
-      <ImageBannerContentImage
-        src={imageUrl}
+    <S.ImageBannerContentContainer>
+      <S.ImageBannerContentImage
+        src={hasError ? FALLBACK_IMAGE : imageUrl}
         alt={altText}
-        onError={(e) => (e.currentTarget.src = DEFAULT_BANNER_IMAGE_URL)}
+        onError={() => setHasError(true)}
       />
-      <ImageBannerTextWrapper>
-        <ImageBannerContentTitle>Image Banner Title</ImageBannerContentTitle>
-        <ImageBannerContentDescription>
+      <S.ImageBannerTextWrapper>
+        <S.ImageBannerContentTitle>Image Banner Title</S.ImageBannerContentTitle>
+        <S.ImageBannerContentDescription>
           This is a banner image description.
-        </ImageBannerContentDescription>
-      </ImageBannerTextWrapper>
-    </ImageBannerContentContainer>
+        </S.ImageBannerContentDescription>
+      </S.ImageBannerTextWrapper>
+    </S.ImageBannerContentContainer>
   );
 };
 

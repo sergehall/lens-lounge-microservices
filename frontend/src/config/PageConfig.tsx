@@ -1,18 +1,20 @@
-import Chat from '../features/whisper/chat/ChatPanel';
-import { ROUTES } from '../routes/routes';
-import CategoryBlogsPage from '../features/category-blogs-page/CategoryBlogsPage';
-import HomePage from '../features/home-page/HomePage';
-import ShowcasePage from '../features/showcase/ShowcasePage';
-import UserBlogs from '../features/showcase/user-blogs/UserBlogs';
-import WhisperPage from '../features/whisper/WhisperPage';
-import Contacts from '../features/whisper/contacts/Contacts';
-import PortfolioIntro from '../features/about/About';
-import Contact from '../features/contact/Contact';
-import TechnologiesPage from '../features/technologies/TechnologiesPage';
-import NewsPage from '../features/news/NewsPage';
+import { ROUTES } from '@/routes/routes';
+import {
+  HomePage,
+  CategoryBlogsPage,
+  ShowcasePage,
+  UserBlogs,
+  WhisperPage,
+  ChatPanel,
+  ContactsPanel,
+  PortfolioIntro,
+  ContactPage,
+  TechnologiesPage,
+  NewsPage,
+} from '@/routes/lazy-pages';
 
 import { unauthContent } from './unauthContent';
-import { createPageConfig } from './PageConfigFactory';
+import { createPageConfig } from './CreatePageConfig';
 
 export const pageConfig = {
   [ROUTES.home.root]: createPageConfig({ component: HomePage }),
@@ -42,25 +44,25 @@ export const pageConfig = {
   }),
 
   [ROUTES.whisper.chatsRoot]: createPageConfig({
-    component: Chat,
+    component: ChatPanel,
     isProtected: true,
     unauthLandingProps: unauthContent.whisper,
   }),
 
   [ROUTES.whisper.chatId]: createPageConfig({
-    component: Chat,
+    component: ChatPanel,
     isProtected: true,
     unauthLandingProps: unauthContent.whisper,
   }),
 
   [ROUTES.whisper.contactsRoot]: createPageConfig({
-    component: Contacts,
+    component: ContactsPanel,
     isProtected: true,
     unauthLandingProps: unauthContent.whisper,
   }),
 
   [ROUTES.whisper.contactId]: createPageConfig({
-    component: Contacts,
+    component: ContactsPanel,
     isProtected: true,
     unauthLandingProps: unauthContent.whisper,
   }),
@@ -78,6 +80,6 @@ export const pageConfig = {
   }),
 
   [ROUTES.contact.root]: createPageConfig({
-    component: Contact,
+    component: ContactPage,
   }),
 };

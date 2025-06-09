@@ -2,21 +2,17 @@
 import React from 'react';
 
 interface PageLayoutProps {
-  bannerImage: React.FC;
-  summarizeContent: React.FC;
+  bannerImage: React.ReactNode;
+  summarizeContent: React.ReactNode;
   children: React.ReactNode;
 }
 
-const PageLayout: React.FC<PageLayoutProps> = ({
-  bannerImage: BannerImage,
-  summarizeContent: SummarizeContent,
-  children,
-}) => {
+const PageLayout: React.FC<PageLayoutProps> = ({ bannerImage, summarizeContent, children }) => {
   return (
-    <div>
-      <BannerImage />
-      <SummarizeContent />
-      <div>{children}</div>
+    <div className="page-layout">
+      {bannerImage}
+      {summarizeContent}
+      <main>{children}</main>
     </div>
   );
 };

@@ -26,7 +26,7 @@ const AppRoutes: React.FC = () => {
       <S.AppContent data-testid="app-content">
         <Suspense fallback={<Loader />}>
           <Routes>
-            {generateRoutesFromPageConfig(pageConfig)}
+            {Object.keys(pageConfig).length > 0 && generateRoutesFromPageConfig(pageConfig)}
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </Suspense>

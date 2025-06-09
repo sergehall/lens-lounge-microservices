@@ -2,19 +2,23 @@
 
 import { envSchema } from './env.schema';
 
-// Access raw Vite environment variables
-const viteEnv = import.meta.env;
+// Extract only VITE_ variables
+const viteEnv = Object.fromEntries(
+  Object.entries(import.meta.env).filter(([key]) => key.startsWith('VITE_'))
+);
 
-// Validate environment variables using the defined schema
 const parsed = envSchema.safeParse(viteEnv);
 
 if (!parsed.success) {
-  console.error('❌ Invalid environment variables:\n', parsed.error.format());
+  console.error('❌ Invalid environment variables:\n');
+  const errors = parsed.error.format();
+  for (const [key, value] of Object.entries(errors)) {
+    if (key === '_errors') continue;
+    const field = value as { _errors?: string[] };
+    field._errors?.forEach((msg) => console.error(`→ ${key}: ${msg}`));
+  }
   throw new Error('❌ Environment validation failed. Please check your .env.* files.');
 }
 
-// Export validated and typed environment variables
 export const env = parsed.data;
-
-// Optional: export type for IDE auto-completion and static typing
 export type Env = typeof env;

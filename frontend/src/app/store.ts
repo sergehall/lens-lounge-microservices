@@ -2,8 +2,8 @@
 import { configureStore } from '@reduxjs/toolkit';
 
 // RTK Query API
-import { apiSlice } from '../api/apiSlice';
-// Features
+import { apiSlice } from '@/api/apiSlice';
+
 import headerReducer from '../components/header/headerSlice';
 import sidebarReducer from '../components/sidebar/sidebarSlice';
 import pageInsightReducer from '../features/page-insight/pageInsightSlice';

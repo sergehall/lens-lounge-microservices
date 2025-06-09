@@ -54,8 +54,16 @@ export default [
           'newlines-between': 'always',
         },
       ],
+      // React-specific safety checks
+      'react/no-children-prop': 'error',
+      'react/require-render-return': 'error',
+      'react/jsx-no-undef': 'error',
+
+      // React Hooks
       'react-hooks/rules-of-hooks': 'error',
       'react-hooks/exhaustive-deps': 'warn',
+
+      // Prettier
       'prettier/prettier': 'warn',
     },
     settings: {

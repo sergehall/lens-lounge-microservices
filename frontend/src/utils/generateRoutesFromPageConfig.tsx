@@ -1,8 +1,9 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 
+import { PageConfig } from '@/config/types/pageConfig.types';
+
 import AuthWrapper from '../features/auth/routing/AuthWrapper';
-import { PageConfig } from '../config/types/pageConfig.types';
 
 /**
  * Generates <Route> elements from a flat page configuration map.
@@ -14,7 +15,6 @@ export const generateRoutesFromPageConfig = (
   configMap: Record<string, PageConfig>
 ): React.ReactNode[] => {
   return Object.entries(configMap).map(([path, config]) => {
-    // Logging route info for debugging purposes
     console.log('Generating route:', {
       path,
       component: config.component?.name,
@@ -23,20 +23,16 @@ export const generateRoutesFromPageConfig = (
 
     let content = <config.component />;
 
-    // Wrap with layout if layoutType is not 'none'
     if (config.layoutType !== 'none') {
-      const Banner = config.bannerImage;
-      const Summary = config.pageContentSummarize;
       content = (
         <>
-          <Banner />
-          <Summary />
+          {config.bannerImage}
+          {config.pageContentSummarize}
           {content}
         </>
       );
     }
 
-    // Wrap with AuthWrapper if route is protected
     if (config.isProtected) {
       content = <AuthWrapper unauthLandingProps={config.unauthLandingProps}>{content}</AuthWrapper>;
     }

@@ -18,11 +18,11 @@ on:
         type: boolean
     secrets:
       VITE_ANALYTICS_ID:
-        required: false
+        required: true
       VITE_DEV_EMAIL:
-        required: false
+        required: true
       VITE_DEV_PASSWORD:
-        required: false
+        required: true
 
 
 jobs:

@@ -19,7 +19,7 @@
     "dev:payment": "yarn workspace payment-service start:dev",
     "dev:web": "concurrently \"yarn dev:api\" \"yarn dev:frontend\"",
     "dev:all": "concurrently \"yarn dev:api\" \"yarn dev:payment\" \"yarn dev:frontend\"",
-    "clean:meta": "rimraf .yarn/cache .yarn/install-state.* .pnp.* yarn.lock && yarn install",
+    "clean:meta": "rimraf .yarn/cache .yarn/install-state.* .pnp.* yarn.lock",
     "install:strict": "yarn install --immutable",
     "install:fresh": "yarn install"
   },

@@ -7,17 +7,21 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
-    uses: ./.github/workflows/frontend-common.yml
-    with:
-      environment: production
-      run_lint: false
-      run_tests: false
-      run_build: true
+  build-wrapper:
+    name: Build via reusable workflow
+    runs-on: ubuntu-latest
     environment: production
+    steps:
+      - name: Call frontend-common.yml
+        uses: ./.github/workflows/frontend-common.yml
+        with:
+          environment: production
+          run_lint: false
+          run_tests: false
+          run_build: true
 
   upload-artifacts:
-    needs: build
+    needs: build-wrapper
     runs-on: ubuntu-latest
     if: ${{ github.actor != 'nektos/act' }}
     steps:
@@ -29,4 +33,3 @@ jobs:
         with:
           name: frontend-dist
           path: ./frontend/dist
-

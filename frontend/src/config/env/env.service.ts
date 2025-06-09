@@ -1,5 +1,4 @@
 import { envSchema } from './env.schema';
-import { z } from 'zod';
 
 // Извлекаем только переменные с префиксом VITE_
 const viteEnv = Object.fromEntries(
@@ -19,6 +18,5 @@ if (!parsed.success) {
   throw new Error('❌ Environment validation failed. Please check your .env.* files or GitHub Secrets.');
 }
 
-// ✅ Typed env
+// Typed env
 export const env = parsed.data;
-export type Env = z.infer<typeof envSchema>;

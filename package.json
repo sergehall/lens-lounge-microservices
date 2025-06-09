@@ -19,9 +19,10 @@
     "dev:payment": "yarn workspace payment-service start:dev",
     "dev:web": "concurrently \"yarn dev:api\" \"yarn dev:frontend\"",
     "dev:all": "concurrently \"yarn dev:api\" \"yarn dev:payment\" \"yarn dev:frontend\"",
-    "clean:meta": "rimraf .yarn/cache .yarn/install-state.* .pnp.* yarn.lock && yarn cache clean",
+    "clean:meta": "rimraf .yarn/cache .yarn/install-state.* .pnp.* yarn.lock && yarn install",
     "install:strict": "yarn install --immutable",
-    "install:fresh": "yarn install"
+    "install:fresh": "yarn install",
+    "generate:env-docs": "ts-node-esm scripts/generate-env-doc.ts"
   },
   "dependencies": {
     "@nestjs/common": "^11.1.3",
@@ -33,8 +34,11 @@
     "rxjs": "^7.8.2"
   },
   "devDependencies": {
+    "@types/node": "^22.15.30",
     "concurrently": "^9.1.2",
     "cross-env": "^7.0.3",
-    "rimraf": "^6.0.1"
+    "rimraf": "^6.0.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
   }
 }

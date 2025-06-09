@@ -21,7 +21,7 @@ const StatusBanner: React.FC = () => {
 
   if (error === 'Network error') {
     console.error(
-      '❌ Could not connect to the server. Make sure the server at http://localhost:4000 is running.'
+      '❌ Could not connect to the server. Make sure the server at http://localhost:... is running.'
     );
     return null; // do not display anything on the UI
   }

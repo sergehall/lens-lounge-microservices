@@ -14,6 +14,7 @@ export const envSchema = z
     VITE_DEV_EMAIL: z.string().email('VITE_DEV_EMAIL must be a valid email address'),
     VITE_DEV_PASSWORD: z
       .string()
-      .min(6, 'VITE_DEV_PASSWORD must be at least 6 characters'),
+      .min(6, 'VITE_DEV_PASSWORD must be at least 6 characters')
+      .max(25, 'VITE_DEV_PASSWORD must be at most 25 characters'),
   })
   .passthrough();

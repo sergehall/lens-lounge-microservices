@@ -14,10 +14,6 @@ jobs:
       run_lint: false
       run_tests: false
       run_build: true
-    secrets:
-      VITE_ANALYTICS_ID: ${{ secrets.VITE_ANALYTICS_ID }}
-      VITE_DEV_EMAIL: ${{ secrets.VITE_DEV_EMAIL }}
-      VITE_DEV_PASSWORD: ${{ secrets.VITE_DEV_PASSWORD }}
 
   upload-artifacts:
     needs: build

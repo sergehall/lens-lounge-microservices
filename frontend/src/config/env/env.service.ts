@@ -15,7 +15,9 @@ if (!parsed.success) {
     const field = value as { _errors?: string[] };
     field._errors?.forEach((msg) => console.error(`→ ${key}: ${msg}`));
   }
-  throw new Error('❌ Environment validation failed. Please check your .env.* files or GitHub Secrets.');
+  throw new Error(
+    '❌ Environment validation failed. Please check your .env.* files or GitHub Secrets.'
+  );
 }
 
 // Typed env

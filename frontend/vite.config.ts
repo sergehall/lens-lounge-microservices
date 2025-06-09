@@ -21,7 +21,14 @@ export default defineConfig(({ mode }) => {
   const parsed = envSchema.safeParse(envVars);
 
   if (!parsed.success) {
-    console.error('❌ Invalid environment variables:', parsed.error.format());
+    console.error('❌ Invalid environment variables (formatted):', parsed.error.format());
+
+    console.log('🔎 Raw environment variables loaded from .env or process.env:');
+    console.log(envVars);
+
+    console.log('🔍 Full Zod error object:');
+    console.dir(parsed.error, { depth: null });
+
     throw new Error('❌ Environment validation failed. Check your .env file.');
   }
 

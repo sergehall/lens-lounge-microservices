@@ -15,7 +15,7 @@ jobs:
       run_build: true
 
   upload-artifacts:
-    needs: build
+    needсвs: build
     runs-on: ubuntu-latest
     if: ${{ github.actor != 'nektos/act' }}
     steps:

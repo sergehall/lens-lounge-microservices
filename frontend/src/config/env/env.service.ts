@@ -1,8 +1,7 @@
-// frontend/src/config/env/env.service.ts
-
 import { envSchema } from './env.schema';
+import { z } from 'zod';
 
-// Extract only VITE_ variables
+// Извлекаем только переменные с префиксом VITE_
 const viteEnv = Object.fromEntries(
   Object.entries(import.meta.env).filter(([key]) => key.startsWith('VITE_'))
 );
@@ -17,8 +16,9 @@ if (!parsed.success) {
     const field = value as { _errors?: string[] };
     field._errors?.forEach((msg) => console.error(`→ ${key}: ${msg}`));
   }
-  throw new Error('❌ Environment validation failed. Please check your .env.* files.');
+  throw new Error('❌ Environment validation failed. Please check your .env.* files or GitHub Secrets.');
 }
 
+// ✅ Typed env
 export const env = parsed.data;
-export type Env = typeof env;
+export type Env = z.infer<typeof envSchema>;

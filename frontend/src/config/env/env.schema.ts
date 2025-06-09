@@ -5,13 +5,15 @@ export const envSchema = z
   .object({
     VITE_ENVIRONMENT: z.enum(['development', 'production', 'test'], {
       errorMap: () => ({
-        message: "Invalid enum value. Expected 'development' | 'production' | 'test'",
+        message: "VITE_ENVIRONMENT must be one of: 'development', 'production', 'test'",
       }),
     }),
-    VITE_ANALYTICS_ID: z.string().regex(/^UA-\d{4,10}-\d{1,4}$/, {
-      message: 'VITE_ANALYTICS_ID must be a valid UA ID',
-    }),
+    VITE_ANALYTICS_ID: z
+      .string()
+      .regex(/^UA-\d{4,10}-\d{1,4}$/, 'VITE_ANALYTICS_ID must be a valid UA ID'),
     VITE_DEV_EMAIL: z.string().email('VITE_DEV_EMAIL must be a valid email address'),
-    VITE_DEV_PASSWORD: z.string().min(6, 'VITE_DEV_PASSWORD must be at least 6 characters'),
+    VITE_DEV_PASSWORD: z
+      .string()
+      .min(6, 'VITE_DEV_PASSWORD must be at least 6 characters'),
   })
   .passthrough();

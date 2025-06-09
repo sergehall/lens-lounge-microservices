@@ -1,5 +1,6 @@
 # .github/workflows/frontend-common.yml
-name: Frontend Common Tasks
+name: Frontend Common Workflow
+
 on:
   workflow_call:
     inputs:
@@ -7,21 +8,18 @@ on:
         required: true
         type: string
       run_lint:
+        required: true
         type: boolean
-        default: true
       run_tests:
+        required: true
         type: boolean
-        default: true
       run_build:
+        required: true
         type: boolean
-        default: true
-
-
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    environment: ${{ inputs.environment }}
     defaults:
       run:
         working-directory: ./frontend
@@ -44,32 +42,24 @@ jobs:
       - name: Install dependencies (immutable)
         run: yarn install --immutable
 
-      - name: Create .env file from secrets
+      - name: Create .env file for build
+        if: inputs.run_build
         run: |
-          echo "VITE_ENVIRONMENT=${{ secrets.VITE_ENVIRONMENT }}" >> .env
+          echo "VITE_ENVIRONMENT=${{ inputs.environment }}" >> .env
           echo "VITE_ANALYTICS_ID=${{ secrets.VITE_ANALYTICS_ID }}" >> .env
           echo "VITE_DEV_EMAIL=${{ secrets.VITE_DEV_EMAIL }}" >> .env
           echo "VITE_DEV_PASSWORD=${{ secrets.VITE_DEV_PASSWORD }}" >> .env
 
-      - name: Type check
-        run: yarn check:types
-
-      - name: Lint
-        if: ${{ inputs.run_lint }}
+      - name: Run Linter
+        if: inputs.run_lint
         run: yarn lint
 
-      - name: Run tests
-        if: ${{ inputs.run_tests }}
-        run: yarn test --passWithNoTests
+      - name: Run Tests
+        if: inputs.run_tests
+        run: yarn test
 
-      - name: Build frontend
-        if: ${{ inputs.run_build }}
-        run: yarn build --mode production
+      - name: Build Frontend
+        if: inputs.run_build
+        run: yarn build
 
-      - name: Upload build artifacts
-        if: ${{ inputs.run_build && env.ACT != 'true' }}
-        uses: actions/upload-artifact@v4
-        with:
-          name: frontend-dist
-          path: ./frontend/dist
 

@@ -113,5 +113,14 @@ jobs:
           echo "📂 Contents of ./frontend/dist:"
           ls -lah ./dist || echo "⚠️ dist not found"
 
+      - name: Upload frontend dist as artifact
+        if: inputs.run_build
+        uses: actions/upload-artifact@v4
+        with:
+          name: frontend-dist
+          path: ./dist
+
+
+
       
       

@@ -1,6 +1,5 @@
 import { INestApplication } from '@nestjs/common';
 import { Transport, MicroserviceOptions } from '@nestjs/microservices';
-import { ConfigService } from '@nestjs/config';
 import Configuration, { ConfigType } from './config/configuration';
 
 import cookieParser from 'cookie-parser';

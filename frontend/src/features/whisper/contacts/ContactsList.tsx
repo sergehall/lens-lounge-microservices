@@ -7,7 +7,7 @@ import * as S from '../ContactsList.styles';
 import { ContactsData } from './contactsData';
 import { AvatarSize } from './enums/avatarSize.enum';
 
-const PLACEHOLDER_IMAGE_DEFAULT = '/images/placeholderImageDefault.png';
+const PLACEHOLDER_IMAGE_DEFAULT = './src/assets/images/placeholderImageDefault.png';
 
 interface ContactsListProps {
   contacts: ContactsData[];

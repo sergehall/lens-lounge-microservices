@@ -8,7 +8,7 @@ import { Category } from '../categories/types/category.types';
 
 import { UserBlogsState } from './user-blogs/userBlogsSlice';
 
-const PLACEHOLDER_IMAGE_DEFAULT = '/images/placeholderImageDefault.png';
+const PLACEHOLDER_IMAGE_DEFAULT = './src/assets/images/placeholderImageDefault.png';
 
 const selectUserBlogsState = (state: RootState): UserBlogsState => state.showcasePage.userBlogs;
 

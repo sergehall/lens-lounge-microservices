@@ -17,5 +17,8 @@ jobs:
       run_lint: true
       run_tests: true
       run_build: false
-
+    secrets:
+      VITE_ANALYTICS_ID: ${{ secrets.VITE_ANALYTICS_ID }}
+      VITE_DEV_EMAIL: ${{ secrets.VITE_DEV_EMAIL }}
+      VITE_DEV_PASSWORD: ${{ secrets.VITE_DEV_PASSWORD }}
 

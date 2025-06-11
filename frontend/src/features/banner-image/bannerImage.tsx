@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
-import * as S from './bannerImage.style';
-
 import FALLBACK_IMAGE from '@/assets/images/defaultImageBanner.png';
+
+import * as S from './bannerImage.style';
 
 type Props = {
   imageUrl: string;

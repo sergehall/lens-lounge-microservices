@@ -9,36 +9,25 @@ async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule, {
     rawBody: true,
   });
-  // // Set global prefix
-  // app.setGlobalPrefix('api');
 
-  // Apply configurations using the createApp function (assuming it configures the app)
-  createApp(app);
+  // Apply all app-level configurations including Kafka setup
+  await createApp(app);
 
-  // Enable CORS for frontend
+  // Enable CORS (can also be moved to createApp if desired)
   app.enableCors({
-    origin: 'http://localhost:3000', // Allow requests from React dev server
-    credentials: true,               // Allow cookies, Authorization headers, etc.
+    origin: 'http://localhost:3000',
+    credentials: true,
   });
 
-
-  // Retrieve the configuration service to access environment variables
   const configService = app.get(ConfigService<ConfigType, true>);
+  const port = configService.get<number>('PORT') || 5006;
 
-  // Retrieve the port from environment variables, default to 5006 if not provided
-  const port = configService.get<number>('PORT');
-
-
-  // Start the application and listen on the specified port
   await app.listen(port, () => {
-    console.log(`Example app listening on port: ${port}`);
+    console.log(`App listening on port: ${port}`);
   });
 
-  // Get the base URL at which the application is running
   const baseUrl = await app.getUrl();
-  console.log(`Application payment-service is running on url: ${baseUrl}`);
-
+  console.log(`🚀 Application payment-service is running on url: ${baseUrl}`);
 }
 
-// Call the bootstrap function to start the application
 bootstrap();

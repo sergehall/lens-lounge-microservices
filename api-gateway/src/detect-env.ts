@@ -1,7 +1,7 @@
 import { existsSync } from 'fs';
 
 const envMap: Record<string, string> = {
-  production: '.env.docker',
+  production: '.env',
   development: '.env.local',
   testing: '.env.test',
 };

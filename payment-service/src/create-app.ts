@@ -1,113 +1,104 @@
-import {
-  BadRequestException,
-  INestApplication,
-  ValidationPipe,
-} from '@nestjs/common';
+import { INestApplication } from '@nestjs/common';
+import { Transport, MicroserviceOptions } from '@nestjs/microservices';
+import { ConfigService } from '@nestjs/config';
+import Configuration, { ConfigType } from './config/configuration';
+
+import cookieParser from 'cookie-parser';
 import { useContainer } from 'class-validator';
 import { AppModule } from './app.module';
 import { HttpExceptionResponseFilter } from './common/filters/http-exception-response-filter';
-import cookieParser from 'cookie-parser';
+import { TrimPipe } from './common/pipes/trim.pipe';
+import { ValidationPipe, BadRequestException } from '@nestjs/common';
+
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import { TrimPipe } from "./common/pipes/trim.pipe";
 
 /**
- * Configure the IoC container for the NestJS application.
- *
- * @param app The INestApplication instance of the NestJS application.
+ * Setup DI container
  */
 function setupContainer(app: INestApplication): void {
   useContainer(app.select(AppModule), { fallbackOnErrors: true });
 }
 
 /**
- * Set up the global exception filter for the NestJS application.
- *
- * @param app The INestApplication instance of the NestJS application.
+ * Exception filters
  */
 function setupExceptionFilter(app: INestApplication): void {
   app.useGlobalFilters(new HttpExceptionResponseFilter());
 }
 
 /**
- * Add cookie-parser middleware to the NestJS application.
- *
- * @param app The INestApplication instance of the NestJS application.
+ * Middlewares
  */
 function setupCookieParser(app: INestApplication): void {
   app.use(cookieParser());
 }
 
 /**
- * Set up global pipes for data transformation and validation in the NestJS application.
- *
- * @param app The INestApplication instance of the NestJS application.
+ * Pipes
  */
 function setupGlobalPipes(app: INestApplication): void {
   app.useGlobalPipes(
-    // Custom pipe to automatically trim whitespace from incoming request data.
     new TrimPipe(),
-
-    // Validation pipe to automatically validate incoming request payloads.
     new ValidationPipe({
-      // Enable automatic transformation of incoming payload data to matching dto.
       transform: true,
-
-      // Continue validating all properties, even if some validations fail.
       stopAtFirstError: false,
-
-      // Custom exception stripe to handle validation errors and throw BadRequestException.
       exceptionFactory: (errors) => {
-        // Transform each validation error into a custom error object.
-        const customErrors = errors.map((e) => {
-          const firstError = JSON.stringify(e.constraints);
-          return { field: e.property, message: firstError };
-        });
-
-        // Throw a BadRequestException with the custom error object.
-        throw new BadRequestException(customErrors);
+        const formatted = errors.map((e) => ({
+          field: e.property,
+          message: JSON.stringify(e.constraints),
+        }));
+        throw new BadRequestException(formatted);
       },
     }),
   );
 }
 
 /**
- * Set up Swagger documentation for the NestJS application.
- *
- * @param app The INestApplication instance of the NestJS application.
+ * Swagger
  */
 function setupSwagger(app: INestApplication): void {
   const config = new DocumentBuilder()
-    .addSecurity('bearer', {
-      type: 'http',
-      scheme: 'bearer',
-      description: 'Enter JWT Bearer token only',
-    })
-    .addSecurity('basic', {
-      type: 'http',
-      scheme: 'basic',
-      description: 'Login with username and password',
-    })
     .setTitle('IT-Incubator API')
-    .setDescription(
-      "The Training IT-Incubator API is a versatile RESTful API built with Nests for managing training activities. It offers endpoints for user management, blog creation, post management, commenting, scheduling, and email notifications. Additionally, it integrates seamlessly with payment systems like Stripe and PayPal to facilitate secure transactions. Postgresql is utilized for database storage, and AWS S3 is employed for file storage. Moreover, it includes integration with Telegram. With its modular architecture, it's easy to build and deploy training applications of any scale. <a href='https://it-incubator.io'>Learn more</a>",
-    )
+    .setDescription('NestJS training API')
     .setVersion('36.0')
+    .addSecurity('bearer', { type: 'http', scheme: 'bearer' })
+    .addSecurity('basic', { type: 'http', scheme: 'basic' })
     .build();
+
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('/api/docs', app, document);
 }
 
 /**
- * Function to configure and set up a NestJS application.
- *
- * @param app The INestApplication instance of the NestJS application.
- * @returns The same INestApplication instance after applying configurations.
+ * Kafka microservice
  */
-export const createApp = (app: INestApplication): INestApplication => {
+async function setupKafka(app: INestApplication): Promise<void> {
+  const kafkaConfig: ConfigType = Configuration.getConfiguration()
+  const clientId = kafkaConfig.kafka.KAFKA_CLIENT_ID;
+  const broker = kafkaConfig.kafka.KAFKA_BROKER;
+  const groupId = kafkaConfig.kafka.KAFKA_CONSUMER_GROUP_ID;
+
+  app.connectMicroservice<MicroserviceOptions>({
+    transport: Transport.KAFKA,
+    options: {
+      client: { clientId, brokers: [broker] },
+      consumer: { groupId },
+    },
+  });
+
+  await app.startAllMicroservices();
+}
+
+/**
+ * Global app config
+ */
+export const createApp = async (app: INestApplication): Promise<INestApplication> => {
   setupContainer(app);
   setupExceptionFilter(app);
   setupCookieParser(app);
   setupGlobalPipes(app);
   setupSwagger(app);
+  await setupKafka(app);
+
   return app;
 };

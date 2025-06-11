@@ -1,4 +1,4 @@
-# 📁 See: https://help.github.com/articles/ignoring-files/
+# See: https://help.github.com/articles/ignoring-files/
 
 # Build output
 dist
@@ -88,7 +88,7 @@ report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
 # TypeScript build cache
 *.tsbuildinfo
-/payment-service/.env.docker
+/payment-service/.env
 
 # Local secrets for act
 frontend/.secrets

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import * as S from './bannerImage.style';
 
-const FALLBACK_IMAGE = './src/assets/images/defaultImageBanner.png';
+import FALLBACK_IMAGE from '@/assets/images/defaultImageBanner.png';
 
 type Props = {
   imageUrl: string;

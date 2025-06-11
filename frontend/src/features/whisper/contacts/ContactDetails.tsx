@@ -9,7 +9,9 @@ import { ContactsData } from './contactsData';
 import { AvatarSize } from './enums/avatarSize.enum';
 import { formatAddress } from './formatAddress';
 
-const PLACEHOLDER_IMAGE_DEFAULT = './src/assets/images/placeholderImageDefault.png';
+import PLACEHOLDER_IMAGE_DEFAULT from '@/assets/images/placeholderImageDefault.png';
+
+// const PLACEHOLDER_IMAGE_DEFAULT = './frontend/src/assets/images/placeholderImageDefault.png';
 
 interface ContactDetailsProps {
   contact: ContactsData | null;

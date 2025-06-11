@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { ScheduleModule } from '@nestjs/schedule';
 import { ThrottlerModule } from '@nestjs/throttler';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { MyKafkaConfig } from "./config/kafka/kafka.config";
 import { ThrottlerOptions } from './config/throttle/throttler-options';
 import { KafkaModule } from "./kafka/kafka.module";
 import { KafkaService } from "./kafka/kafka.service";
@@ -26,6 +27,7 @@ import { appProviders } from './app.providers';
   ],
   controllers: [PaymentController],
   providers: [
+    MyKafkaConfig,
     KafkaService,
     AppService,
     PostgresConfig,

@@ -3,6 +3,7 @@ services:
   zookeeper:
     image: confluentinc/cp-zookeeper:7.5.0
     container_name: zookeeper
+    env_file: .env
     ports:
       - "${ZOOKEEPER_CLIENT_PORT}:${ZOOKEEPER_CLIENT_PORT}"
     environment:
@@ -15,6 +16,7 @@ services:
   kafka:
     image: confluentinc/cp-kafka:7.5.0
     container_name: kafka
+    env_file: .env
     ports:
       - "9092:9092"
     depends_on:
@@ -26,6 +28,11 @@ services:
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: ${KAFKA_LISTENER_SECURITY_PROTOCOL_MAP}
       KAFKA_AUTO_CREATE_TOPICS_ENABLE: ${KAFKA_AUTO_CREATE_TOPICS_ENABLE}
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: ${KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR}
+    healthcheck:
+      test: [ "CMD-SHELL", "kafka-topics --bootstrap-server localhost:9092 --list || exit 1" ]
+      interval: 10s
+      timeout: 10s
+      retries: 10
     networks:
       - backend
 
@@ -33,6 +40,7 @@ services:
   kafka-ui:
     image: provectuslabs/kafka-ui:latest
     container_name: kafka-ui
+    env_file: .env
     ports:
       - "8080:8080"
     depends_on:
@@ -41,6 +49,27 @@ services:
       - KAFKA_CLUSTERS_0_NAME=${KAFKA_UI_CLUSTER_NAME}
       - KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS=${KAFKA_UI_BOOTSTRAP}
       - KAFKA_CLUSTERS_0_ZOOKEEPER=${KAFKA_UI_ZOOKEEPER}
+    networks:
+      - backend
+
+  # API Gateway
+  api-gateway:
+    env_file:
+      - ./api-gateway/.env
+    build:
+      context: .
+      dockerfile: api-gateway/Dockerfile
+    container_name: api-gateway
+    depends_on:
+      kafka:
+        condition: service_healthy
+      payment-service:
+        condition: service_started
+    environment:
+      KAFKA_BROKER: ${KAFKA_BROKER}
+    ports:
+      - "3000:3000"
+    working_dir: /app/api-gateway
     networks:
       - backend
 
@@ -53,7 +82,8 @@ services:
       dockerfile: payment-service/Dockerfile
     container_name: payment-service
     depends_on:
-      - kafka
+      kafka:
+        condition: service_healthy
     environment:
       NODE_ENV: production
     ports:
@@ -61,32 +91,11 @@ services:
     networks:
       - backend
 
-
-  # API Gateway
-  api-gateway:
-    env_file:
-      - ./api-gateway/.env
-    build:
-      context: ./api-gateway
-    container_name: api-gateway
-    depends_on:
-      - kafka
-      - payment-service
-    environment:
-      KAFKA_BROKER: ${KAFKA_BROKER}
-    command: yarn start:dev
-    volumes:
-      - ./api-gateway:/app
-    working_dir: /app
-    ports:
-      - "3000:3000"
-    networks:
-      - backend
-
   # PostgreSQL
   postgres:
     image: postgres:15
     container_name: postgres
+    env_file: .env
     restart: always
     environment:
       POSTGRES_USER: ${POSTGRES_USER}

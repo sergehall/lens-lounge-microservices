@@ -1,3 +1,4 @@
+// payment-service/src/kafka/kafka.service.ts
 import {
   Injectable,
   OnModuleInit,

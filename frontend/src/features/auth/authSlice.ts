@@ -5,7 +5,7 @@ import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
 import { RootState } from '@/app/store';
 import { isProfileValid } from '@/utils/guards/isProfileValid';
 
-import { ProfileType } from '../showcase/profile/mocks/defaultProfile';
+import { ProfileType } from "@/features/showcase/profile/mocks/defaultProfile";
 
 interface LoginArgs {
   email: string;

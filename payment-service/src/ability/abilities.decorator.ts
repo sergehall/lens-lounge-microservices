@@ -1,5 +1,6 @@
-import { CurrentUserDto } from "@lens-lounge/shared";
+
 import { SetMetadata } from '@nestjs/common';
+import { CurrentUserDto } from "../features/users/dto/current-user.dto";
 import { Action } from './roles/action.enum';
 import { Subject } from '@casl/ability';
 

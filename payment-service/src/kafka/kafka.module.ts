@@ -1,40 +1,17 @@
-import { Module } from "@nestjs/common";
-import { ClientsModule, Transport } from "@nestjs/microservices";
-import { Partitioners } from "kafkajs";
-import { MyKafkaConfig } from "../config/kafka/kafka.config";
+// payment-service/src/kafka/kafka.module.ts
+import { ClientsModule } from '@nestjs/microservices';
+import { Module } from '@nestjs/common';
 import { KafkaConfigModule } from "./kafka-config.module";
-import { KafkaService } from "./kafka.service";
+import { KafkaService } from './kafka.service';
+import { kafkaClientAsyncConfig } from "./kafkaClient.config";
 
 @Module({
   imports: [
     KafkaConfigModule,
-    ClientsModule.registerAsync([
-      {
-        name: 'KAFKA_SERVICE',
-        imports: [KafkaConfigModule],
-        inject: [MyKafkaConfig],
-        useFactory: async (kafkaConfig: MyKafkaConfig) => ({
-          transport: Transport.KAFKA,
-          options: {
-            client: {
-              clientId: await kafkaConfig.getKafkaConfig('KAFKA_CLIENT_ID'),
-              brokers: [await kafkaConfig.getKafkaConfig('KAFKA_BROKER')],
-            },
-            consumer: {
-              groupId: await kafkaConfig.getKafkaConfig('KAFKA_CONSUMER_GROUP_ID'),
-            },
-            producer: {
-              createPartitioner: Partitioners.LegacyPartitioner,
-            },
-          },
-        }),
-      },
-    ]),
+    ClientsModule.registerAsync(kafkaClientAsyncConfig),
   ],
   providers: [KafkaService],
-  exports: [
-    KafkaService,
-    ClientsModule,
-  ],
+  exports: [KafkaService, ClientsModule],
 })
 export class KafkaModule {}
+

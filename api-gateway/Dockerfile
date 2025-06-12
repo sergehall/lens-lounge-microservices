@@ -3,9 +3,16 @@ FROM node:20 AS builder
 
 WORKDIR /app
 
+# Copy the entire monorepo to allow dependency resolution across workspaces
 COPY . .
+
+# Enable Corepack and install dependencies (strictly matching yarn.lock)
 RUN corepack enable && yarn install --immutable
+
+# Focus dependencies only for api-gateway workspace
 RUN yarn workspaces focus api-gateway
+
+# Build the api-gateway workspace
 WORKDIR /app/api-gateway
 RUN yarn build
 

@@ -1,3 +1,15 @@
+# ─────────────────────────────────────────────
+# 📍 List of Available Services and URLs
+# ─────────────────────────────────────────────
+# Service         | Address / Access
+# --------------- | ----------------------------
+# Frontend        | http://localhost:5173
+# Kafka UI        | http://localhost:8081
+# API Gateway     | http://localhost:3000
+# PostgreSQL      | psql at localhost:5432
+# Kafka Broker    | internal, localhost:9092
+# ─────────────────────────────────────────────
+
 services:
   # ZooKeeper for Kafka
   zookeeper:
@@ -51,7 +63,7 @@ services:
     container_name: kafka-ui
     env_file: .env
     ports:
-      - "8080:8080"
+      - "8081:8080"
     depends_on:
       - kafka
     environment:
@@ -114,6 +126,19 @@ services:
       - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
+    networks:
+      - backend
+
+  # Frontend (React)
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    container_name: frontend
+    ports:
+      - "5173:80"
+    depends_on:
+      - api-gateway
     networks:
       - backend
 

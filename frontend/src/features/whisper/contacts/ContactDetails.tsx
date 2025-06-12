@@ -2,16 +2,14 @@
 
 import React from 'react';
 
+import PLACEHOLDER_IMAGE_DEFAULT from '@/assets/images/placeholderImageDefault.png';
+
 import { NoContacts } from '../ContactsList.styles';
 
 import * as S from './contacts.styles';
 import { ContactsData } from './contactsData';
 import { AvatarSize } from './enums/avatarSize.enum';
 import { formatAddress } from './formatAddress';
-
-import PLACEHOLDER_IMAGE_DEFAULT from '@/assets/images/placeholderImageDefault.png';
-
-// const PLACEHOLDER_IMAGE_DEFAULT = './frontend/src/assets/images/placeholderImageDefault.png';
 
 interface ContactDetailsProps {
   contact: ContactsData | null;

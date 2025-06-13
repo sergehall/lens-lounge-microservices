@@ -1,16 +1,18 @@
 {
   "compilerOptions": {
-    "target": "ES2022",
-    "module": "CommonJS",
+    "target": "ES2020",
+    "module": "ESNext",
     "declaration": true,
     "outDir": "dist",
     "rootDir": "src",
+    "importHelpers": true,
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "Node",
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-    "strictPropertyInitialization": true
+    "emitDecoratorMetadata": true
   },
   "include": ["src"]
 }

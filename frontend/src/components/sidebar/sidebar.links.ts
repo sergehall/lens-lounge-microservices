@@ -1,5 +1,5 @@
 // src/components/sidebar/sidebar.links.ts
-import { ROUTES } from '../../routes/routes';
+import { ROUTES } from '@/routes/routes';
 
 export const sidebarLinks = [
   { name: 'Home', url: ROUTES.home.root },

@@ -1,0 +1,18 @@
+# Разрешаем всем поисковым роботам
+User-agent: *
+Disallow:
+
+# Разрешаем Facebook скраперу (для Open Graph)
+User-agent: facebookexternalhit
+Allow: /
+
+# Разрешаем Telegram скраперу
+User-agent: TelegramBot
+Allow: /
+
+# Разрешаем Twitter скраперу
+User-agent: Twitterbot
+Allow: /
+
+# Укажи ссылку на карту сайта, если она есть
+Sitemap: https://lens-lounge.com/sitemap.xml

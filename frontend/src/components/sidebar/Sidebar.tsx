@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-import { useAppSelector } from '../../hooks/reduxHooks';
+import { useAppSelector } from '@/hooks/reduxHooks';
 
 import * as S from './sidebar.styles';
 

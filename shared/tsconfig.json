@@ -1,18 +1,31 @@
 {
   "compilerOptions": {
-    "target": "ES2020",
-    "module": "ESNext",
-    "declaration": true,
-    "outDir": "dist",
+    // ECMAScript module system + modern language support
+    "target": "ES2022",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+
+    // Project structure (input/output folders)
     "rootDir": "src",
+    "outDir": "dist",
+
+    // Declaration files for consumers (for publishing or re-use)
+    "declaration": true,
+
+    // Compatibility and optimization settings
     "importHelpers": true,
-    "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "moduleResolution": "Node",
+
+    // Enable full type safety and strict type checks
+    "strict": true,
+
+    // Enable support for decorators (NestJS, TypeORM, etc.)
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true
   },
+
+  // Included files for compilation
   "include": ["src"]
 }

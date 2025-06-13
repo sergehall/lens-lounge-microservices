@@ -1,8 +1,8 @@
 // shared/src/index.ts
 
-export * from './users/dtos/currentUser.dto';
-export * from './users/dtos/guestUsers.dto';
-export * from './users/enums/orgId.enum';
-export * from './users/enums/userRoles.enum';
-export * from './dto/example.dto';
-export * from './events/user-created.event';
+export * from "./dto/users/currentUser.dto.js";
+export * from "./dto/users/guestUsers.dto.js";
+export * from "./enums/users/orgId.enum.js";
+export * from "./enums/users/userRoles.enum.js";
+export * from "./enums/users/userRoles.enum.js";
+export * from "./events/user-created.event.js";

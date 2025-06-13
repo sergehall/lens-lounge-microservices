@@ -5,10 +5,10 @@ import {
   Injectable,
 } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
-import { CaslAbilityFactory } from './casl-ability.factory';
-import { CHECK_ABILITY, RequiredRule } from './abilities.decorator';
+import { CaslAbilityFactory } from './casl-ability.factory.js';
+import { CHECK_ABILITY, RequiredRule } from './abilities.decorator.js';
 import { ForbiddenError } from '@casl/ability';
-import { UserRolesEnums } from './enums/user-roles.enums';
+import { UserRolesEnums } from './enums/user-roles.enums.js';
 
 @Injectable()
 export class AbilitiesGuard implements CanActivate {

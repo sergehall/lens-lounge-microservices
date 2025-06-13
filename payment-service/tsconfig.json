@@ -1,26 +1,36 @@
 {
   "compilerOptions": {
+    // Modern ESM target and resolution
     "target": "ES2022",
-    "module": "CommonJS",
-    "moduleResolution": "node",
-    // "strict": true,
-    "declaration": true,
-    "removeComments": true,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "sourceMap": true,
-    "baseUrl": "./src",
-    "outDir": "./dist",
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "incremental": true,
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+
+    // Enable strict type-checking and helpful checks
+    "strict": true,
     "strictNullChecks": true,
     "noImplicitAny": true,
     "strictBindCallApply": true,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
+
+    // Output and build configuration
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "sourceMap": true,
+    "incremental": true,
+    "outDir": "./dist",
+    "baseUrl": "./src",
+
+    // ESM interop and helpers
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
+
+    // Path alias for shared workspace
     "paths": {
-      "@lens-lounge/shared": ["../../shared"]
+      "@lens-lounge/shared": ["../../shared/src/index.ts"]
     }
   },
   "lib": ["ES2022", "DOM"],

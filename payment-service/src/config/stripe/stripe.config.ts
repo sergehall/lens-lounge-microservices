@@ -1,7 +1,7 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
-import { BaseConfig } from '../base/base.config';
-import { StripeKeysType } from './types/stripe-keys.type';
-import { SpireVersionDefaultEnum } from './enums/spire-version-default.enum';
+import { BaseConfig } from '../base/base.config.js';
+import { StripeKeysType } from './types/stripe-keys.type.js';
+import { SpireVersionDefaultEnum } from './enums/spire-version-default.enum.js';
 
 @Injectable()
 export class StripeConfig extends BaseConfig {
@@ -13,7 +13,7 @@ export class StripeConfig extends BaseConfig {
   };
 
   async getStripeValueByKey(key: StripeKeysType): Promise<string> {
-    if (this.config.hasOwnProperty(key)) {
+    if (Object.prototype.hasOwnProperty.call(this.config, key)) {
       return this.getValueStripe(key);
     } else {
       throw new BadRequestException(

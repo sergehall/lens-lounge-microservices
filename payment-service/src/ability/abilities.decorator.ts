@@ -1,9 +1,7 @@
-
 import { SetMetadata } from '@nestjs/common';
-import { CurrentUserDto } from "../features/users/dto/current-user.dto";
-import { Action } from './roles/action.enum';
+import { CurrentUserDto } from '../features/users/dto/current-user.dto.js';
+import { Action } from './roles/action.enum.js';
 import { Subject } from '@casl/ability';
-
 
 export interface RequiredRule {
   action: Action;

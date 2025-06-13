@@ -1,5 +1,5 @@
 import { EventsHandler, IEventHandler } from '@nestjs/cqrs';
-import { OrderCreatedReplyEvent } from '../order-created-reply.event';
+import { OrderCreatedReplyEvent } from '../order-created-reply.event.js';
 import { Logger } from '@nestjs/common';
 
 @EventsHandler(OrderCreatedReplyEvent)

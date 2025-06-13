@@ -1,27 +1,27 @@
 import { IsBoolean, IsNotEmpty, Length, Matches } from 'class-validator';
-import { UserRolesEnums } from "../../../ability/enums/user-roles.enums";
-import { OrgIdEnums } from "../enums/org-id.enums";
+import { UserRolesEnums } from '../../../ability/enums/user-roles.enums.js';
+import { OrgIdEnums } from '../enums/org-id.enums.js';
 
 export class CurrentUserDto {
   @IsNotEmpty()
   @Length(0, 50, {
     message: 'Incorrect id length! Must be max 50 ch.',
   })
-  userId: string;
+  userId!: string;
   @IsNotEmpty()
   @Length(3, 10, {
     message: 'Incorrect login length! Must be min 3, max 10 ch.',
   })
   @Matches('^[a-zA-Z0-9_-]*$')
-  login: string;
+  login!: string;
   @IsNotEmpty({ message: 'Email should not be empty' })
   @Matches('^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$')
-  email: string;
+  email!: string;
   @IsNotEmpty()
-  orgId: OrgIdEnums;
+  orgId!: OrgIdEnums;
   @IsNotEmpty()
-  roles: UserRolesEnums[];
+  roles!: UserRolesEnums[];
   @IsNotEmpty()
   @IsBoolean()
-  isBanned: boolean;
+  isBanned!: boolean;
 }

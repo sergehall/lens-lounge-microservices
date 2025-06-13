@@ -5,10 +5,10 @@ import {
   MatchConditions,
   PureAbility,
 } from '@casl/ability';
-import { CurrentUserDto } from "../features/users/dto/current-user.dto";
-import { UserRolesEnums } from "./enums/user-roles.enums";
-import { Action } from './roles/action.enum';
-import { IdDto } from './dto/id.dto';
+import { CurrentUserDto } from '../features/users/dto/current-user.dto.js';
+import { UserRolesEnums } from './enums/user-roles.enums.js';
+import { Action } from './roles/action.enum.js';
+import { IdDto } from './dto/id.dto.js';
 
 type AppAbility = PureAbility<AbilityTuple, MatchConditions>;
 const lambdaMatcher = (matchConditions: MatchConditions) => matchConditions;

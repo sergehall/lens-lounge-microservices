@@ -1,20 +1,20 @@
-import { ConfigType } from '../configuration';
+import { ConfigType } from '../configuration.js';
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { KafkaKeysType } from "../kafka/types/kafka-keys.type";
-import { ThrottleTypes } from '../throttle/types/throttle.types';
+import { KafkaKeysType } from '../kafka/types/kafka-keys.type.js';
+import { ThrottleTypes } from '../throttle/types/throttle.types.js';
 import * as bcrypt from 'bcrypt';
-import { EnvNamesEnums } from '../enums/env-names.enums';
-import { PayPalKeysType } from '../pay-pal/types/pay-pal-keys.type';
-import { TelegramKeysType } from '../telegram/types/telegram-keys.type';
-import { StripeKeysType } from '../stripe/types/stripe-keys.type';
-import { SaKeysType } from '../sa/types/sa-keys.type';
-import { PgKeysType } from '../db/postgres/types/pg-keys.type';
-import { JwtKeysType } from '../jwt/types/jwt-keys.types';
-import { PgPortKeyType } from '../db/postgres/types/pg-port-key.type';
-import { MongoDbKeysType } from '../db/mongo/types/mongo-db-keys.type';
-import { MailsKeysTypes, MailsPortKeyType } from '../mails/types/mails.types';
-import { ReCaptchaKeyType } from '../recaptcha/types/re-captcha-key.type';
+import { EnvNamesEnums } from '../enums/env-names.enums.js';
+import { PayPalKeysType } from '../pay-pal/types/pay-pal-keys.type.js';
+import { TelegramKeysType } from '../telegram/types/telegram-keys.type.js';
+import { StripeKeysType } from '../stripe/types/stripe-keys.type.js';
+import { SaKeysType } from '../sa/types/sa-keys.type.js';
+import { PgKeysType } from '../db/postgres/types/pg-keys.type.js';
+import { JwtKeysType } from '../jwt/types/jwt-keys.types.js';
+import { PgPortKeyType } from '../db/postgres/types/pg-port-key.type.js';
+import { MongoDbKeysType } from '../db/mongo/types/mongo-db-keys.type.js';
+import { MailsKeysTypes, MailsPortKeyType } from '../mails/types/mails.types.js';
+import { ReCaptchaKeyType } from '../recaptcha/types/re-captcha-key.type.js';
 
 @Injectable()
 export class BaseConfig {

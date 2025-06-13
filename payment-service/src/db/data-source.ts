@@ -1,4 +1,3 @@
-
 import { DataSource } from 'typeorm';
 import 'dotenv/config';
 
@@ -11,8 +10,6 @@ export default new DataSource({
   database: process.env.PG_HEROKU_NAME_DATABASE,
   ssl: { rejectUnauthorized: false },
   migrationsTableName: 'migrationsNest',
-  entities: [
-
-  ],
+  entities: [],
   migrations: [__dirname + '/migrations/**/*{.ts,.js}'], // Specify the path to your migrations
 });

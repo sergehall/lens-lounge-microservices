@@ -1,7 +1,7 @@
 // payment-service/src/config/kafka/kafka.config.ts
 import { BadRequestException, Injectable } from '@nestjs/common';
-import { BaseConfig } from "../base/base.config";
-import { KafkaKeysType } from './types/kafka-keys.type';
+import { BaseConfig } from '../base/base.config.js';
+import { KafkaKeysType } from './types/kafka-keys.type.js';
 
 @Injectable()
 export class MyKafkaConfig extends BaseConfig {
@@ -12,7 +12,7 @@ export class MyKafkaConfig extends BaseConfig {
   };
 
   private async getKafkaValue(key: KafkaKeysType): Promise<string> {
-    if (this.config.hasOwnProperty(key)) {
+    if (Object.prototype.hasOwnProperty.call(this.config, key)) {
       return this.getValueKafkaByKey(key);
     } else {
       throw new BadRequestException(
@@ -22,6 +22,6 @@ export class MyKafkaConfig extends BaseConfig {
   }
 
   async getKafkaConfig(key: KafkaKeysType): Promise<string> {
-   return this.getKafkaValue(key);
+    return this.getKafkaValue(key);
   }
 }

@@ -1,6 +1,6 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
-import { BaseConfig } from '../base/base.config';
-import { TelegramKeysType } from './types/telegram-keys.type';
+import { BaseConfig } from '../base/base.config.js';
+import { TelegramKeysType } from './types/telegram-keys.type.js';
 
 @Injectable()
 export class TelegramConfig extends BaseConfig {
@@ -11,7 +11,7 @@ export class TelegramConfig extends BaseConfig {
   };
 
   private async getTelegramValueByKey(key: TelegramKeysType): Promise<string> {
-    if (this.config.hasOwnProperty(key)) {
+    if (Object.prototype.hasOwnProperty.call(this.config, key)) {
       return this.getValueTelegram(key);
     } else {
       throw new BadRequestException(

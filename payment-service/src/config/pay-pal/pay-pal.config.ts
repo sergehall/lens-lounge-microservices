@@ -1,6 +1,6 @@
-import { BaseConfig } from '../base/base.config';
+import { BaseConfig } from '../base/base.config.js';
 import { BadRequestException, Injectable } from '@nestjs/common';
-import { PayPalKeysType } from './types/pay-pal-keys.type';
+import { PayPalKeysType } from './types/pay-pal-keys.type.js';
 
 @Injectable()
 export class PayPalConfig extends BaseConfig {
@@ -11,7 +11,7 @@ export class PayPalConfig extends BaseConfig {
   };
 
   async getPayPalValueByKey(key: PayPalKeysType): Promise<string> {
-    if (this.config.hasOwnProperty(key)) {
+    if (Object.prototype.hasOwnProperty.call(this.config, key)) {
       return this.getValuePayPal(key);
     } else {
       throw new BadRequestException(

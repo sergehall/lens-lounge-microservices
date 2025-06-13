@@ -1,4 +1,4 @@
-import { EnvNamesEnums } from './enums/env-names.enums';
+import { EnvNamesEnums } from './enums/env-names.enums.js';
 
 class Configuration {
   private static readEnvVariableWithDefault(
@@ -288,11 +288,17 @@ class Configuration {
   }
 
   private static getKafkaClientId(): string {
-    return this.readEnvVariableWithDefault('KAFKA_CLIENT_ID', 'payment-service-client');
+    return this.readEnvVariableWithDefault(
+      'KAFKA_CLIENT_ID',
+      'payment-service-client',
+    );
   }
 
   private static getKafkaConsumerGroupId(): string {
-    return this.readEnvVariableWithDefault('KAFKA_CONSUMER_GROUP_ID', 'payment-consumer-group-client');
+    return this.readEnvVariableWithDefault(
+      'KAFKA_CONSUMER_GROUP_ID',
+      'payment-consumer-group-client',
+    );
   }
 
   static getConfiguration() {

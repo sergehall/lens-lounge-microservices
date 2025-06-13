@@ -12,7 +12,7 @@ const envFilePath = envMap[NODE_ENV] || '.env';
 if (!existsSync(envFilePath)) {
   console.warn(
     `\x1b[33m⚠️  Warning:\x1b[0m Environment file "${envFilePath}" not found.\n` +
-    `   You might want to create it, or copy from ".env.example".\n`
+      `   You might want to create it, or copy from ".env.example".\n`,
   );
 }
 

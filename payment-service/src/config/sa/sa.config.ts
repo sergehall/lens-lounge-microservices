@@ -1,6 +1,6 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
-import { BaseConfig } from '../base/base.config';
-import { SaKeysType } from './types/sa-keys.type';
+import { BaseConfig } from '../base/base.config.js';
+import { SaKeysType } from './types/sa-keys.type.js';
 
 @Injectable()
 export class SaConfig extends BaseConfig {
@@ -13,7 +13,7 @@ export class SaConfig extends BaseConfig {
   };
 
   private async getSaValueByKey(key: SaKeysType): Promise<string> {
-    if (this.config.hasOwnProperty(key)) {
+    if (Object.prototype.hasOwnProperty.call(this.config, key)) {
       return this.getValueSa(key);
     } else {
       throw new BadRequestException(

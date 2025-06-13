@@ -1,5 +1,5 @@
-import * as Joi from 'joi';
-import { EnvNamesEnums } from './enums/env-names.enums';
+import Joi from 'joi';
+import { EnvNamesEnums } from './enums/env-names.enums.js';
 
 export const validationSchemaConfiguration = Joi.object({
   NODE_ENV: Joi.string().valid(

@@ -1,7 +1,7 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
-import { BaseConfig } from '../../base/base.config';
-import { PgKeysType } from './types/pg-keys.type';
-import { PgPortKeyType } from './types/pg-port-key.type';
+import { BaseConfig } from '../../base/base.config.js';
+import { PgKeysType } from './types/pg-keys.type.js';
+import { PgPortKeyType } from './types/pg-port-key.type.js';
 
 @Injectable()
 export class PostgresConfig extends BaseConfig {
@@ -18,7 +18,7 @@ export class PostgresConfig extends BaseConfig {
   };
 
   private async getPostgresValue(key: PgKeysType): Promise<string> {
-    if (this.config.hasOwnProperty(key)) {
+    if (Object.prototype.hasOwnProperty.call(this.config, key)) {
       return this.getValuePostgresByKey(key);
     } else {
       throw new BadRequestException(

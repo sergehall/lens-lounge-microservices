@@ -1,6 +1,6 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
-import { BaseConfig } from '../base/base.config';
-import { ReCaptchaKeyType } from './types/re-captcha-key.type';
+import { BaseConfig } from '../base/base.config.js';
+import { ReCaptchaKeyType } from './types/re-captcha-key.type.js';
 
 @Injectable()
 export class ReCaptchaConfig extends BaseConfig {
@@ -10,7 +10,7 @@ export class ReCaptchaConfig extends BaseConfig {
   };
 
   async getReCaptchaValueByKey(key: ReCaptchaKeyType): Promise<string> {
-    if (this.config.hasOwnProperty(key)) {
+    if (Object.prototype.hasOwnProperty.call(this.config, key)) {
       return this.getValueReCaptcha(key);
     } else {
       throw new BadRequestException(

@@ -1,9 +1,14 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
+    // Output directory for compiled files
     "outDir": "./dist",
+
+    // Emit declaration files for consumers
     "declaration": true,
     "declarationMap": true,
+
+    // Generate source maps and clean output
     "sourceMap": true,
     "removeComments": true
   },

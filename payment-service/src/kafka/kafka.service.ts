@@ -7,11 +7,7 @@ import {
   Inject,
 } from '@nestjs/common';
 import { ClientKafka } from '@nestjs/microservices';
-import {
-  Consumer,
-  InstrumentationEvent,
-  KafkaJSProtocolError,
-} from 'kafkajs';
+import { Consumer, InstrumentationEvent, KafkaJSProtocolError } from 'kafkajs';
 
 @Injectable()
 export class KafkaService implements OnModuleInit, OnModuleDestroy {
@@ -62,12 +58,10 @@ export class KafkaService implements OnModuleInit, OnModuleDestroy {
         },
       );
 
-      consumer.on(
-        events.DISCONNECT,
-        (event: InstrumentationEvent<any>) => {
-          this.logger.warn(`Kafka consumer disconnected`);
-        },
-      );
+      consumer.on(events.DISCONNECT, (event: InstrumentationEvent<any>) => {
+        console.log(event);
+        this.logger.warn(`Kafka consumer disconnected`);
+      });
     }
   }
 

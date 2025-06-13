@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { join } from 'path';
 import { MailerOptions, MailerOptionsFactory } from '@nestjs-modules/mailer';
-import { MailsConfig } from '../mails/mails.config';
+import { MailsConfig } from '../mails/mails.config.js';
 
 @Injectable()
 export class NodemailerOptions

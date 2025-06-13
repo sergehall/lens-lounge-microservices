@@ -1,7 +1,6 @@
 import { TypeOrmModuleOptions, TypeOrmOptionsFactory } from '@nestjs/typeorm';
 import { Injectable } from '@nestjs/common';
-import { PostgresConfig } from '../../../config/db/postgres/postgres.config';
-
+import { PostgresConfig } from '../../../config/db/postgres/postgres.config.js';
 
 @Injectable()
 export class TypeOrmPostgresOptions
@@ -24,9 +23,7 @@ export class TypeOrmPostgresOptions
       database,
       autoLoadEntities: true,
       ssl: { rejectUnauthorized: false },
-      entities: [
-
-      ],
+      entities: [],
       synchronize: true,
       logging: false,
     };

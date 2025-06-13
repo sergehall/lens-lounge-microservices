@@ -1,6 +1,6 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
-import { BaseConfig } from '../base/base.config';
-import { JwtKeysType } from './types/jwt-keys.types';
+import { BaseConfig } from '../base/base.config.js';
+import { JwtKeysType } from './types/jwt-keys.types.js';
 
 @Injectable()
 export class JwtConfig extends BaseConfig {
@@ -12,7 +12,7 @@ export class JwtConfig extends BaseConfig {
   };
 
   private getJwtValue(key: JwtKeysType): string {
-    if (this.config.hasOwnProperty(key)) {
+    if (Object.prototype.hasOwnProperty.call(this.config, key)) {
       return this.getValueJwtByKey(key);
     } else {
       throw new BadRequestException(

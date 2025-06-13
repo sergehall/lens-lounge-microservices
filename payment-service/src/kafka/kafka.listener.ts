@@ -1,8 +1,8 @@
 import { MessagePattern, Payload } from '@nestjs/microservices';
 import { Injectable, Logger } from '@nestjs/common';
 import { EventBus } from '@nestjs/cqrs';
-import { OrderCreatedReplyEvent } from '../orders/events/order-created-reply.event';
-import { OrderCreatedReplyMessage } from "./types/OrderCreatedReplyMessage";
+import { OrderCreatedReplyEvent } from '../orders/events/order-created-reply.event.js';
+import { OrderCreatedReplyMessage } from './types/OrderCreatedReplyMessage.js';
 
 @Injectable()
 export class KafkaListener {
@@ -28,7 +28,11 @@ export class KafkaListener {
 
       this.eventBus.publish(event);
     } catch (error) {
-      this.logger.error(`❌ Error handling Kafka message: ${error.message}`, error.stack);
+      if (error instanceof Error) {
+        this.logger.error(`❌ Error handling Kafka message: ${error.message}`, error.stack);
+      } else {
+        this.logger.error(`❌ Unknown error`, String(error));
+      }
     }
   }
 }

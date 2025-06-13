@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { MailsKeysTypes, MailsPortKeyType } from './types/mails.types';
-import { BaseConfig } from '../base/base.config';
+import { MailsKeysTypes, MailsPortKeyType } from './types/mails.types.js';
+import { BaseConfig } from '../base/base.config.js';
 
 @Injectable()
 export class MailsConfig extends BaseConfig {

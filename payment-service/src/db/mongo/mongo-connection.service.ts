@@ -1,8 +1,8 @@
 import { BadGatewayException, Injectable } from '@nestjs/common';
 import { Connection, createConnection } from 'mongoose';
-import { MongoConfig } from '../../config/db/mongo/mongo.config';
-import { EnvNamesEnums } from '../../config/enums/env-names.enums';
-import { NodeEnvConfig } from '../../config/node-env/node-env.config';
+import { MongoConfig } from '../../config/db/mongo/mongo.config.js';
+import { EnvNamesEnums } from '../../config/enums/env-names.enums.js';
+import { NodeEnvConfig } from '../../config/node-env/node-env.config.js';
 
 @Injectable()
 export class MongoConnectionService {

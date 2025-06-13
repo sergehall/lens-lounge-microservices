@@ -1,6 +1,6 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
-import { BaseConfig } from '../../base/base.config';
-import { MongoDbKeysType } from './types/mongo-db-keys.type';
+import { BaseConfig } from '../../base/base.config.js';
+import { MongoDbKeysType } from './types/mongo-db-keys.type.js';
 
 @Injectable()
 export class MongoConfig extends BaseConfig {
@@ -14,7 +14,7 @@ export class MongoConfig extends BaseConfig {
   };
 
   private async getMongoValue(key: MongoDbKeysType): Promise<string> {
-    if (this.config.hasOwnProperty(key)) {
+    if (Object.prototype.hasOwnProperty.call(this.config, key)) {
       return this.getValueMongoByKey(key);
     } else {
       throw new BadRequestException(

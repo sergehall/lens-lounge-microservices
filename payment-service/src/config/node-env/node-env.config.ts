@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { BaseConfig } from '../base/base.config';
+import { BaseConfig } from '../base/base.config.js';
 
 @Injectable()
 export class NodeEnvConfig extends BaseConfig {

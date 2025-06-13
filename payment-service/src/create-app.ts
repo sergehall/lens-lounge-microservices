@@ -1,12 +1,12 @@
 import { INestApplication } from '@nestjs/common';
 import { Transport, MicroserviceOptions } from '@nestjs/microservices';
-import Configuration, { ConfigType } from './config/configuration';
+import Configuration, { ConfigType } from './config/configuration.js';
 
 import cookieParser from 'cookie-parser';
 import { useContainer } from 'class-validator';
-import { AppModule } from './app.module';
-import { HttpExceptionResponseFilter } from './common/filters/http-exception-response-filter';
-import { TrimPipe } from './common/pipes/trim.pipe';
+import { AppModule } from './app.module.js';
+import { HttpExceptionResponseFilter } from './common/filters/http-exception-response-filter.js';
+import { TrimPipe } from './common/pipes/trim.pipe.js';
 import { ValidationPipe, BadRequestException } from '@nestjs/common';
 
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
@@ -72,7 +72,7 @@ function setupSwagger(app: INestApplication): void {
  * Kafka microservice
  */
 async function setupKafka(app: INestApplication): Promise<void> {
-  const kafkaConfig: ConfigType = Configuration.getConfiguration()
+  const kafkaConfig: ConfigType = Configuration.getConfiguration();
   const clientId = kafkaConfig.kafka.KAFKA_CLIENT_ID;
   const broker = kafkaConfig.kafka.KAFKA_BROKER;
   const groupId = kafkaConfig.kafka.KAFKA_CONSUMER_GROUP_ID;
@@ -91,7 +91,9 @@ async function setupKafka(app: INestApplication): Promise<void> {
 /**
  * Global app config
  */
-export const createApp = async (app: INestApplication): Promise<INestApplication> => {
+export const createApp = async (
+  app: INestApplication,
+): Promise<INestApplication> => {
   setupContainer(app);
   setupExceptionFilter(app);
   setupCookieParser(app);

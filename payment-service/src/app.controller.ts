@@ -2,14 +2,16 @@
 
 import { Controller, Post, Body, Get } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { AppService } from "./app.service";
-import { KafkaService } from "./kafka/kafka.service";
+import { AppService } from './app.service.js';
+import { KafkaService } from './kafka/kafka.service.js';
 
 @ApiTags('Payment')
 @Controller('payment')
 export class PaymentController {
-  constructor(private readonly kafkaService: KafkaService, private readonly appService: AppService) {
-  }
+  constructor(
+    private readonly kafkaService: KafkaService,
+    private readonly appService: AppService,
+  ) {}
 
   @Get()
   async getHello(): Promise<string> {
@@ -27,6 +29,6 @@ export class PaymentController {
       status: 'completed',
     });
 
-    return {message: 'Payment processed'};
+    return { message: 'Payment processed' };
   }
 }

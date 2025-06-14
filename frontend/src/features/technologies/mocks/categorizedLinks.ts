@@ -1,21 +1,61 @@
 export const categorizedLinks = {
-  Frontend: [
+  'Frontend Frameworks & Tools': [
     'React.js',
+    'React Router',
+    'Vite',
+    'Create React App',
+    'Webpack'
+  ],
+  'Languages & Syntax': [
     'TypeScript',
     'JavaScript',
     'HTML',
     'CSS',
-    'React Router',
-    'Vite',
+    'ESNext + ESM'
+  ],
+  'Styling': [
     'Styled Components',
     'Tailwind CSS',
-    'CSS Modules',
-    'Webpack',
+    'CSS Modules'
   ],
-  Backend: ['Node.js', 'Express', 'NestJS', 'Microservices', 'PostgreSQL', 'RabbitMQ', 'WebSocket'],
-  'DevOps / CI-CD': ['Docker', 'Kubernetes', 'Jenkins'],
-  'Architecture & Principles': ['SOLID', 'Hexagonal Architecture'],
-  'State Management': ['Redux', 'Zustand', 'Recoil', 'SAGA', 'React Query'],
-  'Testing & Tools': ['Jest', 'React Testing Library', 'ESLint', 'Prettier', 'Storybook'],
-  'Package Managers & Fetch': ['npm', 'Yarn Berry', 'Axios', 'Fetch'],
+  'State Management': [
+    'Redux',
+    'Zustand',
+    'Recoil',
+    'SAGA',
+    'React Query'
+  ],
+  'Backend & APIs': [
+    'Node.js',
+    'Express',
+    'NestJS',
+    'Microservices',
+    'PostgreSQL',
+    'RabbitMQ',
+    'WebSocket',
+    'Kafka',
+  ],
+  'DevOps & CI/CD': [
+    'Docker',
+    'Kubernetes',
+    'Jenkins'
+  ],
+  'Architecture & Principles': [
+    'SOLID',
+    'Hexagonal Architecture'
+  ],
+  'Testing & Quality Tools': [
+    'Vitest',
+    'Jest',
+    'React Testing Library',
+    'ESLint',
+    'Prettier',
+    'Storybook'
+  ],
+  'Package Management & Data Fetching': [
+    'npm',
+    'Yarn Berry',
+    'Axios',
+    'Fetch'
+  ]
 };

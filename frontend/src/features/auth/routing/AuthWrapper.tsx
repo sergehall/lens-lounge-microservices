@@ -1,11 +1,11 @@
 // src/components/routing/AuthWrapper.tsx
 import React from 'react';
 
-import { unauthContent } from '@/config/unauthContent';
-import { useAppSelector } from '@/hooks/reduxHooks';
-
 import UnauthenticatedLanding from '../../../components/unauthenticated-landing/UnauthenticatedLanding';
 import { selectIsAuthenticated } from '../authSlice';
+
+import { unauthContent } from '@/config/unauthContent';
+import { useAppSelector } from '@/hooks/reduxHooks';
 
 interface AuthWrapperProps {
   children: React.ReactNode;

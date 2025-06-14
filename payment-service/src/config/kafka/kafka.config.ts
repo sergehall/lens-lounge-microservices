@@ -15,9 +15,7 @@ export class MyKafkaConfig extends BaseConfig {
     if (Object.prototype.hasOwnProperty.call(this.config, key)) {
       return this.getValueKafkaByKey(key);
     } else {
-      throw new BadRequestException(
-        `Key ${key} not found in MyKafka configuration`,
-      );
+      throw new BadRequestException(`Key ${key} not found in MyKafka configuration`);
     }
   }
 

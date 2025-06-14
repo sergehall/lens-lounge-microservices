@@ -21,9 +21,7 @@ export class PostgresConfig extends BaseConfig {
     if (Object.prototype.hasOwnProperty.call(this.config, key)) {
       return this.getValuePostgresByKey(key);
     } else {
-      throw new BadRequestException(
-        `Key ${key} not found in Postgres configuration`,
-      );
+      throw new BadRequestException(`Key ${key} not found in Postgres configuration`);
     }
   }
 

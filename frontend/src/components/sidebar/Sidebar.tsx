@@ -1,9 +1,9 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-import { useAppSelector } from '@/hooks/reduxHooks';
-
 import * as S from './sidebar.styles';
+
+import { useAppSelector } from '@/hooks/reduxHooks';
 
 const Sidebar: React.FC = () => {
   const links = useAppSelector((state) => state.layoutSidebar.navigationLinks);

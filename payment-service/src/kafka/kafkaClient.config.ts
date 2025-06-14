@@ -11,16 +11,11 @@ export const kafkaClientAsyncConfig: ClientsModuleAsyncOptions = [
     imports: [KafkaConfigModule],
     useFactory: async (kafkaConfig: MyKafkaConfig) => {
       const clientId = await kafkaConfig.getKafkaConfig('KAFKA_CLIENT_ID');
-      const broker =
-        (await kafkaConfig.getKafkaConfig('KAFKA_BROKER')) || 'kafka:9092';
-      const groupId = await kafkaConfig.getKafkaConfig(
-        'KAFKA_CONSUMER_GROUP_ID',
-      );
+      const broker = (await kafkaConfig.getKafkaConfig('KAFKA_BROKER')) || 'kafka:9092';
+      const groupId = await kafkaConfig.getKafkaConfig('KAFKA_CONSUMER_GROUP_ID');
 
       if (!broker) {
-        throw new Error(
-          'Kafka broker is not defined! Check your .env or Docker environment',
-        );
+        throw new Error('Kafka broker is not defined! Check your .env or Docker environment');
       }
 
       return {

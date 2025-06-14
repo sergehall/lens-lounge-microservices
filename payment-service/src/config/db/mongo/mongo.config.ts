@@ -17,9 +17,7 @@ export class MongoConfig extends BaseConfig {
     if (Object.prototype.hasOwnProperty.call(this.config, key)) {
       return this.getValueMongoByKey(key);
     } else {
-      throw new BadRequestException(
-        `Key ${key} not found in Postgres configuration`,
-      );
+      throw new BadRequestException(`Key ${key} not found in Postgres configuration`);
     }
   }
 

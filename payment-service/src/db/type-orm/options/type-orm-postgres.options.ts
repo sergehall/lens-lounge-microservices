@@ -3,10 +3,7 @@ import { Injectable } from '@nestjs/common';
 import { PostgresConfig } from '../../../config/db/postgres/postgres.config.js';
 
 @Injectable()
-export class TypeOrmPostgresOptions
-  extends PostgresConfig
-  implements TypeOrmOptionsFactory
-{
+export class TypeOrmPostgresOptions extends PostgresConfig implements TypeOrmOptionsFactory {
   async createTypeOrmOptions(): Promise<TypeOrmModuleOptions> {
     const host = await this.getPostgresConfig('PG_HOST_HEROKU');
     const port = await this.getPort('PG_PORT');

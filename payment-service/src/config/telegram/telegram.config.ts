@@ -14,9 +14,7 @@ export class TelegramConfig extends BaseConfig {
     if (Object.prototype.hasOwnProperty.call(this.config, key)) {
       return this.getValueTelegram(key);
     } else {
-      throw new BadRequestException(
-        `Key ${key} not found in Telegram configuration`,
-      );
+      throw new BadRequestException(`Key ${key} not found in Telegram configuration`);
     }
   }
 

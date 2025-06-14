@@ -1,9 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
 
-import { WHISPER_ROUTES } from '@/routes/route-definitions/whisper.routes';
-import { Icons } from '@/utils/icons';
-import { timeAgo } from '@/utils/timeAgo';
-
 import {
   HeaderWrapper,
   Meta,
@@ -14,6 +10,10 @@ import {
   TimeAgo,
   UserName,
 } from './postHeader.styles';
+
+import { WHISPER_ROUTES } from '@/routes/route-definitions/whisper.routes';
+import { Icons } from '@/utils/icons';
+import { timeAgo } from '@/utils/timeAgo';
 
 export interface PostHeaderProps {
   username: string;

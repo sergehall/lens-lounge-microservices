@@ -1,11 +1,11 @@
 import React from 'react';
 
-import DEFAULT_BANNER_IMAGE_URL from '@/assets/images/defaultImageBanner.png';
-
 import BannerImage from '../features/banner-image/bannerImage';
 import PageInsight from '../features/page-insight/PageInsight';
 
 import { PageConfig } from './types/pageConfig.types';
+
+import DEFAULT_BANNER_IMAGE_URL from '@/assets/images/defaultImageBanner.png';
 
 type CreatePageConfigOptions = Omit<Partial<PageConfig>, 'bannerImage' | 'pageContentSummarize'> & {
   component: PageConfig['component'];

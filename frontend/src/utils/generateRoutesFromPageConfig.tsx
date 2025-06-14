@@ -1,9 +1,9 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 
-import { PageConfig } from '@/config/types/pageConfig.types';
-
 import AuthWrapper from '../features/auth/routing/AuthWrapper';
+
+import { PageConfig } from '@/config/types/pageConfig.types';
 
 /**
  * Generates <Route> elements from a flat page configuration map.

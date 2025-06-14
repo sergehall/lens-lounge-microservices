@@ -1,4 +1,1 @@
-export type KafkaKeysType =
-  | 'KAFKA_BROKER'
-  | 'KAFKA_CLIENT_ID'
-  | 'KAFKA_CONSUMER_GROUP_ID';
+export type KafkaKeysType = 'KAFKA_BROKER' | 'KAFKA_CLIENT_ID' | 'KAFKA_CONSUMER_GROUP_ID';

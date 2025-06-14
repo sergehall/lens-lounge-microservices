@@ -1,8 +1,5 @@
 import React, { useEffect } from 'react';
 
-import { env } from '@/config/env/env.service';
-import { useAppDispatch, useAppSelector } from '@/hooks/reduxHooks';
-
 import {
   loadProfile,
   loginUser,
@@ -10,6 +7,9 @@ import {
   selectAuthError,
   selectIsAuthenticated,
 } from './authSlice';
+
+import { env } from '@/config/env/env.service';
+import { useAppDispatch, useAppSelector } from '@/hooks/reduxHooks';
 
 const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const dispatch = useAppDispatch();

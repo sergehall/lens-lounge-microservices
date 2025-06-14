@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
 import { BrowserRouter } from 'react-router-dom';
 
-import { store } from '../../app/store';
+import { store } from '@/app/store';
 import theme from '../../themes/theme';
 
 export const renderWithProviders = (ui: React.ReactElement) => {

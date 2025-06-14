@@ -8,11 +8,7 @@ import { KafkaService } from './kafka.service.js';
 import { kafkaClientAsyncConfig } from './kafkaClient.config.js';
 
 @Module({
-  imports: [
-    KafkaConfigModule,
-    ClientsModule.registerAsync(kafkaClientAsyncConfig),
-    CqrsModule,
-  ],
+  imports: [KafkaConfigModule, ClientsModule.registerAsync(kafkaClientAsyncConfig), CqrsModule],
   providers: [KafkaService, KafkaListener],
   exports: [KafkaService, ClientsModule],
 })

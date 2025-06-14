@@ -113,9 +113,7 @@ export class BaseConfig {
       infer: true,
     }).BASIC_AUTH;
 
-    const decodedPassword = Buffer.from(basicAuth, 'base64')
-      .toString('utf8')
-      .split(':')[1];
+    const decodedPassword = Buffer.from(basicAuth, 'base64').toString('utf8').split(':')[1];
     const SALT_FACTOR = this.configService.get('bcrypt', {
       infer: true,
     }).SALT_FACTOR;

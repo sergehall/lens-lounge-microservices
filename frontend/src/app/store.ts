@@ -2,7 +2,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 
 // RTK Query API
-import { apiSlice } from '@/api/apiSlice';
 
 import headerReducer from '../components/header/headerSlice';
 import sidebarReducer from '../components/sidebar/sidebarSlice';
@@ -19,6 +18,8 @@ import whisperPageReducer from '../features/whisper/whisperPageReducer';
 import technologiesReducer from '../features/technologies/technologiesSlice';
 import newsPageReducer from '../features/news/newsPageSlice';
 import userReducer from '../features/users/userSlice';
+
+import { apiSlice } from '@/api/apiSlice';
 
 export const store = configureStore({
   reducer: {

@@ -1,16 +1,15 @@
-import React, { act } from 'react';
+import React from 'react';
 import { screen, within } from '@testing-library/react';
+import { describe, beforeEach, test, expect } from 'vitest';
+
+import App from '../App';
 
 import { sidebarLinks } from '@/components/sidebar/sidebar.links';
 import { renderWithProviders } from '@/utils/test-utils/renderWithProviders';
 
-import App from '../App';
-
 describe('<App />', () => {
-  beforeEach(async () => {
-    await act(async () => {
-      renderWithProviders(<App />);
-    });
+  beforeEach(() => {
+    renderWithProviders(<App />);
   });
 
   test('renders layout sections', async () => {

@@ -11,7 +11,7 @@ declare module 'styled-components' {
   // and is required for proper theme typing across the app.
   // We disable the ESLint rule to avoid a false-positive warning.
   //
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+
   // eslint-disable-next-line @typescript-eslint/no-empty-object-type
   export interface DefaultTheme extends Theme {}
 }

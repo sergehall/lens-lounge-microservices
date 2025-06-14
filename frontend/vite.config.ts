@@ -1,5 +1,3 @@
-//frontend/vite.config.ts
-
 import { fileURLToPath } from 'url';
 import * as path from 'path';
 
@@ -7,11 +5,6 @@ import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react';
 
 import { envSchema } from './src/config/env/env.schema';
-
-// Note: Path aliases like "@" are configured below in the `resolve.alias` section,
-// but they only apply to code processed by Vite (i.e., files inside `src/`).
-// Since `vite.config.ts` itself runs in Node.js before Vite is initialized,
-// you cannot use aliases like "@/..." here — use relative imports instead.
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -35,7 +28,6 @@ export default defineConfig(({ mode }) => {
   return {
     base: '/',
     plugins: [react()],
-    sourcemap: true,
     server: {
       port: 5173,
       open: true,
@@ -58,6 +50,7 @@ export default defineConfig(({ mode }) => {
       exclude: ['fsevents'],
     },
     build: {
+      sourcemap: true,
       outDir: 'dist',
       rollupOptions: {
         external: ['fsevents'],
@@ -67,6 +60,11 @@ export default defineConfig(({ mode }) => {
           },
         },
       },
+    },
+    test: {
+      globals: true,
+      environment: 'jsdom',
+      setupFiles: './src/setupTests.ts',
     },
   };
 });

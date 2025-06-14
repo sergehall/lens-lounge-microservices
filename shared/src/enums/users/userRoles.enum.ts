@@ -1,5 +1,5 @@
 export enum UserRolesEnum {
-  USER = "user",
-  SA = "sa",
-  UNREGISTERED = "Unregistered",
+  USER = 'user',
+  SA = 'sa',
+  UNREGISTERED = 'Unregistered',
 }

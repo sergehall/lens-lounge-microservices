@@ -1,11 +1,10 @@
-// payment-service/eslint.config.ts
+// payment-service/eslint.config.js
 
-import * as js from '@eslint/js';
+import js from '@eslint/js';
 import tseslint from 'typescript-eslint';
-import * as eslintPluginPrettier from 'eslint-plugin-prettier';
-import * as eslintPluginImport from 'eslint-plugin-import';
+import eslintPluginPrettier from 'eslint-plugin-prettier';
+import importPlugin from 'eslint-plugin-import';
 
-/** @type {import("eslint").Linter.FlatConfig[]} */
 export default [
   js.configs.recommended,
   ...tseslint.configs.recommended,
@@ -23,7 +22,7 @@ export default [
 
     plugins: {
       prettier: eslintPluginPrettier,
-      import: eslintPluginImport,
+      import: importPlugin,
     },
 
     settings: {

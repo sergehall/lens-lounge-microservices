@@ -25,13 +25,7 @@ import { appProviders } from './app.providers.js';
     KafkaModule,
   ],
   controllers: [PaymentController],
-  providers: [
-    MyKafkaConfig,
-    KafkaService,
-    AppService,
-    PostgresConfig,
-    ...appProviders,
-  ],
+  providers: [MyKafkaConfig, KafkaService, AppService, PostgresConfig, ...appProviders],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {

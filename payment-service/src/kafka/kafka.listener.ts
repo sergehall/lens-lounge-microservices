@@ -20,11 +20,7 @@ export class KafkaListener {
         return;
       }
 
-      const event = new OrderCreatedReplyEvent(
-        message.orderId,
-        message.status,
-        message.timestamp,
-      );
+      const event = new OrderCreatedReplyEvent(message.orderId, message.status, message.timestamp);
 
       this.eventBus.publish(event);
     } catch (error) {

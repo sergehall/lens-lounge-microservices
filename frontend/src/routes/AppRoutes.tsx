@@ -3,14 +3,14 @@
 import React, { Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
-import { pageConfig } from '@/config/PageConfig';
-import { generateRoutesFromPageConfig } from '@/utils/generateRoutesFromPageConfig';
-
 import Sidebar from '../components/sidebar/Sidebar';
 import Header from '../components/header/Header';
 import Loader from '../components/loader/Loader';
 import NotFoundPage from '../features/not-found/NotFoundPage';
 import * as S from '../styles/app.styles';
+
+import { generateRoutesFromPageConfig } from '@/utils/generateRoutesFromPageConfig';
+import { pageConfig } from '@/config/PageConfig';
 
 const AppRoutes: React.FC = () => {
   return (

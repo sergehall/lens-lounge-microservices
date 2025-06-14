@@ -2,9 +2,9 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 
-import { PageConfig } from '@/config/types/pageConfig.types';
-
 import PageLayout from '../layouts/PageLayout';
+
+import { PageConfig } from '@/config/types/pageConfig.types';
 
 /**
  * Generates a Route element with PageLayout for a given path and config.

@@ -91,9 +91,7 @@ async function setupKafka(app: INestApplication): Promise<void> {
 /**
  * Global app config
  */
-export const createApp = async (
-  app: INestApplication,
-): Promise<INestApplication> => {
+export const createApp = async (app: INestApplication): Promise<INestApplication> => {
   setupContainer(app);
   setupExceptionFilter(app);
   setupCookieParser(app);

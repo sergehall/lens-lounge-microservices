@@ -1,13 +1,13 @@
-// shared/eslint.config.ts
+// shared/eslint.config.js
 
-import * as js from '@eslint/js';
+import js from '@eslint/js';
 import tseslint from 'typescript-eslint';
-import * as eslintPluginPrettier from 'eslint-plugin-prettier';
+import eslintPluginPrettier from 'eslint-plugin-prettier';
+import importPlugin from 'eslint-plugin-import';
 
 /** @type {import("eslint").Linter.FlatConfig[]} */
 export default [
   js.configs.recommended,
-
   ...tseslint.configs.recommended,
 
   {
@@ -17,21 +17,41 @@ export default [
     languageOptions: {
       parser: tseslint.parser,
       parserOptions: {
-        project: './tsconfig.json',
         sourceType: 'module',
       },
     },
 
     plugins: {
       prettier: eslintPluginPrettier,
+      import: importPlugin,
     },
 
     rules: {
-      'prettier/prettier': ['error'],
+      'prettier/prettier': 'error',
 
       '@typescript-eslint/no-explicit-any': 'off',
       '@typescript-eslint/explicit-function-return-type': 'off',
       '@typescript-eslint/explicit-module-boundary-types': 'off',
+
+      'import/extensions': [
+        'error',
+        'ignorePackages',
+        {
+          ts: 'never',
+          tsx: 'never',
+          js: 'always'
+        }
+      ],
+      'import/no-unresolved': 'error',
     },
-  },
+
+    settings: {
+      'import/resolver': {
+        typescript: {},
+        node: {
+          extensions: ['.js', '.ts', '.tsx']
+        }
+      }
+    },
+  }
 ];

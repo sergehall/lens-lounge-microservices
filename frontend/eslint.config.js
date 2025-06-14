@@ -1,33 +1,53 @@
+// frontend/eslint.config.js
+
 import js from '@eslint/js';
 import tseslintPlugin from '@typescript-eslint/eslint-plugin';
 import tseslintParser from '@typescript-eslint/parser';
 import reactPlugin from 'eslint-plugin-react';
 import reactHooksPlugin from 'eslint-plugin-react-hooks';
+import vitestPlugin from 'eslint-plugin-vitest';
 import importPlugin from 'eslint-plugin-import';
 import prettierPlugin from 'eslint-plugin-prettier';
 import prettierConfig from 'eslint-config-prettier';
 import globals from 'globals';
-const { browser, node, jest: jestGlobals } = globals;
 
-/** @type {import("eslint").Linter.FlatConfig} */
+const { browser, node, jest } = globals;
+
 export default [
-  js.configs.recommended,
-
   {
-    files: ['**/*.ts', '**/*.tsx', '**/*.js'],
+    ignores: [
+      'node_modules/**',
+      '.pnp.*',
+      '.yarn/**',
+      'dist/**',
+      'build/**',
+      'coverage/**',
+      '.vite/**',
+      '.storybook-out/**',
+      '__mocks__/**',
+      '*.config.js',
+      '*.config.cjs',
+      '*.config.mjs',
+      '*.log',
+      '.cache/**',
+      'temp/**',
+      'tmp/**',
+    ],
+  },
+  js.configs.recommended,
+  {
+    files: ['**/*.{ts,tsx,js,jsx}'],
     languageOptions: {
       parser: tseslintParser,
       parserOptions: {
         ecmaVersion: 2020,
         sourceType: 'module',
-        ecmaFeatures: {
-          jsx: true,
-        },
+        ecmaFeatures: { jsx: true },
       },
       globals: {
         ...browser,
         ...node,
-        ...jestGlobals,
+        ...jest,
         global: 'readonly',
         IntersectionObserver: 'readonly',
         IntersectionObserverCallback: 'readonly',
@@ -40,13 +60,30 @@ export default [
       'react-hooks': reactHooksPlugin,
       import: importPlugin,
       prettier: prettierPlugin,
+      vitest: vitestPlugin,
     },
     rules: {
       ...tseslintPlugin.configs.recommended.rules,
+
+      'prettier/prettier': 'warn',
+      'no-unused-vars': 'off',
+      '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
       'no-redeclare': 'off',
-      '@typescript-eslint/no-redeclare': ['error'],
+      '@typescript-eslint/no-redeclare': 'off',
+
       'react/prop-types': 'off',
-      '@typescript-eslint/no-unused-vars': ['warn'],
+      'react/no-children-prop': 'error',
+      'react/require-render-return': 'error',
+      'react/jsx-no-undef': 'error',
+
+      'react-hooks/rules-of-hooks': 'error',
+      'react-hooks/exhaustive-deps': 'warn',
+
+      'vitest/no-disabled-tests': 'warn',
+      'vitest/no-focused-tests': 'error',
+      'vitest/no-identical-title': 'error',
+      'vitest/prefer-to-be': 'warn',
+
       'import/order': [
         'warn',
         {
@@ -54,42 +91,12 @@ export default [
           'newlines-between': 'always',
         },
       ],
-      // React-specific safety checks
-      'react/no-children-prop': 'error',
-      'react/require-render-return': 'error',
-      'react/jsx-no-undef': 'error',
-
-      // React Hooks
-      'react-hooks/rules-of-hooks': 'error',
-      'react-hooks/exhaustive-deps': 'warn',
-
-      // Prettier
-      'prettier/prettier': 'warn',
     },
     settings: {
       react: {
         version: 'detect',
       },
-      'import/resolver': {
-        typescript: {},
-      },
     },
   },
-
-  {
-    files: ['**/__mocks__/**/*.js', '**/*.mock.js'],
-    languageOptions: {
-      sourceType: 'script',
-      globals: {
-        module: 'readonly',
-        exports: 'readonly',
-        require: 'readonly',
-      },
-    },
-    rules: {
-      'no-undef': 'off',
-    },
-  },
-
   prettierConfig,
 ];

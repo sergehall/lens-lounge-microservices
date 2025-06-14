@@ -5,11 +5,7 @@
     "moduleResolution": "bundler",
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "lib": [
-      "DOM",
-      "DOM.Iterable",
-      "ESNext"
-    ],
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "strict": true,
     "noImplicitAny": true,
     "strictNullChecks": true,
@@ -21,23 +17,11 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "types": [
-      "vite/client",
-      "styled-components",
-      "node",
-      "jest"
-    ],
+    "types": ["vite/client", "styled-components", "node"],
     "baseUrl": "./src",
     "paths": {
-      "@/*": [
-        "*"
-      ]
+      "@/*": ["*"]
     }
   },
-  "include": [
-    "src",
-    "vite.config.ts",
-    "jest.config.js",
-    "src/setupTests.ts"
-  ]
+  "include": ["src", "vite.config.ts", "jest.config.js", "src/setupTests.ts"]
 }

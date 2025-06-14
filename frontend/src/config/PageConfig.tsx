@@ -1,3 +1,6 @@
+import { unauthContent } from './unauthContent';
+import { createPageConfig } from './CreatePageConfig';
+
 import { ROUTES } from '@/routes/routes';
 import {
   HomePage,
@@ -12,9 +15,6 @@ import {
   TechnologiesPage,
   NewsPage,
 } from '@/routes/lazy-pages';
-
-import { unauthContent } from './unauthContent';
-import { createPageConfig } from './CreatePageConfig';
 
 export const pageConfig = {
   [ROUTES.home.root]: createPageConfig({ component: HomePage }),

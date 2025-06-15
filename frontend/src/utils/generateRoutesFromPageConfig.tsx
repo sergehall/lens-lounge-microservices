@@ -1,8 +1,7 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 
-import AuthWrapper from '../features/auth/routing/AuthWrapper';
-
+import RequireAuth from '@/components/auth/RequireAuth';
 import { PageConfig } from '@/config/types/pageConfig.types';
 
 /**
@@ -34,7 +33,7 @@ export const generateRoutesFromPageConfig = (
     }
 
     if (config.isProtected) {
-      content = <AuthWrapper unauthLandingProps={config.unauthLandingProps}>{content}</AuthWrapper>;
+      content = <RequireAuth unauthLandingProps={config.unauthLandingProps}>{content}</RequireAuth>;
     }
 
     return <Route key={path} path={path} element={content} />;

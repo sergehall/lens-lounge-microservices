@@ -28,11 +28,11 @@ const UnauthenticatedLanding: React.FC<Props> = ({
         <S.Description>{description}</S.Description>
         {warning && <S.Warning>{warning}</S.Warning>}
         <S.ActionButtonsWrapper>
-          <S.ActionButton onClick={onSignIn}>SIGN IN</S.ActionButton>
+          <S.ActionButton onClick={onSignIn}>Sign In</S.ActionButton>
           <S.DividerText>
             <span>or</span>
           </S.DividerText>
-          <S.ActionButton onClick={onCreateAccount}>CREATE ACCOUNT</S.ActionButton>
+          <S.ActionButton onClick={onCreateAccount}>Create account</S.ActionButton>
         </S.ActionButtonsWrapper>
       </S.Content>
     </S.Container>

@@ -1,7 +1,6 @@
 // src/features/showcase/profile/Profile.tsx
 import React from 'react';
 
-import { useAppSelector } from '../../../hooks/reduxHooks';
 import { selectProfile } from '../../auth/authSlice';
 
 import {
@@ -12,6 +11,8 @@ import {
   ProfileLabel,
   ProfileValue,
 } from './profile.styles';
+
+import { useAppSelector } from '@/hooks/reduxHooks';
 
 const Profile: React.FC = () => {
   const profile = useAppSelector(selectProfile);

@@ -43,13 +43,6 @@ export const Warning = styled.p`
   margin-top: 0.5rem;
 `;
 
-export const ActionButtonsWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: ${({ theme }) => theme.spacing.small10};
-  margin-top: ${({ theme }) => theme.spacing.default};
-`;
-
 /**
  * Login button styled with motion effects.
  */
@@ -99,57 +92,9 @@ export const DividerText = styled.div`
   }
 `;
 
-// // src/features/whisper/guest-whisper-landing/UnauthenticatedLanding.styles.ts
-// import styled from "styled-components";
-// import { motion } from "framer-motion";
-//
-// /**
-//  * Container holds the entire guest landing UI.
-//  * Uses motion for entry animation.
-//  */
-// export const Container = styled(motion.div)`
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   justify-content: center;
-//   //height: calc(100vh - 150px); /* Leaves space for header */
-//   text-align: center;
-//   padding: 20px;
-//     box-shadow: ${({ theme }) => theme.global.boxShadow};
-// `;
-//
-// /** Page title */
-// export const Title = styled.h1`
-//   font-size: 2.5rem;
-//   margin-bottom: 1rem;
-// `;
-//
-// /** Description text below the title */
-// export const Description = styled.p`
-//   font-size: 1.2rem;
-//   margin-bottom: 2rem;
-//   max-width: 500px;
-// `;
-//
-// /**
-//  * Login button styled with motion effects.
-//  */
-// export const LoginButton = styled(motion.button)`
-//     background: ${({ theme }) => theme.global.backgroundColor};
-//     color: ${({ theme }) => theme.links.color};
-//     border: 2px solid #61dafb;
-//     border-radius: ${({ theme }) => theme.border.borderRadius};
-//     padding: 10px 40px;
-//     font-size: 1rem;
-//     cursor: pointer;
-//     transition: all 0.3s ease;
-//
-//     &:hover {
-//         box-shadow: ${({ theme }) => theme.global.boxShadowGlowOnSecondaryColor};
-//         color: ${({ theme }) => theme.links.hoverColor};
-//     }
-//
-//     &:active {
-//         transform: scale(0.95);
-//     }
-// `;
+export const ActionButtonsWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: ${({ theme }) => theme.spacing.small10};
+  margin-top: ${({ theme }) => theme.spacing.default};
+`;

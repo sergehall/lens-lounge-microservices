@@ -1,9 +1,10 @@
 // src/features/api/apiSlice.ts
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
+import { User } from '@/features/users/types/user.type';
 import { ProfileType } from '@/features/showcase/profile/mocks/defaultProfile';
 
-const BASE_URL = 'www.lens-longe.com'; // replace with your actual base URL
+const BASE_URL = 'www.lens-longe.com';
 
 export const apiSlice = createApi({
   reducerPath: 'api',
@@ -23,6 +24,14 @@ export const apiSlice = createApi({
       invalidatesTags: ['User'], //  you can refresh the cache after login
     }),
 
+    registerUser: builder.mutation<User, { email: string; username: string; password: string }>({
+      query: (body) => ({
+        url: '/auth/register',
+        method: 'POST',
+        body,
+      }),
+    }),
+
     // GET /api/profile — retrieves profile from cookie
     getUser: builder.query<ProfileType, void>({
       query: () => '/api/profile',
@@ -40,4 +49,5 @@ export const apiSlice = createApi({
   }),
 });
 
-export const { useSignInMutation, useGetUserQuery, useSignOutMutation } = apiSlice;
+export const { useSignInMutation, useGetUserQuery, useSignOutMutation, useRegisterUserMutation } =
+  apiSlice;

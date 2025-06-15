@@ -2,6 +2,7 @@ import { screen } from '@testing-library/react';
 import { describe, test, expect } from 'vitest';
 
 import App from '../App';
+
 import { renderWithProviders } from '@/utils/test-utils/renderWithProviders';
 
 describe('404 page', () => {

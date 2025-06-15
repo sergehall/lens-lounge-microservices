@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { useAppSelector } from '../../hooks/reduxHooks';
-import { WHISPER_ROUTES } from '../../routes/route-definitions/whisper.routes';
 import { selectIsAuthenticated } from '../auth/authSlice';
+
+import { useAppSelector } from '@/hooks/reduxHooks';
+import { WHISPER_ROUTES } from '@/routes/route-definitions/whisper.routes';
 
 const WhisperPage: React.FC = () => {
   const isAuthenticated = useAppSelector(selectIsAuthenticated);

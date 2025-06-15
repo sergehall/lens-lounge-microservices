@@ -1,7 +1,6 @@
 // /src/features/chat/ChatPanel.tsx
 import React from 'react';
 
-import { useCurrentUserConfig } from '../../../hooks/useCurrentUser';
 import NavigationButtons from '../Navigation-buttons';
 import * as S from '../ContactsList.styles';
 
@@ -9,6 +8,8 @@ import ChatList from './ChatList';
 import ChatConversation from './ChatConversation';
 import InputSection from './InputSection';
 import { useChatLogic } from './hooks/useChatLogic';
+
+import { useCurrentUserConfig } from '@/hooks/useCurrentUser';
 
 const ChatPanel: React.FC = () => {
   const { message, setMessage, selectedDialog, handleSendMessage, handleUploadFile } =

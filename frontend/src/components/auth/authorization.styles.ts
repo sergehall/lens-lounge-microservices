@@ -20,6 +20,9 @@ export const AuthButton = styled.button<{ $isActive: boolean }>`
     transform: scale(0.95);
   }
 `;
+export const Separator = styled.span`
+  padding: 0 1rem;
+`;
 
 export const DropdownContainer = styled.div`
   position: absolute;
@@ -47,15 +50,17 @@ export const DropdownContainer = styled.div`
 
 export const SignInInstruction = styled.p`
   font-size: 0.7rem;
-  margin-bottom: 8px;
+  margin-bottom: 15px;
   text-align: center;
   align-items: center;
   color: ${({ theme }) => theme.text.softWhite};
+  line-height: 1.5;
 `;
 
 export const DropdownTitle = styled.div`
   font-size: 0.8rem;
   font-weight: bold;
+  color: ${({ theme }) => theme.text.softWhite};
   margin: 8px 0;
   text-align: center;
   align-items: center;
@@ -153,7 +158,8 @@ export const InputField = styled.input`
 export const ForgotPasswordLink = styled.a`
   display: block;
   margin-top: 10px;
-  font-size: 0.7rem;
+  margin-bottom: 10px;
+  font-size: 0.6rem;
   text-align: center;
   text-decoration: none;
   color: ${({ theme }) => theme.text.softWhite};
@@ -170,6 +176,7 @@ export const WhiteDivider = styled.div`
   text-align: center;
   margin: 8px 0;
   position: relative;
+  color: ${({ theme }) => theme.text.softWhite};
 
   &:before,
   &:after {
@@ -185,4 +192,37 @@ export const WhiteDivider = styled.div`
     color: #666;
     white-space: nowrap;
   }
+`;
+
+export const ErrorMessage = styled.p`
+  color: red;
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  text-align: center;
+`;
+
+export const Wrapper = styled.div`
+  position: relative;
+`;
+
+export const ModalOverlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+`;
+
+export const ModalContent = styled.div`
+  background: #1e1e1e;
+  padding: 2rem;
+  border-radius: 8px;
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
 `;

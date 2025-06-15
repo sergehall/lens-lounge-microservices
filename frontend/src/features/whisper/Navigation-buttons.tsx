@@ -3,9 +3,9 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
-import { WHISPER_ROUTES } from '../../routes/route-definitions/whisper.routes';
-
 import { ButtonSegment, TabButton, ActiveIndicator } from './navigationButtons.styles';
+
+import { WHISPER_ROUTES } from '@/routes/route-definitions/whisper.routes';
 
 const tabs = [
   { label: 'Chats', path: WHISPER_ROUTES.chatsRoot },

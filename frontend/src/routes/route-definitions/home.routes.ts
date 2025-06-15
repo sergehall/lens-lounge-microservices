@@ -1,7 +1,8 @@
 // src/routes/route-definitions/home.routes.ts
 
-import { CATEGORY_SLUGS, CategoryName } from '../../config/categorySlugs';
 import { buildRoute } from '../utils/buildRoute';
+
+import { CATEGORY_SLUGS, CategoryName } from '@/config/categorySlugs';
 
 // Step 1: Base static routes
 const HOME_ROUTES_BASE = {

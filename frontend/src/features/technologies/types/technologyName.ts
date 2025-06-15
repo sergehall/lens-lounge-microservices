@@ -25,7 +25,7 @@ export enum TechnologyName {
   WEBPACK = 'Webpack', // Module bundler
   REACT_TESTING_LIBRARY = 'React Testing Library', // React testing tool
   JEST = 'Jest', // Testing framework Jest
-  VITEST = 'Vitest',  // Testing framework: Vitest
+  VITEST = 'Vitest', // Testing framework: Vitest
   ESLINT = 'ESLint', // Code linting tool
   KAFKA = 'Kafka',
   PRETTIER = 'Prettier', // Code formatting tool

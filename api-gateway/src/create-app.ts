@@ -97,6 +97,14 @@ function setupSwagger(app: INestApplication): void {
   SwaggerModule.setup('/api/docs', app, document);
 }
 
+function setupCors(app: INestApplication): void {
+  const allowedOrigins = process.env.ALLOWED_ORIGINS?.split(',') || [];
+  app.enableCors({
+    origin: allowedOrigins,
+    credentials: true,
+  });
+}
+
 /**
  * Function to configure and set up a NestJS application.
  *
@@ -109,5 +117,6 @@ export const createApp = (app: INestApplication): INestApplication => {
   setupCookieParser(app);
   setupGlobalPipes(app);
   setupSwagger(app);
+  setupCors(app);
   return app;
 };

@@ -96,6 +96,12 @@ export const validationSchemaConfiguration = Joi.object({
   STRIPE_WEBHOOK_SECRET: Joi.string().min(38).max(38).required(),
   RECAPTCHA_SITE_KEY: Joi.string().min(40).max(40).required(),
   RECAPTCHA_SECRET_KEY: Joi.string().min(40).max(40).required(),
+  ALLOWED_ORIGINS: Joi.string()
+    .pattern(
+      /^https?:\/\/[\w.-]+(:\d+)?(,https?:\/\/[\w.-]+(:\d+)?)*$/,
+      'Comma-separated list of valid URLs',
+    )
+    .required(),
 }).options({
   abortEarly: false,
   messages: {

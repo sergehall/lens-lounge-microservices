@@ -1,3 +1,4 @@
+import { env } from "@/config/env/env.service";
 import axios from 'axios';
 
 /**
@@ -9,12 +10,8 @@ if (!baseURL) {
   throw new Error('❌ VITE_API_BASE_URL is not defined in environment variables.');
 }
 
-const apiClient = axios.create({
-  baseURL,
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  timeout: 10000,
+export const api = axios.create({
+  baseURL: env.VITE_API_URL,
+  withCredentials: true,
 });
 
-export default apiClient;

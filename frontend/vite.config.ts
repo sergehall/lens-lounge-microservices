@@ -33,8 +33,9 @@ export default defineConfig(({ mode }) => {
       open: true,
       proxy: {
         '/api': {
-          target: 'https://lens-lounge.com',
+          target: env.VITE_API_URL,
           changeOrigin: true,
+          secure: true,
         },
       },
     },

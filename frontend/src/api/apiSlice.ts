@@ -1,16 +1,15 @@
 // src/features/api/apiSlice.ts
+import { env } from "@/config/env/env.service";
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 import { User } from '@/features/users/types/user.type';
 import { ProfileType } from '@/features/showcase/profile/mocks/defaultProfile';
 
-const BASE_URL = 'www.lens-longe.com';
-
 export const apiSlice = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({
-    baseUrl: BASE_URL,
-    credentials: 'include', // to send cookies with requests
+    baseUrl: env.VITE_API_URL,
+    credentials: 'include',
   }),
   tagTypes: ['User'], // adding the tag type
   endpoints: (builder) => ({

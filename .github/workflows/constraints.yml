@@ -1,3 +1,4 @@
+# .github/workflows/constraints.yml
 name: Enforce Dependency Constraints
 
 on:
@@ -14,23 +15,24 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Use Node.js 20 (match .nvmrc and package.json)
+      - name: Set up Node.js 20.11.1
         uses: actions/setup-node@v4
         with:
-          node-version: '20.11.1'  # the exact version as in engines/.nvmrc
+          node-version: '20.11.1'
           cache: 'yarn'
 
-      - name: Enable Corepack for Yarn Berry
+      - name: Enable Corepack
         run: corepack enable
 
-      - name: Use correct Yarn version (4.9.2)
+      - name: Activate Yarn 4.9.2 (matches packageManager)
         run: corepack prepare yarn@4.9.2 --activate
 
       - name: Verify Yarn version
         run: yarn --version
 
-      - name: Install dependencies (immutable)
+      - name: Install dependencies
         run: yarn install --immutable
 
       - name: Run dependency constraints check
         run: yarn constraints
+

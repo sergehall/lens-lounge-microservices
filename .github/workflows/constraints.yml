@@ -11,20 +11,26 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Node.js
+      - name: Use Node.js 20 (match .nvmrc and package.json)
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: '20.11.1'  # the exact version as in engines/.nvmrc
           cache: 'yarn'
 
-      - name: Enable Corepack (Yarn Berry)
+      - name: Enable Corepack for Yarn Berry
         run: corepack enable
 
-      - name: Install dependencies
+      - name: Use correct Yarn version (4.9.2)
+        run: corepack prepare yarn@4.9.2 --activate
+
+      - name: Verify Yarn version
+        run: yarn --version
+
+      - name: Install dependencies (immutable)
         run: yarn install --immutable
 
-      - name: Run constraints check
+      - name: Run dependency constraints check
         run: yarn constraints

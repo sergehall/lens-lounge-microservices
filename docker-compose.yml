@@ -5,7 +5,7 @@
 # --------------- | ----------------------------
 # Frontend        | http://localhost:5173
 # Kafka UI        | http://localhost:8081
-# API Gateway     | http://localhost:3000
+# API Gateway     | http://localhost:5005
 # PostgreSQL      | psql at localhost:5432
 # Kafka Broker    | internal, localhost:9092
 # ─────────────────────────────────────────────
@@ -89,7 +89,7 @@ services:
     environment:
       KAFKA_BROKER: ${KAFKA_BROKER}
     ports:
-      - "3000:3000"
+      - "5005:5005"
     working_dir: /app/api-gateway
     networks:
       - backend

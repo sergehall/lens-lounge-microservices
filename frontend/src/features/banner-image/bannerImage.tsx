@@ -20,9 +20,9 @@ const BannerImage: React.FC<Props> = ({ imageUrl, altText = 'Default banner imag
         onError={() => setHasError(true)}
       />
       <S.ImageBannerTextWrapper>
-        <S.ImageBannerContentTitle>Image Banner Title</S.ImageBannerContentTitle>
+        <S.ImageBannerContentTitle>Title</S.ImageBannerContentTitle>
         <S.ImageBannerContentDescription>
-          This is a banner image description.
+          This is a banner description.
         </S.ImageBannerContentDescription>
       </S.ImageBannerTextWrapper>
     </S.ImageBannerContentContainer>

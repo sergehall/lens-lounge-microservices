@@ -5,7 +5,7 @@ import { UnauthLandingProps } from '../unauthContent';
 
 export interface PageConfig {
   path?: string;
-  bannerImage: React.ReactNode;
+  bannerImage?: React.ReactNode;
   pageContentSummarize: React.ReactNode;
   component: React.FC;
   isProtected: boolean;

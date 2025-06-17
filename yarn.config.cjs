@@ -3,9 +3,16 @@ module.exports = {
   async constraints({ Yarn }) {
     console.log("✅ Constraints loaded");
 
+    const requiredYarnVersion = "yarn@4.9.2";
+
     for (const ws of Yarn.workspaces()) {
       const name = typeof ws.manifest.name === 'string' ? ws.manifest.name : ws.manifest.name.name;
       console.log(`[DEBUG] Workspace directory detected: ${name}`);
+
+      const pkgManager = ws.manifest.packageManager;
+      if (pkgManager !== requiredYarnVersion) {
+        console.error(`❌ '${name}' must declare "packageManager": "${requiredYarnVersion}" in package.json (found: "${pkgManager || 'missing'}")`);
+      }
 
       // --- Enforce specific versions of required dependencies in 'frontend'
       if (name === 'frontend') {
@@ -17,7 +24,6 @@ module.exports = {
 
         const deps = ws.manifest.dependencies || {};
         const devDeps = ws.manifest.devDependencies || {};
-
         const allDeps = Yarn.dependencies({ workspace: ws });
 
         for (const [depName, requiredVersion] of Object.entries(requiredDeps)) {
@@ -25,7 +31,6 @@ module.exports = {
           if (!actualVersion) {
             console.warn(`⚠️ Missing dependency '${depName}' in '${name}'`);
           } else if (actualVersion !== requiredVersion) {
-            // Report version mismatch using Yarn's reporting API if possible
             const dep = allDeps.find(d => d.ident.name === depName);
             if (dep) {
               dep.report({ message: `❌ '${depName}' must be '${requiredVersion}' in '${name}', found '${actualVersion}'` });

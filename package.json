@@ -6,6 +6,9 @@
   "description": "A modular, event-driven microservices architecture built with NestJS, PostgreSQL, Kafka, and React, organized as a modern monorepo using Yarn Workspaces and Plug'n'Play.",
   "license": "MIT",
   "packageManager": "yarn@4.9.2",
+  "engines": {
+    "node": "20.11.1"
+  },
   "workspaces": [
     "api-gateway",
     "payment-service",

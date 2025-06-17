@@ -18,6 +18,7 @@ jobs:
       VITE_ANALYTICS_ID: ${{ secrets.VITE_ANALYTICS_ID }}
       VITE_DEV_EMAIL: ${{ secrets.VITE_DEV_EMAIL }}
       VITE_DEV_PASSWORD: ${{ secrets.VITE_DEV_PASSWORD }}
+      VITE_API_URL: ${{ secrets.VITE_API_URL }}
 
   upload-artifacts:
     needs: build

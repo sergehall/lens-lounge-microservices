@@ -5,7 +5,6 @@
   "author": "Serge Hall",
   "private": true,
   "license": "MIT",
-  "packageManager": "yarn@4.9.2",
   "engines": {
     "node": "20.11.1"
   },

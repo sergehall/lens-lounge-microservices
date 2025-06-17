@@ -24,7 +24,9 @@
     "dev:all": "concurrently \"yarn dev:api\" \"yarn dev:payment\" \"yarn dev:frontend\"",
     "clean:meta": "rimraf .yarn/cache .yarn/install-state.* .pnp.* yarn.lock",
     "install:strict": "yarn install --immutable",
-    "install:fresh": "yarn install"
+    "install:fresh": "yarn install",
+    "build": "yarn workspaces foreach --topological run build",
+    "heroku-postbuild": "yarn --cwd api-gateway build"
   },
   "dependencies": {
     "@nestjs/common": "^11.1.3",

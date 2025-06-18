@@ -5,7 +5,7 @@ import * as S from './authorization.styles';
 import { RegisterPanel } from '@/components/auth/RegisterPanel';
 import SignInPanel from '@/components/auth/SignInPanel';
 import { isProfileValid } from '@/utils/guards/isProfileValid';
-import { useAuthFlow } from '@/hooks/auth/useAuthFlow';
+import { useAuthFlow } from '@/features/api/hooks/useAuthFlow';
 
 export interface AuthorizationProps {
   isDropdownVisible: boolean;

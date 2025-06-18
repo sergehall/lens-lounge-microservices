@@ -13,20 +13,16 @@ import categoriesReducer from '../features/categories/categorySlice';
 import categoryBlogsReducer from '../features/category-blogs-page/categoryBlogsPageSlice';
 import showcasePageReducer from '../features/showcase/showcasePageReducer';
 import myCategoriesReducer from '../features/showcase/user-categories/UserCategoriesSlice';
-import authReducer from '../features/auth/authSlice';
 import whisperPageReducer from '../features/whisper/whisperPageReducer';
 import technologiesReducer from '../features/technologies/technologiesSlice';
 import newsPageReducer from '../features/news/newsPageSlice';
 import userReducer from '../features/users/userSlice';
 
-import { apiSlice } from '@/api/apiSlice';
+import { apiSlice } from '@/features/api/apiSlice';
 
 export const store = configureStore({
   reducer: {
     [apiSlice.reducerPath]: apiSlice.reducer,
-
-    // Auth
-    auth: authReducer,
 
     // Layout
     layoutHeader: headerReducer,

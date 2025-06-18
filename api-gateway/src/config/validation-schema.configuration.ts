@@ -97,11 +97,24 @@ export const validationSchemaConfiguration = Joi.object({
   RECAPTCHA_SITE_KEY: Joi.string().min(40).max(40).required(),
   RECAPTCHA_SECRET_KEY: Joi.string().min(40).max(40).required(),
   ALLOWED_ORIGINS: Joi.string()
-    .pattern(
-      /^https?:\/\/[\w.-]+(:\d+)?(,https?:\/\/[\w.-]+(:\d+)?)*$/,
-      'Comma-separated list of valid URLs',
-    )
-    .required(),
+    .custom((value, helpers) => {
+      const urls = value.split(',');
+      const urlPattern = /^https?:\/\/[\w.-]+(:\d+)?$/;
+
+      for (const url of urls) {
+        if (!urlPattern.test(url.trim())) {
+          return helpers.error('any.invalid');
+        }
+      }
+
+      return value;
+    }, 'Comma-separated list of valid URLs')
+    .required()
+    .messages({
+      'any.invalid': 'ALLOWED_ORIGINS must be a comma-separated list of valid URLs (including optional port)',
+      'string.base': 'ALLOWED_ORIGINS must be a string',
+      'any.required': 'ALLOWED_ORIGINS is required',
+    }),
 }).options({
   abortEarly: false,
   messages: {

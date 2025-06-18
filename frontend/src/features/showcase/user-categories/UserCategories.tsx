@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { selectProfile } from '../../auth/authSlice';
 import { Category } from '../../categories/types/category.types';
 import CreateNewBlogTile from '../create-blog-tile/CreateNewBlogTile';
 import { loadUserBlogs } from '../user-blogs/userBlogsSlice';
 import * as S from '../showcasePage.styles';
 
+import { useAuth } from '@/features/api/hooks/useAuth';
 import { SHOWCASE_ROUTES } from '@/routes/route-definitions/showcase.routes';
 import { useAppDispatch, useAppSelector } from '@/hooks/reduxHooks';
 import { makeSelectUserCategoriesFromBlogs } from '@/features/showcase/selectors';
@@ -15,10 +15,9 @@ const UserCategories: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
-  const profile = useAppSelector(selectProfile);
-  const username = profile?.login || '';
+  const { user } = useAuth();
+  const username = user?.login || '';
 
-  // Load all the user's blogs
   useEffect(() => {
     if (username) {
       dispatch(loadUserBlogs(username));

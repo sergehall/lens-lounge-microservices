@@ -9,14 +9,14 @@ import ChatConversation from './ChatConversation';
 import InputSection from './InputSection';
 import { useChatLogic } from './hooks/useChatLogic';
 
-import { useCurrentUserConfig } from '@/hooks/useCurrentUser';
+import { useGetUserQuery } from '@/features/api/apiSlice';
 
 const ChatPanel: React.FC = () => {
   const { message, setMessage, selectedDialog, handleSendMessage, handleUploadFile } =
     useChatLogic();
 
-  // Get full user profile
-  const userId = useCurrentUserConfig('userId');
+  const { data: user } = useGetUserQuery();
+  const userId = user?.userId;
 
   return (
     <S.WhisperChatContainer>
@@ -25,7 +25,7 @@ const ChatPanel: React.FC = () => {
         <NavigationButtons />
       </S.UserListWrapper>
       <S.ChatsOrContactsInfoSection>
-        {selectedDialog ? (
+        {selectedDialog && userId ? (
           <>
             <ChatConversation chatId={selectedDialog.id} currentUserId={userId} />
             <InputSection

@@ -1,8 +1,8 @@
 import { Navigate } from 'react-router-dom';
 
-import { useAuth } from '../../api/services/authService';
-
 import AdminPanel from './AdminPanel';
+
+import { useAuth } from '@/features/api/hooks/useAuth';
 
 const AdminPage = () => {
   const { user, userLoading } = useAuth(); // ✅ Ensure correct state names

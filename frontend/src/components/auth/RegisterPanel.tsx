@@ -4,7 +4,7 @@ import React from 'react';
 import * as S from './authorization.styles';
 import { RegisterForm } from './RegisterForm';
 
-import { useAuthFlow } from '@/hooks/auth/useAuthFlow';
+import { useAuthFlow } from '@/features/api/hooks/useAuthFlow';
 
 export const RegisterPanel: React.FC = () => {
   const { signUp, registerState } = useAuthFlow();

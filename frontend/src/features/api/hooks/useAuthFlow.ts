@@ -1,6 +1,6 @@
 // hooks/useAuthFlow.ts
-import { useRegisterUserMutation } from '@/api/apiSlice';
-import { useAuth } from '@/api/services/authService';
+import { useRegisterUserMutation } from '@/features/api/apiSlice';
+import { useAuth } from '@/features/api/hooks/useAuth';
 
 export const useAuthFlow = () => {
   const { handleSignIn, handleSignOut, signInState, user } = useAuth();

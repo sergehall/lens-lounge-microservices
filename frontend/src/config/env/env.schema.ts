@@ -16,8 +16,6 @@ export const envSchema = z
       .string()
       .min(6, 'VITE_DEV_PASSWORD must be at least 6 characters')
       .max(25, 'VITE_DEV_PASSWORD must be at most 25 characters'),
-    VITE_API_URL: z
-      .string()
-      .url('VITE_API_URL must be a valid URL starting with http or https'),
+    VITE_API_URL: z.string().url('VITE_API_URL must be a valid URL starting with http or https'),
   })
   .passthrough();

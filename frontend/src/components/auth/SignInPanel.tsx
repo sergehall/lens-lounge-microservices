@@ -5,7 +5,7 @@ import React from 'react';
 import { SignInForm } from './SignInForm';
 import * as S from './authorization.styles';
 
-import { useAuthFlow } from '@/hooks/auth/useAuthFlow';
+import { useAuthFlow } from '@/features/api/hooks/useAuthFlow';
 
 export const SignInPanel: React.FC = () => {
   const { signIn, signInState } = useAuthFlow();

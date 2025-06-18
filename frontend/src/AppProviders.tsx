@@ -5,7 +5,6 @@ import { ThemeProvider } from 'styled-components';
 import { BrowserRouter } from 'react-router-dom';
 
 import { store } from './app/store';
-import AuthProvider from './features/auth/AuthProvider';
 import theme from './themes/theme';
 
 interface AppProvidersProps {
@@ -20,11 +19,9 @@ const AppProviders: React.FC<AppProvidersProps> = ({ children }) => {
 
   return (
     <Provider store={store}>
-      <AuthProvider>
-        <ThemeProvider theme={theme}>
-          <BrowserRouter>{children}</BrowserRouter>
-        </ThemeProvider>
-      </AuthProvider>
+      <ThemeProvider theme={theme}>
+        <BrowserRouter>{children}</BrowserRouter>
+      </ThemeProvider>
     </Provider>
   );
 };

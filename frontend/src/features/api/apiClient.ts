@@ -1,5 +1,6 @@
-import { env } from "@/config/env/env.service";
 import axios from 'axios';
+
+import { env } from '@/config/env/env.service';
 
 /**
  * Axios instance pre-configured with base settings for API calls.
@@ -14,4 +15,3 @@ export const api = axios.create({
   baseURL: env.VITE_API_URL,
   withCredentials: true,
 });
-

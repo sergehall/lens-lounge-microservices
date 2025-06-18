@@ -1,15 +1,16 @@
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { useAppSelector } from '../../../hooks/reduxHooks';
-import { WHISPER_ROUTES } from '../../../routes/route-definitions/whisper.routes';
 import { User } from '../../users/types/user.type';
 import { selectAllUsers } from '../../users/userSlice';
-import { selectProfile } from '../../auth/authSlice';
 import { AvatarSize } from '../contacts/enums/avatarSize.enum';
 import * as S from '../ContactsList.styles';
 
 import { selectChats } from './chatSlice';
+
+import { WHISPER_ROUTES } from '@/routes/route-definitions/whisper.routes';
+import { useAppSelector } from '@/hooks/reduxHooks';
+import { useAuth } from '@/features/api/hooks/useAuth';
 
 const ChatList: React.FC = () => {
   const navigate = useNavigate();
@@ -17,10 +18,10 @@ const ChatList: React.FC = () => {
 
   const chats = useAppSelector(selectChats);
   const users = useAppSelector(selectAllUsers);
-  const profile = useAppSelector(selectProfile);
-  const currentUserId = profile?.userId || '0';
+  const { user } = useAuth();
+  const currentUserId = user?.userId || '0';
 
-  //  Get an interlocutor from chat participants
+  // Get an interlocutor from chat participants
   const getRecipientUser = (participants: string[]): User | null => {
     const recipientId = participants.find((id) => id !== currentUserId);
     if (!recipientId) return null;
@@ -36,7 +37,6 @@ const ChatList: React.FC = () => {
     <S.UserList>
       {chats.map((chat) => {
         const user = getRecipientUser(chat.participants);
-
         if (!user) return null;
 
         return (

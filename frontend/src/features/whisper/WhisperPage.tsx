@@ -1,22 +1,22 @@
+// frontend/src/features/whisper/WhisperPage.tsx
+
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { selectIsAuthenticated } from '../auth/authSlice';
-
-import { useAppSelector } from '@/hooks/reduxHooks';
+import { useGetUserQuery } from '@/features/api/apiSlice';
 import { WHISPER_ROUTES } from '@/routes/route-definitions/whisper.routes';
 
 const WhisperPage: React.FC = () => {
-  const isAuthenticated = useAppSelector(selectIsAuthenticated);
   const navigate = useNavigate();
+  const { data: user, isLoading } = useGetUserQuery();
 
   useEffect(() => {
-    if (isAuthenticated) {
+    if (!isLoading && user) {
       navigate(WHISPER_ROUTES.chatsRoot);
     }
-  }, [isAuthenticated, navigate]);
+  }, [user, isLoading, navigate]);
 
-  return null; // We don't render anything, since we only redirect it
+  return null;
 };
 
 export default WhisperPage;

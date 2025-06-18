@@ -3,10 +3,9 @@ import React, { useState } from 'react';
 
 import UnauthenticatedLanding from '../unauthenticated-landing/UnauthenticatedLanding';
 
-import { selectIsAuthenticated } from '@/features/auth/authSlice';
-import { unauthContent } from '@/config/unauthContent';
-import { useAppSelector } from '@/hooks/reduxHooks';
+import { useGetUserQuery } from '@/features/api/apiSlice';
 import AuthModal from '@/components/auth/AuthModal';
+import { unauthContent } from '@/config/unauthContent';
 
 interface RequireAuthProps {
   children: React.ReactNode;
@@ -18,11 +17,23 @@ interface RequireAuthProps {
 }
 
 const RequireAuth: React.FC<RequireAuthProps> = ({ children, unauthLandingProps }) => {
-  const isAuthenticated = useAppSelector(selectIsAuthenticated);
   const [showLogin, setShowLogin] = useState(false);
   const [showCreate, setShowCreate] = useState(false);
 
-  if (!isAuthenticated) {
+  const {
+    data: user,
+    isLoading,
+    isError,
+  } = useGetUserQuery(undefined, {
+    // Don't refetch if already cached
+    refetchOnMountOrArgChange: true,
+  });
+
+  if (isLoading) {
+    return <div> Checking authentication...</div>;
+  }
+
+  if (!user || isError) {
     return (
       <>
         <UnauthenticatedLanding
@@ -33,7 +44,6 @@ const RequireAuth: React.FC<RequireAuthProps> = ({ children, unauthLandingProps 
           onCreateAccount={() => setShowCreate(true)}
         />
         <AuthModal isVisible={showLogin} mode="sign-in" onClose={() => setShowLogin(false)} />
-
         <AuthModal isVisible={showCreate} mode="sign-up" onClose={() => setShowCreate(false)} />
       </>
     );

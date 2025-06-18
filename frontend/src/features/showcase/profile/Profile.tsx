@@ -1,28 +1,17 @@
-// src/features/showcase/profile/Profile.tsx
 import React from 'react';
 
-import { selectProfile } from '../../auth/authSlice';
+import * as S from './profile.styles';
 
-import {
-  ProfileContainer,
-  ProfilePhoto,
-  ProfileDetails,
-  ProfileField,
-  ProfileLabel,
-  ProfileValue,
-} from './profile.styles';
-
-import { useAppSelector } from '@/hooks/reduxHooks';
+import { useAuth } from '@/features/api/hooks/useAuth';
 
 const Profile: React.FC = () => {
-  const profile = useAppSelector(selectProfile);
+  const { user: profile } = useAuth();
 
-  // If profile is null, render fallback
   if (!profile) {
     return (
-      <ProfileContainer>
+      <S.ProfileContainer>
         <h2>No profile data available.</h2>
-      </ProfileContainer>
+      </S.ProfileContainer>
     );
   }
 
@@ -38,33 +27,30 @@ const Profile: React.FC = () => {
   };
 
   return (
-    <ProfileContainer>
-      {/* Profile Photo */}
-      <ProfilePhoto
+    <S.ProfileContainer>
+      <S.ProfilePhoto
         src={profile.photoUrl}
         alt={`${profile.firstName} ${profile.lastName}'s profile`}
       />
-
-      {/* Profile Details */}
-      <ProfileDetails>
-        <ProfileField>
-          <ProfileLabel>Full name:</ProfileLabel>
-          <ProfileValue>{`${profile.firstName} ${profile.lastName}`}</ProfileValue>
-        </ProfileField>
-        <ProfileField>
-          <ProfileLabel>Birthday:</ProfileLabel>
-          <ProfileValue>{profile.birthday}</ProfileValue>
-        </ProfileField>
-        <ProfileField>
-          <ProfileLabel>Education:</ProfileLabel>
-          <ProfileValue>{profile.education}</ProfileValue>
-        </ProfileField>
-        <ProfileField>
-          <ProfileLabel>Website:</ProfileLabel>
-          <ProfileValue>{renderWebsite()}</ProfileValue>
-        </ProfileField>
-      </ProfileDetails>
-    </ProfileContainer>
+      <S.ProfileDetails>
+        <S.ProfileField>
+          <S.ProfileLabel>Full name:</S.ProfileLabel>
+          <S.ProfileValue>{`${profile.firstName} ${profile.lastName}`}</S.ProfileValue>
+        </S.ProfileField>
+        <S.ProfileField>
+          <S.ProfileLabel>Birthday:</S.ProfileLabel>
+          <S.ProfileValue>{profile.birthday}</S.ProfileValue>
+        </S.ProfileField>
+        <S.ProfileField>
+          <S.ProfileLabel>Education:</S.ProfileLabel>
+          <S.ProfileValue>{profile.education}</S.ProfileValue>
+        </S.ProfileField>
+        <S.ProfileField>
+          <S.ProfileLabel>Website:</S.ProfileLabel>
+          <S.ProfileValue>{renderWebsite()}</S.ProfileValue>
+        </S.ProfileField>
+      </S.ProfileDetails>
+    </S.ProfileContainer>
   );
 };
 

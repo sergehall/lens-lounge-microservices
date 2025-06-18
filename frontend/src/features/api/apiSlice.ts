@@ -1,7 +1,7 @@
 // src/features/api/apiSlice.ts
-import { env } from "@/config/env/env.service";
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
+import { env } from '@/config/env/env.service';
 import { User } from '@/features/users/types/user.type';
 import { ProfileType } from '@/features/showcase/profile/mocks/defaultProfile';
 
@@ -16,11 +16,11 @@ export const apiSlice = createApi({
     // POST /api/login — sets a cookie, returns the profile
     signIn: builder.mutation<ProfileType, { email: string; password: string }>({
       query: (credentials) => ({
-        url: '/api/login',
+        url: '/auth/login',
         method: 'POST',
         body: credentials,
       }),
-      invalidatesTags: ['User'], //  you can refresh the cache after login
+      invalidatesTags: ['User'],
     }),
 
     registerUser: builder.mutation<User, { email: string; username: string; password: string }>({
@@ -33,7 +33,7 @@ export const apiSlice = createApi({
 
     // GET /api/profile — retrieves profile from cookie
     getUser: builder.query<ProfileType, void>({
-      query: () => '/api/profile',
+      query: () => '/auth/profile',
       providesTags: ['User'], // indicates that the response is associated with a tag
     }),
 

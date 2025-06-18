@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useGetUserQuery } from '../../api/apiSlice';
+import { useGetUserQuery } from '@/features/api/apiSlice';
 
 const AdminPanel = () => {
   const { data: user, isLoading, error } = useGetUserQuery();

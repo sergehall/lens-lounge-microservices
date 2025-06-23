@@ -2,14 +2,15 @@ import { createSelector } from '@reduxjs/toolkit';
 
 import { categoriesMock } from '../categories/mock/categoriesMock';
 import { Category } from '../categories/types/category.types';
-
 import { UserBlogsState } from './user-blogs/userBlogsSlice';
-
 import { RootState } from '@/app/store';
 import { isCategoryName } from '@/utils/guards/isCategoryName';
 import PLACEHOLDER_IMAGE_DEFAULT from '@/assets/images/placeholderImageDefault.png';
 
-const selectUserBlogsState = (state: RootState): UserBlogsState => state.showcasePage.userBlogs;
+import { CategoryName } from '@/config/categorySlugs';
+
+const selectUserBlogsState = (state: RootState): UserBlogsState =>
+  state.showcasePage.userBlogs;
 
 export const makeSelectUserCategoriesFromBlogs = (username: string) =>
   createSelector([selectUserBlogsState], (userBlogsState) => {
@@ -20,17 +21,24 @@ export const makeSelectUserCategoriesFromBlogs = (username: string) =>
         (blog) => blog.author.toLowerCase() === username.toLowerCase()
       );
 
-      if (hasUserBlogs && isCategoryName(categoryName)) {
-        const matchedCategory = categoriesMock.find((cat) => cat.name === categoryName);
+      if (!hasUserBlogs) return;
 
-        categories.push({
-          name: categoryName,
-          imageUrl: matchedCategory?.imageUrl || PLACEHOLDER_IMAGE_DEFAULT,
-          featured: false,
-        });
-      } else if (hasUserBlogs) {
+      if (!isCategoryName(categoryName)) {
         console.warn(`❗️Unknown category "${categoryName}" — skipping`);
+        return;
       }
+
+      const typedCategoryName = categoryName as CategoryName;
+
+      const matchedCategory = categoriesMock.find(
+        (cat) => cat.name === typedCategoryName
+      );
+
+      categories.push({
+        name: typedCategoryName,
+        imageUrl: matchedCategory?.imageUrl || PLACEHOLDER_IMAGE_DEFAULT,
+        featured: false,
+      });
     });
 
     return categories;

@@ -1,4 +1,4 @@
-import { CategoryName } from '../../../config/categorySlugs';
+import { CategoryName } from '@/config/categorySlugs';
 
 export interface Category {
   name: CategoryName;

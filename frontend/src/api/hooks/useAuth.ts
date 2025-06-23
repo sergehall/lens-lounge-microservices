@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   useSignInMutation,
   useSignOutMutation,
@@ -26,21 +26,14 @@ export const useAuth = () => {
       console.log('Logging in...');
       await signInMutation({ loginOrEmail, password }).unwrap();
 
-      //  Let the cookie set
       setTimeout(() => {
         setSkipUserQuery(false);
-        refetchUser().then((result) => {
-          if ('data' in result) {
-            console.log('User loaded:', result.data);
-          } else {
-            console.warn('No user after login');
-          }
-        });
-      }, 200); //  can be maximized in on Safari
+      }, 200);
     } catch (err) {
       console.error('❌ Login failed:', err);
     }
   };
+
 
   const handleSignOut = async () => {
     try {
@@ -50,6 +43,12 @@ export const useAuth = () => {
       console.error('❌ Logout failed:', err);
     }
   };
+
+  useEffect(() => {
+    if (user) {
+      console.log('User loaded from API:', user);
+    }
+  }, [user]);
 
   return {
     user,

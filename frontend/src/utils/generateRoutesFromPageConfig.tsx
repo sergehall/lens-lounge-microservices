@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 
-import RequireAuth from '@/components/auth/RequireAuth';
+import RequireAuth from '@/components/routing/RequireAuth';
 import { PageConfig } from '@/config/types/pageConfig.types';
 
 /**

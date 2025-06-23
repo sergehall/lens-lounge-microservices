@@ -10,7 +10,7 @@ import { selectChats } from './chatSlice';
 
 import { WHISPER_ROUTES } from '@/routes/route-definitions/whisper.routes';
 import { useAppSelector } from '@/hooks/reduxHooks';
-import { useAuth } from '@/features/api/hooks/useAuth';
+import { useAuth } from '@/api/hooks/useAuth';
 
 const ChatList: React.FC = () => {
   const navigate = useNavigate();

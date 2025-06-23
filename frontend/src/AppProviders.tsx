@@ -1,4 +1,6 @@
 // src/AppProviders.tsx
+
+import { AuthProvider } from "@/context/AuthProvider";
 import React from 'react';
 import { Provider } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
@@ -11,7 +13,7 @@ interface AppProvidersProps {
   children: React.ReactNode;
 }
 
-const AppProviders: React.FC<AppProvidersProps> = ({ children }) => {
+const AppProviders: React.FC<AppProvidersProps> = ({children}) => {
   if (!React.isValidElement(children)) {
     console.error('AppProviders received invalid children:', children);
     return null;
@@ -20,7 +22,11 @@ const AppProviders: React.FC<AppProvidersProps> = ({ children }) => {
   return (
     <Provider store={store}>
       <ThemeProvider theme={theme}>
-        <BrowserRouter>{children}</BrowserRouter>
+        <BrowserRouter>
+          <AuthProvider>
+            {children}
+          </AuthProvider>
+        </BrowserRouter>
       </ThemeProvider>
     </Provider>
   );

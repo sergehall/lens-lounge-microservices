@@ -8,17 +8,12 @@ import './index.css';
 import { getRootElement } from './utils/dom';
 
 const container = getRootElement();
+if (!container) throw new Error('Root element not found');
 
-if (!container) {
-  throw new Error('Root element not found');
-}
-
-const root = createRoot(container);
-
-root.render(
+createRoot(container).render(
   <React.StrictMode>
     <AppProviders>
-      <App />
+      <App/>
     </AppProviders>
   </React.StrictMode>
 );

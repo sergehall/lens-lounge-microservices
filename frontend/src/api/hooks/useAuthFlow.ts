@@ -1,6 +1,6 @@
 // hooks/useAuthFlow.ts
-import { useRegisterUserMutation } from '@/features/api/apiSlice';
-import { useAuth } from '@/features/api/hooks/useAuth';
+import { useRegisterUserMutation } from '@/api/apiSlice';
+import { useAuth } from '@/api/hooks/useAuth';
 
 export const useAuthFlow = () => {
   const { handleSignIn, handleSignOut, signInState, user } = useAuth();
@@ -12,7 +12,8 @@ export const useAuthFlow = () => {
 
   const signUp = async (email: string, username: string, password: string) => {
     try {
-      await registerUser({ email, username, password }).unwrap();
+      const login = username;
+      await registerUser({ email, login, password }).unwrap();
       // Можно: auto-login или уведомление
     } catch (error) {
       console.error('Registration error:', error);

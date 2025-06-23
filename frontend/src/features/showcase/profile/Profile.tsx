@@ -2,7 +2,7 @@ import React from 'react';
 
 import * as S from './profile.styles';
 
-import { useAuth } from '@/features/api/hooks/useAuth';
+import { useAuth } from '@/api/hooks/useAuth';
 
 const Profile: React.FC = () => {
   const { user: profile } = useAuth();

@@ -11,7 +11,7 @@ import { loadUserBlogs } from './userBlogsSlice';
 
 import { SHOWCASE_ROUTES } from '@/routes/route-definitions/showcase.routes';
 import { useAppDispatch } from '@/hooks/reduxHooks';
-import { useGetUserQuery } from '@/features/api/apiSlice';
+import { useGetUserQuery } from '@/api/apiSlice';
 
 const UserBlogs: React.FC = () => {
   const { name } = useParams<{ name: string }>();

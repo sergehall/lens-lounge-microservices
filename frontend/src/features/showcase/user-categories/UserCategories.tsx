@@ -6,7 +6,7 @@ import CreateNewBlogTile from '../create-blog-tile/CreateNewBlogTile';
 import { loadUserBlogs } from '../user-blogs/userBlogsSlice';
 import * as S from '../showcasePage.styles';
 
-import { useAuth } from '@/features/api/hooks/useAuth';
+import { useAuth } from '@/api/hooks/useAuth';
 import { SHOWCASE_ROUTES } from '@/routes/route-definitions/showcase.routes';
 import { useAppDispatch, useAppSelector } from '@/hooks/reduxHooks';
 import { makeSelectUserCategoriesFromBlogs } from '@/features/showcase/selectors';

@@ -14,11 +14,17 @@ export const useAuth = () => {
   } = useGetUserQuery(undefined, { skip: false });
 
   // Handle sign-in with credentials
-  const handleSignIn = async (email: string, password: string) => {
+  const handleSignIn = async (loginOrEmail: string, password: string) => {
+    console.log('loginOrEmail', loginOrEmail);
+    console.log('password', password);
     try {
-      const result = await signInMutation({ email, password }).unwrap();
+      const result = await signInMutation({ loginOrEmail, password }).unwrap();
       console.log('✅ Logged in:', result);
+
       await refetchUser();
+
+      // Add log after refetch
+      console.log('👤 Current user:', user);
     } catch (error) {
       console.error('❌ Login failed:', error);
     }

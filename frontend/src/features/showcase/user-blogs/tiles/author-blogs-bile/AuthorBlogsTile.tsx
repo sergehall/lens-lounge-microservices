@@ -5,7 +5,7 @@ import BlogListRenderer from '../../../../category-blogs-page/BlogListRenderer';
 import { makeSelectUserBlogsForCategory } from '../../selectors';
 
 import { useAppSelector } from '@/hooks/reduxHooks';
-import { useAuth } from '@/features/api/hooks/useAuth';
+import { useAuth } from '@/api/hooks/useAuth';
 
 const AuthorBlogsTile: React.FC = () => {
   const { name = '' } = useParams<{ name: string }>();

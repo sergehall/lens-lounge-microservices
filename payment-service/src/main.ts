@@ -13,11 +13,6 @@ async function bootstrap() {
   // Apply all app-level configurations including Kafka setup
   await createApp(app);
 
-  // Enable CORS (can also be moved to createApp if desired)
-  app.enableCors({
-    origin: 'http://localhost:3000',
-    credentials: true,
-  });
 
   const configService = app.get(ConfigService<ConfigType, true>);
   const port = configService.get<number>('PORT') || 5006;

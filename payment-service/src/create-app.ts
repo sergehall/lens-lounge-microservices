@@ -87,6 +87,13 @@ async function setupKafka(app: INestApplication): Promise<void> {
 
   await app.startAllMicroservices();
 }
+function setupCors(app: INestApplication): void {
+  const allowedOrigins = process.env.ALLOWED_ORIGINS?.split(',') || [];
+  app.enableCors({
+    origin: allowedOrigins,
+    credentials: true,
+  });
+}
 
 /**
  * Global app config
@@ -97,6 +104,7 @@ export const createApp = async (app: INestApplication): Promise<INestApplication
   setupCookieParser(app);
   setupGlobalPipes(app);
   setupSwagger(app);
+  setupCors(app);
   await setupKafka(app);
 
   return app;

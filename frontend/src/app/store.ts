@@ -18,7 +18,7 @@ import technologiesReducer from '../features/technologies/technologiesSlice';
 import newsPageReducer from '../features/news/newsPageSlice';
 import userReducer from '../features/users/userSlice';
 
-import { apiSlice } from '@/features/api/apiSlice';
+import { apiSlice } from '@/api/apiSlice';
 
 export const store = configureStore({
   reducer: {

@@ -9,7 +9,7 @@ import ChatConversation from './ChatConversation';
 import InputSection from './InputSection';
 import { useChatLogic } from './hooks/useChatLogic';
 
-import { useGetUserQuery } from '@/features/api/apiSlice';
+import { useGetUserQuery } from '@/api/apiSlice';
 
 const ChatPanel: React.FC = () => {
   const { message, setMessage, selectedDialog, handleSendMessage, handleUploadFile } =

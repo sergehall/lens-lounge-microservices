@@ -6,7 +6,7 @@ import { fetchChats, selectChatsStatus, updateChatMessages } from '../chatSlice'
 import { Message } from '../types/message.type';
 
 import { useAppDispatch, useAppSelector } from '@/hooks/reduxHooks';
-import { useAuth } from '@/features/api/hooks/useAuth';
+import { useAuth } from '@/api/hooks/useAuth';
 
 export const useChatLogic = () => {
   const dispatch = useAppDispatch();

@@ -3,7 +3,7 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { useGetUserQuery } from '@/features/api/apiSlice';
+import { useGetUserQuery } from '@/api/apiSlice';
 import { WHISPER_ROUTES } from '@/routes/route-definitions/whisper.routes';
 
 const WhisperPage: React.FC = () => {

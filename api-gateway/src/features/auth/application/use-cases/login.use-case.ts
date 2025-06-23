@@ -1,4 +1,5 @@
 import { CommandBus, CommandHandler, ICommandHandler } from '@nestjs/cqrs';
+import Configuration from "../../../../config/configuration";
 import { PayloadDto } from '../../dto/payload.dto';
 import { SignRefreshJwtCommand } from './sign-refresh-jwt.use-case';
 import { CreateDeviceCommand } from '../../../security-devices/application/use-cases/create-device.use-case';
@@ -40,7 +41,9 @@ export class LoginUseCase implements ICommandHandler<LoginCommand> {
 
     res.cookie('refreshToken', signedToken, {
       httpOnly: true,
-      secure: true,
+      secure: Configuration.getConfiguration().ENV === 'production',
+      sameSite: 'none',
+      path: '/'
     });
 
     return await this.commandBus.execute(

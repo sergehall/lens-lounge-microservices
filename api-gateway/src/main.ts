@@ -16,15 +16,6 @@ async function bootstrap() {
   // Apply configurations using the createApp function (assuming it configures the app)
   createApp(app);
 
-  // // Enable CORS for frontend
-  // app.enableCors({
-  //   origin: [
-  //     'http://localhost:5173',         // vite dev server and dev frontend
-  //     'https://lens-lounge.com',       // production frontend
-  //   ],
-  //   credentials: true,                 // включает куки/авторизацию
-  // });
-
   // Retrieve the configuration service to access environment variables
   const configService = app.get(ConfigService<ConfigType, true>);
 

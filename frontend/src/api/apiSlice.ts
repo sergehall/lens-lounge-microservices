@@ -1,6 +1,6 @@
 // src/features/api/apiSlice.ts
 import { env } from '@/config/env/env.service';
-import { ProfileType } from '@/features/showcase/profile/mocks/defaultProfile';
+import { DEFAULT_PROFILE, ProfileType } from '@/features/showcase/profile/mocks/defaultProfile';
 import { User } from '@/features/users/types/user.type';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
@@ -30,10 +30,22 @@ export const apiSlice = createApi({
       }),
     }),
 
-    // GET /auth/profile — retrieves profile from cookie
+    // // GET /auth/profile — retrieves profile from cookie
+    // getUser: builder.query<ProfileType, void>({
+    //   query: () => '/auth/profile',
+    //   providesTags: ['User'], // indicates that the response is associated with a tag
+    // }),
     getUser: builder.query<ProfileType, void>({
       query: () => '/auth/profile',
-      providesTags: ['User'], // indicates that the response is associated with a tag
+      transformResponse: (response: ProfileType): ProfileType => {
+        // Check: if the real answer came - you can swap it for a mock
+        console.log('DEFAULT_PROFILE:', DEFAULT_PROFILE);
+        console.log('Received a real response from the API:', response);
+
+        // Bringing back the mock instead of the real thing
+        return DEFAULT_PROFILE;
+      },
+      providesTags: ['User'],
     }),
 
     // POST /api/logout — delete cookie

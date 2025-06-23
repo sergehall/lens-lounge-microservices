@@ -164,25 +164,6 @@ export class AuthController {
   @UseGuards(RefreshTokenUserGuard)
   @Get('profile')
   async getUserForFrontend(@Request() req: any): Promise<any> {
-    const DEFAULT_PROFILE = {
-      birthday: "January 31, 1991",
-      education: "Bachelor's in Computer Science",
-      email: "sergehall@example.com",
-      firstName: "Serge",
-      lastName: "Hall",
-      login: "sergehall",
-      photoUrl: "https://avatars.githubusercontent.com/u/60080971?s=400&u=142534052d9a95da0103bb0094b44d5202f90a21&v=4",
-      userId: "0",
-      website: "https://sergioartg.com",
-    };
-
-    const user = req.user;
-
-    return {
-      ...DEFAULT_PROFILE,
-      ...Object.fromEntries(
-        Object.entries(user).filter(([_, value]) => value !== null && value !== undefined)
-      ),
-    };
+    return req.user
   }
 }

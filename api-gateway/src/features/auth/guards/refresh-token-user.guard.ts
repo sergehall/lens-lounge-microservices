@@ -32,14 +32,12 @@ export class RefreshTokenUserGuard implements CanActivate {
     if (isBlacklisted) {
       this.unauthorized();
     }
-
     const payload: PayloadDto | null = await this.commandBus.execute(
       new ValidRefreshJwtCommand(token),
     );
     if (!payload) {
       this.unauthorized();
     }
-
     const user: UsersEntity | null =
       await this.usersRepo.findNotBannedUserById(payload.userId);
     if (!user) {

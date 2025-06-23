@@ -1,45 +1,53 @@
-// frontend/src/api/services/useAuth.ts
-import { useSignInMutation, useSignOutMutation, useGetUserQuery } from '../apiSlice';
+import { useState, useEffect } from 'react';
+import {
+  useSignInMutation,
+  useSignOutMutation,
+  useGetUserQuery,
+} from '../apiSlice';
 
 export const useAuth = () => {
-  // RTK Query hooks
   const [signInMutation, signInState] = useSignInMutation();
   const [signOutMutation] = useSignOutMutation();
+
+  const [skipUserQuery, setSkipUserQuery] = useState(true);
+
   const {
     data: user,
     isLoading: userLoading,
     error: userError,
     refetch: refetchUser,
   } = useGetUserQuery(undefined, {
-    skip: false,
+    skip: skipUserQuery,
     refetchOnMountOrArgChange: true,
   });
 
-  // Handle sign-in with credentials
   const handleSignIn = async (loginOrEmail: string, password: string) => {
     try {
-      console.log('Attempting login…');
+      console.log('Logging in...');
       await signInMutation({ loginOrEmail, password }).unwrap();
 
-      const result = await refetchUser();
-
-      if ('data' in result) {
-        console.log('Current user:', result.data);
-      } else {
-        console.warn('No user returned after login');
-      }
-    } catch (error) {
-      console.error('❌ Login failed:', error);
+      // Даём куке установиться
+      setTimeout(() => {
+        setSkipUserQuery(false);
+        refetchUser().then((result) => {
+          if ('data' in result) {
+            console.log('User loaded:', result.data);
+          } else {
+            console.warn('No user after login');
+          }
+        });
+      }, 100); // можно увеличить при Safari
+    } catch (err) {
+      console.error('❌ Login failed:', err);
     }
   };
 
-  // Handle sign-out
   const handleSignOut = async () => {
     try {
       await signOutMutation().unwrap();
-      await refetchUser(); // Clears cached user
-    } catch (error) {
-      console.error('❌ Logout failed:', error);
+      await refetchUser();
+    } catch (err) {
+      console.error('❌ Logout failed:', err);
     }
   };
 

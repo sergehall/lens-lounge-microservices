@@ -172,8 +172,6 @@ export class AuthController {
   @UseGuards(RefreshTokenUserGuard)
   @Get('profile')
   async getUserForFrontend(@Request() req: any): Promise<any> {
-
-    console.log('getUserForFrontend', req.user);
     return req.user
   }
 }

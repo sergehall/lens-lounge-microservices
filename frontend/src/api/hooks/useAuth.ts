@@ -12,7 +12,7 @@ export const useAuth = () => {
   const [signOutMutation] = useSignOutMutation();
 
   const [skipUserQuery, setSkipUserQuery] = useState(true);
-  const [shouldFetchUser, setShouldFetchUser] = useState(false);
+  const [shouldFetchUser] = useState(false);
 
   const {
     data: user,
@@ -24,7 +24,6 @@ export const useAuth = () => {
     refetchOnMountOrArgChange: true,
   });
 
-  // ✅ ВЕРНО: вызывается на верхнем уровне
   useEffect(() => {
     if (shouldFetchUser) {
       const timeout = setTimeout(() => {

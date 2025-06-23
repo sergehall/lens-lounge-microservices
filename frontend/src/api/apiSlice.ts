@@ -37,7 +37,7 @@ export const apiSlice = createApi({
     // }),
     getUser: builder.query<ProfileType, void>({
       query: () => '/auth/profile',
-      transformResponse: (response: ProfileType): ProfileType => {
+      transformResponse: () => {
         // Bringing back the mock instead of the real thing
         return DEFAULT_PROFILE;
       },

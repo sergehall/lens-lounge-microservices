@@ -1,6 +1,6 @@
 // src/features/api/apiSlice.ts
 import { env } from '@/config/env/env.service';
-import { DEFAULT_PROFILE, ProfileType } from '@/features/showcase/profile/mocks/defaultProfile';
+import { ProfileType } from '@/features/showcase/profile/mocks/defaultProfile';
 import { User } from '@/features/users/types/user.type';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 

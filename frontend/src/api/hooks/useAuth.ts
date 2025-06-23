@@ -11,7 +11,6 @@ export const useAuth = () => {
   const [signInMutation, signInState] = useSignInMutation();
   const [signOutMutation] = useSignOutMutation();
 
-  const [setSkipUserQuery] = useState(true);
   const [shouldFetchUser] = useState(false);
 
   const {

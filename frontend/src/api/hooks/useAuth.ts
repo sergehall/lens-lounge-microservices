@@ -1,3 +1,5 @@
+// frontend/src/api/hooks/useAuth.ts
+
 import { useEffect, useState } from 'react';
 import {
   useSignInMutation,
@@ -10,6 +12,7 @@ export const useAuth = () => {
   const [signOutMutation] = useSignOutMutation();
 
   const [skipUserQuery, setSkipUserQuery] = useState(true);
+  const [shouldFetchUser, setShouldFetchUser] = useState(false);
 
   const {
     data: user,
@@ -21,34 +24,44 @@ export const useAuth = () => {
     refetchOnMountOrArgChange: true,
   });
 
+  // ✅ ВЕРНО: вызывается на верхнем уровне
+  useEffect(() => {
+    if (shouldFetchUser) {
+      const timeout = setTimeout(() => {
+        setSkipUserQuery(false);
+      }, 300);
+      return () => clearTimeout(timeout);
+    }
+  }, [shouldFetchUser]);
+
   const handleSignIn = async (loginOrEmail: string, password: string) => {
     try {
       console.log('Logging in...');
       await signInMutation({ loginOrEmail, password }).unwrap();
 
+      setSkipUserQuery(false); // immediately authorize the request
       setTimeout(() => {
-        setSkipUserQuery(false);
-      }, 200);
+        refetchUser().then((result) => {
+          if ('data' in result) {
+            console.log('User loaded:', result.data);
+          } else {
+            console.warn('No user after login');
+          }
+        });
+      }, 300); // Safari hack
     } catch (err) {
       console.error('❌ Login failed:', err);
     }
   };
 
-
   const handleSignOut = async () => {
     try {
       await signOutMutation().unwrap();
-      await refetchUser();
+      await refetchUser(); // Очистка после выхода
     } catch (err) {
       console.error('❌ Logout failed:', err);
     }
   };
-
-  useEffect(() => {
-    if (user) {
-      console.log('User loaded from API:', user);
-    }
-  }, [user]);
 
   return {
     user,

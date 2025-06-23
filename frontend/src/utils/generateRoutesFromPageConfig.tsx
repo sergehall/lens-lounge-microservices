@@ -14,12 +14,6 @@ export const generateRoutesFromPageConfig = (
   configMap: Record<string, PageConfig>
 ): React.ReactNode[] => {
   return Object.entries(configMap).map(([path, config]) => {
-    // console.log('Generating route:', {
-    //   path,
-    //   component: config.component?.name,
-    //   isProtected: config.isProtected,
-    // });
-
     let content = <config.component />;
 
     if (config.layoutType !== 'none') {

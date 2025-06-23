@@ -13,7 +13,7 @@ if (!container) throw new Error('Root element not found');
 createRoot(container).render(
   <React.StrictMode>
     <AppProviders>
-      <App/>
+      <App />
     </AppProviders>
   </React.StrictMode>
 );

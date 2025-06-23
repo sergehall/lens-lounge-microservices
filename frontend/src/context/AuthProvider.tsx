@@ -1,7 +1,9 @@
 // frontend/src/context/AuthProvider.tsx
-import { useAuthFlow } from "@/api/hooks/useAuthFlow";
 import React, { useState } from 'react';
+
 import { AuthContext, AuthMode } from './AuthContext';
+
+import { useAuthFlow } from '@/api/hooks/useAuthFlow';
 import AuthModal from '@/components/auth/AuthModal';
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {

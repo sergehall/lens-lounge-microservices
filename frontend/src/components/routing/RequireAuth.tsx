@@ -1,5 +1,6 @@
 // src/components/routing/RequireAuth.tsx
 import React from 'react';
+
 import { useAuthContext } from '@/context/AuthContext';
 import UnauthenticatedLanding from '@/components/unauthenticated-landing/UnauthenticatedLanding';
 import { unauthContent } from '@/config/unauthContent';

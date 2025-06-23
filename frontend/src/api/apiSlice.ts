@@ -38,12 +38,8 @@ export const apiSlice = createApi({
     getUser: builder.query<ProfileType, void>({
       query: () => '/auth/profile',
       transformResponse: (response: ProfileType) => {
-        // Check: if the real answer came - you can swap it for a mock
-        console.log('DEFAULT_PROFILE:', DEFAULT_PROFILE);
-        console.log('Received a real response from the API:', response);
-
-        // Bringing back the mock instead of the real thing
-        return DEFAULT_PROFILE;
+        console.log('getUser API response:', response); // <- Вывод объекта User
+        return response;
       },
       providesTags: ['User'],
     }),

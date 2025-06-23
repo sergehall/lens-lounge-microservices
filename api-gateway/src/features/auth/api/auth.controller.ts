@@ -1,43 +1,35 @@
-import {
-  Controller,
-  Get,
-  Post,
-  UseGuards,
-  Request,
-  HttpCode,
-  Body,
-  Ip,
-  HttpStatus,
-  Res,
-  Query,
-} from '@nestjs/common';
+import { Body, Controller, Get, HttpCode, HttpStatus, Ip, Post, Query, Request, Res, UseGuards, } from '@nestjs/common';
+import { CommandBus } from '@nestjs/cqrs';
+import { ApiTags } from '@nestjs/swagger';
 import { SkipThrottle } from '@nestjs/throttler';
+import { Response } from 'express';
+import { ApiDocService } from '../../../api-documentation/api-doc-service';
+import { AuthMethods } from '../../../api-documentation/enums/auth-methods.enum';
+import { EndpointKeys } from '../../../api-documentation/enums/endpoint-keys.enum';
+import { ParseQueriesService } from '../../../common/query/parse-queries.service';
+import {
+  UpdateSentConfirmationCodeCommand
+} from '../../users/application/use-cases/update-sent-confirmation-code.use-case';
+import { CurrentUserDto } from '../../users/dto/current-user.dto';
+import {
+  ChangePasswordByRecoveryCodeCommand
+} from '../application/use-cases/change-password-by-recovery-code.use-case';
+import { ConfirmUserByCodeCommand } from '../application/use-cases/confirm-user-by-code.use-case';
+import { LoginCommand } from '../application/use-cases/login.use-case';
+import { LogoutCommand } from '../application/use-cases/logout.use-case';
+import { PasswordRecoveryCommand } from '../application/use-cases/password-recovery.use-case';
+import { RefreshJwtCommand } from '../application/use-cases/refresh-jwt.use-case';
+import { RegistrationUserCommand } from '../application/use-cases/registration-user.use-case';
+import { AccessTokenDto } from '../dto/access-token.dto';
+import { CodeDto } from '../dto/code.dto';
+import { EmailDto } from '../dto/email.dto';
+import { LoginDto } from '../dto/login.dto';
+import { NewPasswordRecoveryDto } from '../dto/new-password-recovery.dto';
+import { UserIdEmailLoginDto } from '../dto/profile.dto';
+import { RefreshTokenDto } from '../dto/refresh-token.dto';
+import { CookiesJwtVerificationGuard } from '../guards/cookies-jwt.verification.guard';
 import { JwtAuthGuard } from '../guards/jwt-auth.guard';
 import { LocalAuthGuard } from '../guards/local-auth.guard';
-import { LoginDto } from '../dto/login.dto';
-import { EmailDto } from '../dto/email.dto';
-import { CodeDto } from '../dto/code.dto';
-import { Response } from 'express';
-import { CookiesJwtVerificationGuard } from '../guards/cookies-jwt.verification.guard';
-import { CommandBus } from '@nestjs/cqrs';
-import { RegistrationUserCommand } from '../application/use-cases/registration-user.use-case';
-import { UpdateSentConfirmationCodeCommand } from '../../users/application/use-cases/update-sent-confirmation-code.use-case';
-import { AccessTokenDto } from '../dto/access-token.dto';
-import { NewPasswordRecoveryDto } from '../dto/new-password-recovery.dto';
-import { CurrentUserDto } from '../../users/dto/current-user.dto';
-import { ConfirmUserByCodeCommand } from '../application/use-cases/confirm-user-by-code.use-case';
-import { ChangePasswordByRecoveryCodeCommand } from '../application/use-cases/change-password-by-recovery-code.use-case';
-import { PasswordRecoveryCommand } from '../application/use-cases/password-recovery.use-case';
-import { ParseQueriesService } from '../../../common/query/parse-queries.service';
-import { UserIdEmailLoginDto } from '../dto/profile.dto';
-import { RefreshJwtCommand } from '../application/use-cases/refresh-jwt.use-case';
-import { LogoutCommand } from '../application/use-cases/logout.use-case';
-import { LoginCommand } from '../application/use-cases/login.use-case';
-import { RefreshTokenDto } from '../dto/refresh-token.dto';
-import { ApiTags } from '@nestjs/swagger';
-import { ApiDocService } from '../../../api-documentation/api-doc-service';
-import { EndpointKeys } from '../../../api-documentation/enums/endpoint-keys.enum';
-import { AuthMethods } from '../../../api-documentation/enums/auth-methods.enum';
 import { RefreshTokenUserGuard } from "../guards/refresh-token-user.guard";
 
 @SkipThrottle()
@@ -172,6 +164,25 @@ export class AuthController {
   @UseGuards(RefreshTokenUserGuard)
   @Get('profile')
   async getUserForFrontend(@Request() req: any): Promise<any> {
-    return req.user
+    const DEFAULT_PROFILE = {
+      birthday: "January 31, 1991",
+      education: "Bachelor's in Computer Science",
+      email: "sergehall@example.com",
+      firstName: "Serge",
+      lastName: "Hall",
+      login: "sergehall",
+      photoUrl: "https://avatars.githubusercontent.com/u/60080971?s=400&u=142534052d9a95da0103bb0094b44d5202f90a21&v=4",
+      userId: "0",
+      website: "https://sergioartg.com",
+    };
+
+    const user = req.user;
+
+    return {
+      ...DEFAULT_PROFILE,
+      ...Object.fromEntries(
+        Object.entries(user).filter(([_, value]) => value !== null && value !== undefined)
+      ),
+    };
   }
 }

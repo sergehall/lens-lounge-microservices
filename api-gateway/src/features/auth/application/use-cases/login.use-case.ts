@@ -39,7 +39,7 @@ export class LoginUseCase implements ICommandHandler<LoginCommand> {
       new CreateDeviceCommand(payload, ip, userAgent),
     );
 
-    res.cookie('refreshToken', signedToken, {
+    res.cookie('refreshToken', signedToken.refreshToken, {
       httpOnly: true,
       secure: Configuration.getConfiguration().ENV === 'production',
       sameSite: 'none',

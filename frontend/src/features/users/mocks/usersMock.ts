@@ -50,7 +50,7 @@ export const usersMock: User[] = [
     lastActive: new Date().toISOString(),
     firstName: 'Serge',
     lastName: 'Hall',
-    login: 'sergehall'.toLowerCase(),
+    login: 'sergehall',
     passwordHash: 'hashedPasswordsergehall',
     createdAt: new Date().toISOString(),
     orgId: OrgIdEnums.IT_INCUBATOR,

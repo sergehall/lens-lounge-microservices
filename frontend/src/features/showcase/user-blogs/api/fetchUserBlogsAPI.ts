@@ -10,7 +10,6 @@ export const fetchUserBlogsAPI = async (
 
   Object.entries(allBlogsByCategoryMocks).forEach(([category, blogs]) => {
     const filtered = blogs.filter((blog) => blog.author.toLowerCase() === username.toLowerCase());
-
     if (filtered.length > 0) {
       userBlogsByCategory[category] = filtered;
     }

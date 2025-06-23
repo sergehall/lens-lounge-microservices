@@ -30,18 +30,10 @@ export const apiSlice = createApi({
       }),
     }),
 
-    // // GET /auth/profile — retrieves profile from cookie
-    // getUser: builder.query<ProfileType, void>({
-    //   query: () => '/auth/profile',
-    //   providesTags: ['User'], // indicates that the response is associated with a tag
-    // }),
+    // GET /auth/profile — retrieves profile from cookie
     getUser: builder.query<ProfileType, void>({
       query: () => '/auth/profile',
-      transformResponse: (response: ProfileType) => {
-        console.log('getUser API response:', response); // <- Вывод объекта User
-        return response;
-      },
-      providesTags: ['User'],
+      providesTags: ['User'], // indicates that the response is associated with a tag
     }),
 
     // POST /api/logout — delete cookie

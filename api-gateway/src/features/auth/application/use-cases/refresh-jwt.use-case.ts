@@ -50,6 +50,8 @@ export class RefreshJwtUseCase implements ICommandHandler<RefreshJwtCommand> {
     res.cookie('refreshToken', updatedJwt, {
       httpOnly: true,
       secure: true,
+      sameSite: 'none',
+      path: '/',
     });
 
     const updatedPayload: PayloadDto = await this.authService.toExtractPayload(

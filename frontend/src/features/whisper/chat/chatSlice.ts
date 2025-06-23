@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-import { RootState } from '../../../app/store';
+import { RootState } from '@/app/store';
 
 import { Message } from './types/message.type';
 import { generateDefaultMockChats } from './utils/generateMockChats';
@@ -24,8 +24,9 @@ interface ChatState {
   error: string | null;
 }
 
+const mockChats = generateDefaultMockChats();
 const initialState: ChatState = {
-  conversations: generateDefaultMockChats(),
+  conversations: Array.isArray(mockChats) ? mockChats : [],
   status: 'idle',
   error: null,
 };

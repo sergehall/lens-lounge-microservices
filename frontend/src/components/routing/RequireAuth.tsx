@@ -16,7 +16,6 @@ interface RequireAuthProps {
 
 const RequireAuth: React.FC<RequireAuthProps> = ({ children, unauthLandingProps }) => {
   const { isAuthenticated, showAuthModal } = useAuthContext();
-  console.log('RequireAuth - isAuthenticated:', isAuthenticated);
   if (!isAuthenticated) {
     return (
       <UnauthenticatedLanding

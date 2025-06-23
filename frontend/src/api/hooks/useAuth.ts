@@ -20,7 +20,6 @@ export const useAuth = () => {
     error: userError,
     refetch: refetchUser,
   } = useGetUserQuery(undefined, {
-    skip: skipUserQuery,
     refetchOnMountOrArgChange: true,
   });
 

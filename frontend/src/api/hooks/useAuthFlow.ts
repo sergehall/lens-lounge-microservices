@@ -46,7 +46,7 @@ export const useAuthFlow = (): UseAuthFlowResult => {
 
   return {
     user,
-    isAuthenticated: !!(user && user.userId),
+    isAuthenticated: Boolean(user?.userId),
     signIn,
     signOut,
     signUp,

@@ -1,3 +1,4 @@
+// frontend/src/features/showcase/profile/Profile.tsx
 import React from 'react';
 
 import * as S from './profile.styles';

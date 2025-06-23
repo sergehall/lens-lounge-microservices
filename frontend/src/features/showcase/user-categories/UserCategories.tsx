@@ -1,3 +1,4 @@
+// frontend/src/features/showcase/user-categories/UserCategories.tsx
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 

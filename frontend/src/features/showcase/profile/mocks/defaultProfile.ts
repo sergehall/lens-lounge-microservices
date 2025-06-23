@@ -21,13 +21,13 @@ if (!defaultUser) {
 
 // Generate the default profile from that user
 export const DEFAULT_PROFILE: ProfileType = {
-  userId: defaultUser.userId,
-  photoUrl: defaultUser.photoUrl,
+  birthday: defaultUser.birthday,
+  education: defaultUser.education,
+  email: defaultUser.email,
   firstName: defaultUser.firstName,
   lastName: defaultUser.lastName,
   login: defaultUser.login,
-  email: defaultUser.email,
-  birthday: defaultUser.birthday,
-  education: defaultUser.education,
+  photoUrl: defaultUser.photoUrl,
+  userId: defaultUser.userId,
   website: defaultUser.website,
 };

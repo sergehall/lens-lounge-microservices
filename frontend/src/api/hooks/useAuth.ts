@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import {
   useSignInMutation,
   useSignOutMutation,
@@ -26,7 +26,7 @@ export const useAuth = () => {
       console.log('Logging in...');
       await signInMutation({ loginOrEmail, password }).unwrap();
 
-      // Даём куке установиться
+      //  Let the cookie set
       setTimeout(() => {
         setSkipUserQuery(false);
         refetchUser().then((result) => {
@@ -36,7 +36,7 @@ export const useAuth = () => {
             console.warn('No user after login');
           }
         });
-      }, 100); // можно увеличить при Safari
+      }, 200); //  can be maximized in on Safari
     } catch (err) {
       console.error('❌ Login failed:', err);
     }

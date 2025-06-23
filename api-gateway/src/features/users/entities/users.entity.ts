@@ -69,6 +69,54 @@ export class UsersEntity {
 
   @ApiProperty({
     type: String,
+    example: 'https://example.com/avatar.png',
+    description: 'User photo URL',
+  })
+  @Column({ type: 'character varying', nullable: true })
+  photoUrl: string | null;
+
+  @ApiProperty({
+    type: String,
+    example: 'John',
+    description: 'User first name',
+  })
+  @Column({ type: 'character varying', nullable: true })
+  firstName: string | null;
+
+  @ApiProperty({
+    type: String,
+    example: 'Doe',
+    description: 'User last name',
+  })
+  @Column({ type: 'character varying', nullable: true })
+  lastName: string | null;
+
+  @ApiProperty({
+    type: String,
+    example: '1990-01-01',
+    description: 'User birthday (ISO string)',
+  })
+  @Column({ type: 'character varying', nullable: true })
+  birthday: string | null;
+
+  @ApiProperty({
+    type: String,
+    example: 'Harvard University',
+    description: 'User education',
+  })
+  @Column({ type: 'character varying', nullable: true })
+  education: string | null;
+
+  @ApiProperty({
+    type: String,
+    example: 'https://johndoe.dev',
+    description: 'User personal website',
+  })
+  @Column({ type: 'character varying', nullable: true })
+  website: string | null;
+
+  @ApiProperty({
+    type: String,
     example: 'It-Incubator',
     description: 'User organization ID',
   })
@@ -202,7 +250,12 @@ export class UsersEntity {
   events: any[] = [];
 
   static createUserEntity(dto: DataForCreateUserDto): UsersEntity {
-    const { login, email, passwordHash, expirationDate } = dto;
+    const {
+      login,
+      email,
+      passwordHash,
+      expirationDate,
+    } = dto;
 
     const user: UsersEntity = new UsersEntity();
     user.userId = uuid4();
@@ -212,12 +265,21 @@ export class UsersEntity {
     user.createdAt = new Date().toISOString();
     user.orgId = OrgIdEnums.IT_INCUBATOR;
     user.roles = [UserRolesEnums.USER];
-    user.isBanned = false;
-    user.banDate = null;
-    user.banReason = null;
     user.confirmationCode = uuid4();
     user.expirationDate = expirationDate;
     user.isConfirmed = false;
+    user.isBanned = false;
+
+    user.banDate =  null;
+    user.banReason = null;
+    user.isConfirmedDate =  null;
+
+    user.photoUrl = null;
+    user.firstName = null;
+    user.lastName = null;
+    user.birthday = null;
+    user.education = null;
+    user.website = null;
 
     return user;
   }

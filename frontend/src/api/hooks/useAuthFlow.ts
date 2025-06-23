@@ -1,22 +1,42 @@
-// hooks/useAuthFlow.ts
+// frontend/src/api/hooks/useAuthFlow.ts
 import { useRegisterUserMutation } from '@/api/apiSlice';
 import { useAuth } from '@/api/hooks/useAuth';
+import { parseApiError } from '@/utils/parseApiError';
+import { ProfileType } from '@/features/showcase/profile/mocks/defaultProfile';
+import { SignInState } from '@/api/types/types';
 
-export const useAuthFlow = () => {
+interface UseAuthFlowResult {
+  user: ProfileType | undefined;
+  isAuthenticated: boolean;
+  signIn: (email: string, password: string) => Promise<void>;
+  signUp: (email: string, username: string, password: string) => Promise<void>;
+  signOut: () => Promise<void>;
+  signInState: SignInState;
+  isRegistering: boolean;
+  registerError: string | undefined;
+}
+
+export const useAuthFlow = (): UseAuthFlowResult => {
   const { handleSignIn, handleSignOut, signInState, user } = useAuth();
   const [registerUser, registerState] = useRegisterUserMutation();
 
   const signIn = async (email: string, password: string) => {
-    await handleSignIn(email, password);
+    try {
+      await handleSignIn(email, password);
+    } catch (error) {
+      console.error('Login error:', error);
+      throw error;
+    }
   };
 
   const signUp = async (email: string, username: string, password: string) => {
     try {
       const login = username;
       await registerUser({ email, login, password }).unwrap();
-      // Можно: auto-login или уведомление
+      await handleSignIn(email, password); // auto login
     } catch (error) {
       console.error('Registration error:', error);
+      throw error;
     }
   };
 
@@ -26,13 +46,12 @@ export const useAuthFlow = () => {
 
   return {
     user,
-    isAuthenticated: Boolean(user?.userId),
+    isAuthenticated: !!(user && user.userId),
     signIn,
     signOut,
     signUp,
     signInState,
-    registerState,
     isRegistering: registerState.isLoading,
-    registerError: registerState.error,
+    registerError: parseApiError(registerState.error),
   };
 };

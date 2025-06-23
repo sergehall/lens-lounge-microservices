@@ -6,19 +6,21 @@ import { HttpException, HttpStatus } from '@nestjs/common';
 import { jwtCookiesIncorrect } from '../../../../common/filters/custom-errors-messages';
 
 export class ValidRefreshJwtCommand {
-  constructor(public refreshToken: string) {}
+  constructor(public refreshToken: string) {
+  }
 }
 
 @CommandHandler(ValidRefreshJwtCommand)
 export class ValidRefreshJwtUseCase
-  implements ICommandHandler<ValidRefreshJwtCommand>
-{
+  implements ICommandHandler<ValidRefreshJwtCommand> {
   constructor(
     private jwtService: JwtService,
     private jwtConfig: JwtConfig,
-  ) {}
+  ) {
+  }
+
   async execute(command: ValidRefreshJwtCommand): Promise<PayloadDto | null> {
-    const { refreshToken } = command;
+    const {refreshToken} = command;
 
     const REFRESH_SECRET_KEY =
       await this.jwtConfig.getJwtConfigValue('REFRESH_SECRET_KEY');
@@ -31,7 +33,7 @@ export class ValidRefreshJwtUseCase
     } catch (error) {
       console.log(error.message);
       throw new HttpException(
-        { message: [jwtCookiesIncorrect] },
+        {message: [jwtCookiesIncorrect]},
         HttpStatus.UNAUTHORIZED,
       );
     }

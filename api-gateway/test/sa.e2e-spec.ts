@@ -1,6 +1,6 @@
 import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
-import crypto from 'node:crypto';
+import * as crypto from 'crypto';
 import { isUUID } from 'class-validator';
 import { CreateUserDto } from '../src/features/users/dto/create-user.dto';
 import { UsersEntity } from '../src/features/users/entities/users.entity';

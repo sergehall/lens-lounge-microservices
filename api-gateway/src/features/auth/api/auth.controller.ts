@@ -38,6 +38,7 @@ import { ApiTags } from '@nestjs/swagger';
 import { ApiDocService } from '../../../api-documentation/api-doc-service';
 import { EndpointKeys } from '../../../api-documentation/enums/endpoint-keys.enum';
 import { AuthMethods } from '../../../api-documentation/enums/auth-methods.enum';
+import { RefreshTokenUserGuard } from "../guards/refresh-token-user.guard";
 
 @SkipThrottle()
 @ApiTags('Auth')
@@ -168,9 +169,11 @@ export class AuthController {
 
   @SkipThrottle()
   @ApiDocService.apply(EndpointKeys.Auth, AuthMethods.Me)
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(RefreshTokenUserGuard)
   @Get('profile')
-  async getProfileForFrontend(@Request() req: any): Promise<any> {
+  async getUserForFrontend(@Request() req: any): Promise<any> {
+
+    console.log('getUserForFrontend', req.user);
     return req.user
   }
 }

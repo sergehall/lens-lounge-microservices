@@ -3,7 +3,7 @@ import { LessThan, Repository } from 'typeorm';
 import { InvalidJwtEntity } from '../entities/invalid-jwt.entity';
 import { InvalidJwtDto } from '../dto/invalid-jwt.dto';
 import { InternalServerErrorException } from '@nestjs/common';
-import crypto from 'node:crypto';
+import * as crypto from 'crypto';;
 
 export class InvalidJwtRepo {
   constructor(

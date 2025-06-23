@@ -14,7 +14,7 @@ import { QuestionsAndCountDto } from '../../sa-quiz-questions/dto/questions-and-
 import { ComplexityEnums } from '../enums/complexity.enums';
 import { dictionaryQuestions } from '../questions/dictionary-questions';
 import { KeyResolver } from '../../../common/helpers/key-resolver';
-import crypto from 'node:crypto';
+import * as crypto from 'crypto';
 import { SortDirectionEnum } from '../../../common/query/enums/sort-direction.enum';
 
 export class GameQuestionsRepo {

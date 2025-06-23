@@ -8,23 +8,26 @@ export const useAuth = () => {
   const {
     data: user,
     isLoading: userLoading,
-    refetch: refetchUser,
-
     error: userError,
-  } = useGetUserQuery(undefined, { skip: false });
+    refetch: refetchUser,
+  } = useGetUserQuery(undefined, {
+    skip: false,
+    refetchOnMountOrArgChange: true,
+  });
 
   // Handle sign-in with credentials
   const handleSignIn = async (loginOrEmail: string, password: string) => {
-    console.log('loginOrEmail', loginOrEmail);
-    console.log('password', password);
     try {
-      const result = await signInMutation({ loginOrEmail, password }).unwrap();
-      console.log('✅ Logged in:', result);
+      console.log('Attempting login…');
+      await signInMutation({ loginOrEmail, password }).unwrap();
 
-      await refetchUser();
+      const result = await refetchUser();
 
-      // Add log after refetch
-      console.log('👤 Current user:', user);
+      if ('data' in result) {
+        console.log('Current user:', result.data);
+      } else {
+        console.warn('No user returned after login');
+      }
     } catch (error) {
       console.error('❌ Login failed:', error);
     }

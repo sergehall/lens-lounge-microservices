@@ -62,7 +62,7 @@ export const usersMock: User[] = [
     expirationDate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
     isConfirmed: false,
     birthday: 'January 31, 1991',
-    education: "Bachelor's in Computer Science",
+    education: "Computer Science",
     website: 'https://sergioartg.com',
     photoUrl:
       'https://avatars.githubusercontent.com/u/60080971?s=400&u=142534052d9a95da0103bb0094b44d5202f90a21&v=4',

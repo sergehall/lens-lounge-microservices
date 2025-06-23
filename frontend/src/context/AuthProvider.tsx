@@ -1,5 +1,5 @@
 // frontend/src/context/AuthProvider.tsx
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { AuthContext, AuthMode } from './AuthContext';
 
@@ -22,6 +22,13 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const showAuthModal = (mode: AuthMode) => setAuthMode(mode);
   const hideAuthModal = () => setAuthMode(null);
+
+  // Close the modal when the user is logged in
+  useEffect(() => {
+    if (user && authMode !== null) {
+      hideAuthModal();
+    }
+  }, [user]);
 
   return (
     <AuthContext.Provider

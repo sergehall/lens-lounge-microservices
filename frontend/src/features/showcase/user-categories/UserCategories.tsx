@@ -20,14 +20,12 @@ const UserCategories: React.FC = () => {
   const username = user?.login || '';
 
   useEffect(() => {
-    console.log('Username for blogs:', username);
     if (username) {
       dispatch(loadUserBlogs(username));
     }
   }, [username, dispatch]);
 
   const categories: Category[] = useAppSelector(makeSelectUserCategoriesFromBlogs(username));
-  console.log('Сategories:', categories);
   const handleCategoryClick = (category: Category) => {
     navigate(SHOWCASE_ROUTES.build.categoryByName(category.name));
   };

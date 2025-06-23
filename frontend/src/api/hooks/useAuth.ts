@@ -11,7 +11,7 @@ export const useAuth = () => {
   const [signInMutation, signInState] = useSignInMutation();
   const [signOutMutation] = useSignOutMutation();
 
-  const [skipUserQuery, setSkipUserQuery] = useState(true);
+  const [setSkipUserQuery] = useState(true);
   const [shouldFetchUser] = useState(false);
 
   const {
@@ -26,7 +26,6 @@ export const useAuth = () => {
   useEffect(() => {
     if (shouldFetchUser) {
       const timeout = setTimeout(() => {
-        setSkipUserQuery(false);
       }, 300);
       return () => clearTimeout(timeout);
     }
@@ -37,7 +36,6 @@ export const useAuth = () => {
       console.log('Logging in...');
       await signInMutation({ loginOrEmail, password }).unwrap();
 
-      setSkipUserQuery(false); // immediately authorize the request
       setTimeout(() => {
         refetchUser().then((result) => {
           if ('data' in result) {

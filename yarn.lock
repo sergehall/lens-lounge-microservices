@@ -6263,7 +6263,7 @@ __metadata:
     "@types/uuid4": "npm:^2.0.3"
     "@typescript-eslint/eslint-plugin": "npm:^7.1.1"
     "@typescript-eslint/parser": "npm:^7.1.1"
-    axios: "npm:^1.6.7"
+    axios: "npm:1.11.0"
     bcrypt: "npm:^5.1.1"
     class-transformer: "npm:^0.5.1"
     class-validator: "npm:^0.14.1"

@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import axios from 'axios';
+// import axios from 'axios';
 
 import { Message } from './types/message.type';
 import { generateDefaultMockChats } from './utils/generateMockChats';
@@ -31,23 +31,29 @@ const initialState: ChatState = {
   error: null,
 };
 
-// Thunk to download all chat
-export const fetchChats = createAsyncThunk<ChatType[]>(
-  'chat/fetchChats',
-  async (_, { rejectWithValue }) => {
-    try {
-      const response = await axios.get('/api/chats', {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
-        },
-      });
-      return response.data;
-    } catch (error) {
-      console.error('fetchChats error:', error);
-      return rejectWithValue('Failed to load chats from server');
-    }
-  }
-);
+// Thunk to load mock chat data (used during development instead of real API)
+export const fetchChats = createAsyncThunk<ChatType[]>('chat/fetchChats', async () => {
+  // Return static mock data for local development and deployments without backend
+  return generateDefaultMockChats();
+});
+
+// // Thunk to download all chat
+// export const fetchChats = createAsyncThunk<ChatType[]>(
+//   'chat/fetchChats',
+//   async (_, { rejectWithValue }) => {
+//     try {
+//       const response = await axios.get('/api/chats', {
+//         headers: {
+//           Authorization: `Bearer ${localStorage.getItem('token')}`,
+//         },
+//       });
+//       return response.data;
+//     } catch (error) {
+//       console.error('fetchChats error:', error);
+//       return rejectWithValue('Failed to load chats from server');
+//     }
+//   }
+// );
 
 // slice
 const chatSlice = createSlice({

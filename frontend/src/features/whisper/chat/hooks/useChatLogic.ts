@@ -1,12 +1,12 @@
-// frontend/src/features/whisper/chat/hooks/useChatLogic.ts
 import { useEffect, useMemo, useState, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { fetchChats, selectChatsStatus, updateChatMessages } from '../chatSlice';
 import { Message } from '../types/message.type';
 
-import { useAppDispatch, useAppSelector } from '@/hooks/reduxHooks';
 import { useAuth } from '@/api/hooks/useAuth';
+import { useAppDispatch, useAppSelector } from '@/hooks/reduxHooks';
+import { useSafeChats } from '@/hooks/useSafeChats';
 
 export const useChatLogic = () => {
   const dispatch = useAppDispatch();
@@ -19,7 +19,7 @@ export const useChatLogic = () => {
   }, [dispatch, status]);
 
   const { chatId } = useParams<{ chatId: string }>();
-  const chats = useAppSelector((state) => state.whisperPage.chat.conversations);
+  const chats = useSafeChats();
   const { user } = useAuth();
   const currentUserId = user?.userId || '0';
   const [message, setMessage] = useState('');
@@ -34,7 +34,7 @@ export const useChatLogic = () => {
   }, [chats, chatId]);
 
   const recipientId = useMemo(() => {
-    if (!selectedDialog) return '';
+    if (!selectedDialog?.participants || !Array.isArray(selectedDialog.participants)) return '';
     return selectedDialog.participants.find((id) => id !== currentUserId) || '';
   }, [selectedDialog, currentUserId]);
 

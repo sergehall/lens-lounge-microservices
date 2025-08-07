@@ -40,6 +40,7 @@ export class RefreshTokenUserGuard implements CanActivate {
     }
     const user: UsersEntity | null =
       await this.usersRepo.findNotBannedUserById(payload.userId);
+    console.log("user", user)
     if (!user) {
       this.unauthorized();
     }

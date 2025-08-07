@@ -8,7 +8,6 @@ import { Message } from '../types/message.type';
 import { useAppDispatch, useAppSelector } from '@/hooks/reduxHooks';
 import { useAuth } from '@/api/hooks/useAuth';
 
-
 export const useChatLogic = () => {
   const dispatch = useAppDispatch();
   const status = useAppSelector(selectChatsStatus);
@@ -24,8 +23,6 @@ export const useChatLogic = () => {
   const { user } = useAuth();
   const currentUserId = user?.userId || '0';
   const [message, setMessage] = useState('');
-
-  console.log('!!chats:', chats);
 
   const selectedDialog = useMemo(() => {
     if (!Array.isArray(chats)) {

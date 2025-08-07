@@ -1,8 +1,9 @@
 // src/features/api/apiSlice.ts
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+
 import { env } from '@/config/env/env.service';
 import { DEFAULT_PROFILE, ProfileType } from '@/features/showcase/profile/mocks/defaultProfile';
 import { User } from '@/features/users/types/user.type';
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const apiSlice = createApi({
   reducerPath: 'api',
@@ -30,11 +31,6 @@ export const apiSlice = createApi({
       }),
     }),
 
-    // // GET /auth/profile — retrieves profile from cookie
-    // getUser: builder.query<ProfileType, void>({
-    //   query: () => '/auth/profile',
-    //   providesTags: ['User'], // indicates that the response is associated with a tag
-    // }),
     getUser: builder.query<ProfileType, void>({
       query: () => '/auth/profile',
       transformResponse: () => {

@@ -1,9 +1,10 @@
-// frontend/src/api/hooks/useAuthFlow.ts
 import { useRegisterUserMutation } from '@/api/apiSlice';
 import { useAuth } from '@/api/hooks/useAuth';
 import { parseApiError } from '@/utils/parseApiError';
 import { ProfileType } from '@/features/showcase/profile/mocks/defaultProfile';
 import { SignInState } from '@/api/types/types';
+import { useAppDispatch } from '@/hooks/reduxHooks';
+import { clearCurrentUser } from '@/features/users/userSlice';
 
 interface UseAuthFlowResult {
   user: ProfileType | undefined;
@@ -17,7 +18,10 @@ interface UseAuthFlowResult {
 }
 
 export const useAuthFlow = (): UseAuthFlowResult => {
-  const { handleSignIn, handleSignOut, signInState, user } = useAuth();
+  const { user, signInState, handleSignIn, handleSignOut } = useAuth();
+
+  const dispatch = useAppDispatch();
+
   const [registerUser, registerState] = useRegisterUserMutation();
 
   const signIn = async (email: string, password: string) => {
@@ -31,9 +35,8 @@ export const useAuthFlow = (): UseAuthFlowResult => {
 
   const signUp = async (email: string, username: string, password: string) => {
     try {
-      const login = username;
-      await registerUser({ email, login, password }).unwrap();
-      await handleSignIn(email, password); // auto login
+      await registerUser({ email, login: username, password }).unwrap();
+      await handleSignIn(email, password);
     } catch (error) {
       console.error('Registration error:', error);
       throw error;
@@ -42,6 +45,7 @@ export const useAuthFlow = (): UseAuthFlowResult => {
 
   const signOut = async () => {
     await handleSignOut();
+    dispatch(clearCurrentUser());
   };
 
   return {

@@ -2,7 +2,7 @@
 
 // The main theme object used with styled-components.
 // This centralizes colors, spacing, shadows, and component-specific styles for consistent design.
-import { AvatarSize } from '../features/whisper/contacts/enums/avatarSize.enum';
+import { AvatarSize } from '@/features/whisper/contacts/enums/avatarSize.enum';
 
 const theme = {
   // Global background and UI colors

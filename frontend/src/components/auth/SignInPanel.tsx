@@ -1,4 +1,4 @@
-// frontend/src/components/auth/SignInPanel.tsx
+// src/components/auth/SignInPanel.tsx
 
 import React from 'react';
 
@@ -7,26 +7,32 @@ import * as S from './authorization.styles';
 
 import { useAuthFlow } from '@/api/hooks/useAuthFlow';
 
-export const SignInPanel: React.FC = () => {
-  const { signIn, signInState } = useAuthFlow();
+const SignInPanel: React.FC = () => {
+  const { signIn, signInState, user } = useAuthFlow();
+
+  if (user) {
+    return (
+      <S.SignedInMessage>
+        You are signed in as <strong>{user.login}</strong>
+      </S.SignedInMessage>
+    );
+  }
 
   return (
     <>
       <S.SignInWithUsernameContainer>
-        <S.SignInInstruction>
-          USE YOUR <br /> EMAIL OR USERNAME
-        </S.SignInInstruction>
+        <S.SignInInstruction>USE YOUR EMAIL OR USERNAME</S.SignInInstruction>
         <SignInForm onSubmit={signIn} isLoading={signInState.isLoading} />
         <S.ForgotPasswordLink href="#">FORGOT PASSWORD?</S.ForgotPasswordLink>
+
+        {signInState.error && (
+          <S.ErrorMessage>
+            {'status' in signInState.error
+              ? ((signInState.error.data as { error?: string })?.error ?? 'Sign-in failed')
+              : (signInState.error as Error).message}
+          </S.ErrorMessage>
+        )}
       </S.SignInWithUsernameContainer>
-
-      <S.WhiteDivider>or</S.WhiteDivider>
-
-      <S.SignInWithSocialContainer>
-        <S.SignInWithGoogleButton>Sign in with Google</S.SignInWithGoogleButton>
-        <S.SignInWithAppleButton>Continue with Apple</S.SignInWithAppleButton>
-        <S.ContinueWithFacebookButton>Continue with Facebook</S.ContinueWithFacebookButton>
-      </S.SignInWithSocialContainer>
     </>
   );
 };

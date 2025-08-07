@@ -1,15 +1,15 @@
-
-import { getCategoryNameBySlug } from "@/utils/getCategoryNameBySlug";
 import { createSelector } from '@reduxjs/toolkit';
 
 import { categoriesMock } from '../categories/mock/categoriesMock';
 import { Category } from '../categories/types/category.types';
+
 import { UserBlogsState } from './user-blogs/userBlogsSlice';
+
+import { getCategoryNameBySlug } from '@/utils/getCategoryNameBySlug';
 import { RootState } from '@/app/store';
 import PLACEHOLDER_IMAGE_DEFAULT from '@/assets/images/placeholderImageDefault.png';
 
-const selectUserBlogsState = (state: RootState): UserBlogsState =>
-  state.showcasePage.userBlogs;
+const selectUserBlogsState = (state: RootState): UserBlogsState => state.showcasePage.userBlogs;
 
 export const makeSelectUserCategoriesFromBlogs = (username: string) =>
   createSelector([selectUserBlogsState], (userBlogsState) => {

@@ -14,7 +14,7 @@ const PortfolioIntro: React.FC = () => {
   return (
     <AboutContainer>
       <Title>
-        Welcome to <NameHighlight>Serge Hall</NameHighlight>'s Portfolio
+        ---- <NameHighlight>Welcome</NameHighlight> ----
       </Title>
       <BottomSection>
         <Paragraph>

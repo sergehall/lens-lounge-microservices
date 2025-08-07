@@ -20,12 +20,17 @@
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
     "paths": {
-      "@lens-lounge/shared": ["../../shared"]
-    },
-    "lib": ["ES2022", "DOM"],
-    "include": ["src/**/*.ts"],
-    "exclude": ["node_modules",
-      "dist"
-    ]
-  }
+      "@lens-lounge/shared": [
+        "../../shared"
+      ]
+    }
+  },
+  "include": [
+    "src/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
 }
+

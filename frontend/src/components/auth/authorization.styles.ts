@@ -71,6 +71,11 @@ export const DropdownTitle = styled.div`
   }
 `;
 
+export const SignedInMessage = styled.div`
+  color: #f6f6f6;
+  align-items: center;
+`;
+
 export const SignInWithUsernameContainer = styled.div`
   display: flex;
   flex-direction: column;

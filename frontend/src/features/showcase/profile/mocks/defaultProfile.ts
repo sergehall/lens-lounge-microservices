@@ -2,7 +2,6 @@ import { usersMock } from '../../../users/mocks/usersMock';
 
 export interface ProfileType {
   userId: string;
-  photoUrl: string;
   firstName: string;
   lastName: string;
   login: string;
@@ -10,6 +9,7 @@ export interface ProfileType {
   birthday: string;
   education: string;
   website: string;
+  photoUrl: string;
 }
 
 // Find user with userId === "0"

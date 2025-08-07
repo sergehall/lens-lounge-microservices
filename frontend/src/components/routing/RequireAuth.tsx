@@ -8,20 +8,23 @@ import { unauthContent } from '@/config/unauthContent';
 interface RequireAuthProps {
   children: React.ReactNode;
   unauthLandingProps?: {
-    title: string;
-    description: string;
-    warning: string;
+    title?: string;
+    description?: string;
+    warning?: string;
   };
 }
 
 const RequireAuth: React.FC<RequireAuthProps> = ({ children, unauthLandingProps }) => {
   const { isAuthenticated, showAuthModal } = useAuthContext();
+
   if (!isAuthenticated) {
+    const fallback = unauthContent.default;
+
     return (
       <UnauthenticatedLanding
-        title={unauthLandingProps?.title || unauthContent.default.title}
-        description={unauthLandingProps?.description || unauthContent.default.description}
-        warning={unauthLandingProps?.warning || unauthContent.default.warning}
+        title={unauthLandingProps?.title || fallback.title}
+        description={unauthLandingProps?.description || fallback.description}
+        warning={unauthLandingProps?.warning || fallback.warning}
         onSignIn={() => showAuthModal('sign-in')}
         onCreateAccount={() => showAuthModal('sign-up')}
       />

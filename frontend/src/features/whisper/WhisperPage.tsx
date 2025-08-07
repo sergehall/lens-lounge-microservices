@@ -3,18 +3,18 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { useGetUserQuery } from '@/api/apiSlice';
+import { useAuthContext } from '@/context/AuthContext';
 import { WHISPER_ROUTES } from '@/routes/route-definitions/whisper.routes';
 
 const WhisperPage: React.FC = () => {
   const navigate = useNavigate();
-  const { data: user, isLoading } = useGetUserQuery();
+  const { user, isAuthenticated } = useAuthContext();
 
   useEffect(() => {
-    if (!isLoading && user) {
+    if (isAuthenticated && user?.userId) {
       navigate(WHISPER_ROUTES.chatsRoot);
     }
-  }, [user, isLoading, navigate]);
+  }, [isAuthenticated, user, navigate]);
 
   return null;
 };

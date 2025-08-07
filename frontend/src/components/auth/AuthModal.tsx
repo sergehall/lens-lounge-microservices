@@ -1,4 +1,5 @@
 // frontend/src/components/auth/AuthModal.tsx
+
 import React from 'react';
 
 import * as S from './authorization.styles';

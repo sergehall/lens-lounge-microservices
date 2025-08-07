@@ -1,7 +1,8 @@
 // src/routes/route-definitions/showcase.routes.ts
 
-import { CATEGORY_SLUGS, CategoryName } from '../../config/categorySlugs';
 import { buildRoute } from '../utils/buildRoute';
+
+import { CATEGORY_SLUGS, CategoryName } from '@/config/categorySlugs';
 
 // Static base + dynamic builders with strong types
 const SHOWCASE_ROUTES_BASE = {

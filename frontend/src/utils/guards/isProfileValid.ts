@@ -14,11 +14,11 @@ export const isProfileValid = (profile: unknown): profile is ProfileType => {
     typeof p.userId === 'string' &&
     typeof p.firstName === 'string' &&
     typeof p.lastName === 'string' &&
-    typeof p.username === 'string' &&
+    typeof p.login === 'string' &&
     typeof p.email === 'string' &&
-    typeof p.photoUrl === 'string' &&
     typeof p.birthday === 'string' &&
     typeof p.education === 'string' &&
-    typeof p.website === 'string'
+    typeof p.website === 'string' &&
+    typeof p.photoUrl === 'string'
   );
 };

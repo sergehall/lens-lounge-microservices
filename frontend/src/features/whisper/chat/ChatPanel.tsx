@@ -1,29 +1,32 @@
-// /src/features/chat/ChatPanel.tsx
+// src/features/chat/ChatPanel.tsx
 import React from 'react';
 
 import NavigationButtons from '../Navigation-buttons';
 import * as S from '../ContactsList.styles';
 
+import { useChatLogic } from './hooks/useChatLogic';
 import ChatList from './ChatList';
 import ChatConversation from './ChatConversation';
 import InputSection from './InputSection';
-import { useChatLogic } from './hooks/useChatLogic';
 
-import { useGetUserQuery } from '@/api/apiSlice';
+import { useAuthContext } from '@/context/AuthContext';
 
 const ChatPanel: React.FC = () => {
   const { message, setMessage, selectedDialog, handleSendMessage, handleUploadFile } =
     useChatLogic();
 
-  const { data: user } = useGetUserQuery();
+  const { user } = useAuthContext();
   const userId = user?.userId;
 
   return (
     <S.WhisperChatContainer>
+      {/* Sidebar with contacts and navigation */}
       <S.UserListWrapper>
         <ChatList />
         <NavigationButtons />
       </S.UserListWrapper>
+
+      {/* Main chat area */}
       <S.ChatsOrContactsInfoSection>
         {selectedDialog && userId ? (
           <>

@@ -1,32 +1,45 @@
-// features/users/userSlice.ts
-import { createSlice } from '@reduxjs/toolkit';
-
-import { RootState } from '../../app/store';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { usersMock } from './mocks/usersMock';
 import { User } from './types/user.type';
 
-// State structure for the users slice
+import { RootState } from '@/app/store';
+import { ProfileType } from '@/features/showcase/profile/mocks/defaultProfile';
+
+// Redux state structure
 interface UsersState {
-  users: User[];
+  users: User[]; // full mock user list (for dev/test)
+  currentUser: ProfileType | null; // current session user (simplified)
 }
 
-// Initial mock data for development/testing
+// Initial state
 const initialState: UsersState = {
   users: usersMock,
+  currentUser: null,
 };
 
-// Create the users slice
+// Slice definition
 const userSlice = createSlice({
-  name: 'users',
+  name: 'user',
   initialState,
   reducers: {
-    // Reducers go here when user-related actions are added
+    // Sets the current authenticated user (used by AuthProvider)
+    setCurrentUser: (state, action: PayloadAction<ProfileType | null>) => {
+      state.currentUser = action.payload;
+    },
+    // Clears the current user (on logout)
+    clearCurrentUser: (state) => {
+      state.currentUser = null;
+    },
   },
 });
 
-// Selector to access the users list from the store
-export const selectAllUsers = (state: RootState): User[] => state.users.users;
+// Action creators
+export const { setCurrentUser, clearCurrentUser } = userSlice.actions;
 
-// Export the reducer to be included in the store
+// Selectors
+export const selectAllUsers = (state: RootState): User[] => state.users.users;
+export const selectCurrentUser = (state: RootState): ProfileType | null => state.users.currentUser;
+
+// Reducer
 export default userSlice.reducer;

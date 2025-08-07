@@ -39,8 +39,8 @@ const Profile: React.FC = () => {
           <S.ProfileValue>{`${profile.firstName} ${profile.lastName}`}</S.ProfileValue>
         </S.ProfileField>
         <S.ProfileField>
-          <S.ProfileLabel>Birthday:</S.ProfileLabel>
-          <S.ProfileValue>{profile.birthday}</S.ProfileValue>
+          <S.ProfileLabel>Email:</S.ProfileLabel>
+          <S.ProfileValue>{profile.email}</S.ProfileValue>
         </S.ProfileField>
         <S.ProfileField>
           <S.ProfileLabel>Education:</S.ProfileLabel>
